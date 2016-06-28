@@ -1,0 +1,2 @@
+class UserCompetenciesController < ApplicationController
+end
