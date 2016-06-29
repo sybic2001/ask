@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160629082727) do
+ActiveRecord::Schema.define(version: 20160629193115) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,12 +28,10 @@ ActiveRecord::Schema.define(version: 20160629082727) do
   create_table "competencies", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
-    t.integer  "competency_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.integer  "parent_competency_id"
   end
-
-  add_index "competencies", ["competency_id"], name: "index_competencies_on_competency_id", using: :btree
 
   create_table "experiences", force: :cascade do |t|
     t.integer  "user_competency_id"
@@ -49,18 +47,17 @@ ActiveRecord::Schema.define(version: 20160629082727) do
   add_index "experiences", ["user_competency_id"], name: "index_experiences_on_user_competency_id", using: :btree
 
   create_table "meetings", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "teacher_id"
     t.date     "date"
     t.integer  "duration"
     t.string   "status"
     t.integer  "user_competency_id"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+    t.integer  "helper_id"
+    t.integer  "helpee_id"
   end
 
   add_index "meetings", ["user_competency_id"], name: "index_meetings_on_user_competency_id", using: :btree
-  add_index "meetings", ["user_id"], name: "index_meetings_on_user_id", using: :btree
 
   create_table "memberships", force: :cascade do |t|
     t.integer  "community_id"
@@ -78,9 +75,10 @@ ActiveRecord::Schema.define(version: 20160629082727) do
   create_table "messages", force: :cascade do |t|
     t.integer  "meeting_id"
     t.string   "description"
-    t.integer  "author_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "sender_id"
+    t.integer  "receiver_id"
   end
 
   add_index "messages", ["meeting_id"], name: "index_messages_on_meeting_id", using: :btree
@@ -142,10 +140,8 @@ ActiveRecord::Schema.define(version: 20160629082727) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
-  add_foreign_key "competencies", "competencies"
   add_foreign_key "experiences", "user_competencies"
   add_foreign_key "meetings", "user_competencies"
-  add_foreign_key "meetings", "users"
   add_foreign_key "memberships", "communities"
   add_foreign_key "memberships", "users"
   add_foreign_key "messages", "meetings"

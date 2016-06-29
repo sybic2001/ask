@@ -5,8 +5,15 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   has_one :profile, dependent: :destroy
   has_many :memberships, dependent: :destroy
-  has_many :meetings, dependent: :destroy
   has_many :user_competencies, dependent: :destroy
+  has_many :competencies, through: :user_competencies
+  has_many :communities, through: :memberships
+  has_many :experiences, through: :user_competencies
+  has_many :sended_messages, :class_name => "Message", :foreign_key => "sender_id"
+  has_many :received_messages, :class_name => "Message", :foreign_key => "receiver_id"
+  has_many :helper_meetings, class_name: "Meeting", foreign_key: "helper_id"
+  has_many :helpee_meetings, class_name: "Meeting", foreign_key: "helpee_id"
+  has_many :reviews, through: :helper_meetings
 
   validates :email, :first_name, :last_name, presence: true
 

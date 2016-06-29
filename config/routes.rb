@@ -10,11 +10,12 @@ Rails.application.routes.draw do
   resources :competencies, only: [:index, :new, :create, :destroy]
   resources :communities, only: [:index, :new, :create, :edit, :update, :destroy]
   resources :memberships, only: [:create, :edit, :update, :destroy]
-  resources :experiences
   resources :user_competencies do
     resources :experiences, shallow: true
   end
-
+  resources :meetings do
+    resources :reviews, :messages
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
