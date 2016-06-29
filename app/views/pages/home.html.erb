@@ -1,2 +1,20 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<% if user_signed_in? %>
+
+<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url(<%= image_path('background-alumni.jpg') %>);">
+  <div class="banner-content">
+    <p>Trouver des compétences parmi vos camarades</p>
+    <input type="text" class="form-control" placeholder="Marketing B2B...">
+  </div>
+</div>
+
+<% else %>
+
+<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url(<%= image_path('background-alumni.jpg') %>);">
+  <div class="banner-content">
+    <h1>Bienvenu sur ASK !</h1>
+    <p>La première plateforme de partage de compétences entre alumnis pour booster vos projets d'entreprises</p>
+    <%= link_to t(".sign_in", default: "Connectez-vous"), new_user_session_path, class: "btn btn-primary btn-lg" %>
+  </div>
+</div>
+
+<% end %>
