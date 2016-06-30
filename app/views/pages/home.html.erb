@@ -13,8 +13,62 @@
   <div class="banner-content">
     <h1>Bienvenu sur ASK !</h1>
     <p>La première plateforme de partage de compétences entre alumnis pour booster vos projets d'entreprises</p>
-    <%= link_to t(".sign_in", default: "Connectez-vous"), new_user_session_path, class: "btn btn-primary btn-lg" %>
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+      Connectez-vous
+    </button>
   </div>
 </div>
 
 <% end %>
+
+
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Connectez-vous ou inscrivez-vous</h4>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="form-inputs">
+          <%= f.input :email, required: false, autofocus: true %>
+          <%= f.input :password, required: false %>
+          <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+        </div>
+      <div class="modal-footer">
+        <div class="form-actions">
+          <%= f.button :submit, "Log in", class: "btn btn-success modal-button" %>
+          <button type="button" class="btn btn-primary modal-button" data-dismiss="modal">Close</button>
+        </div>
+      <% end %>
+        <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+        <%= link_to "Sign up", new_registration_path(resource_name) %><br />
+          <% end -%>
+
+          <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+            <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
+          <% end -%>
+
+          <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+            <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name) %><br />
+          <% end -%>
+
+          <%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
+            <%= link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name) %><br />
+          <% end -%>
+
+          <%- if devise_mapping.omniauthable? %>
+            <%- resource_class.omniauth_providers.each do |provider| %>
+              <%= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider) %><br />
+            <% end -%>
+          <% end -%>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
