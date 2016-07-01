@@ -3,9 +3,9 @@ Rails.application.routes.draw do
 
   root to: 'pages#home'
 
-  get "users/:id/profile", to: "profiles#show"
-  get "users/:id/profile/edit", to: "profiles#edit"
-  patch "users/:id/profile", to: "profiles#update"
+  get "users/:id/profile", to: "profiles#show", as: "profile"
+  patch "users/:id/profile", to: "profiles#update", as: "update_profile"
+  get "users/:id/profile/edit", to: "profiles#edit", as: "edit_profile"
 
 
   resources :competencies, only: [:index, :new, :create, :destroy]

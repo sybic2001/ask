@@ -22,8 +22,6 @@
 <% end %>
 
 
-<!-- Button trigger modal -->
-
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -42,8 +40,8 @@
         </div>
       <div class="modal-footer">
         <div class="form-actions">
-          <%= f.button :submit, "Log in", class: "btn btn-success modal-button" %>
           <button type="button" class="btn btn-primary modal-button" data-dismiss="modal">Close</button>
+          <%= f.button :submit, "Log in", class: "btn btn-success modal-button" %>
         </div>
       <% end %>
         <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
