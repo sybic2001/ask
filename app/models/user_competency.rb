@@ -5,5 +5,6 @@ class UserCompetency < ActiveRecord::Base
   has_many :meetings
   has_many :reviews, through: :meetings
 
-  validates :user, :competency, :level, presence: true
+  validates :user, :competency, :level, :description, presence: true
+  validates :competency, uniqueness: { scope: :user }
 end

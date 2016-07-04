@@ -1,16 +1,28 @@
-<div class="col-xs-12 col-md-8 col-md-offset-2">
+<div class="col-xs-12 col-md-8 col-md-offset-2" id="user-competency-<%= user_competency.id %>">
   <div class="product">
-    <div class='product-upvote'>
-      <div class="product-arrow"></div>
-      <div class='product-count'><%= user_competency.level %></div>
+    <div class="clearfix">
+      <div class="c100 p<%= user_competency.level %> small">
+          <span><%= "#{user_competency.level}%" %></span>
+          <div class="slice">
+              <div class="bar"></div>
+              <div class="fill"></div>
+          </div>
+      </div>
     </div>
     <div class='product-body'>
       <h3><%= user_competency.competency.name %></h3>
       <p><%= user_competency.competency.description %></p>
+      <p><%= user_competency.description %></p>
     </div>
     <ul class="list-inline product-controls hidden-sm hidden-xs">
       <li><a href=""><i class="fa fa-star"></i></a></li>
       <li><a href=""><i class="fa fa-pencil" aria-hidden="true"></i></a></li>
+      <li>
+      <%= link_to user_competency_path(user_competency), method: :delete, remote: true do %>
+        <i class="fa fa-trash-o" aria-hidden="true"></i>
+      <% end %>
+      </li>
+      <li><a href=""><div class="book"><i class="fa fa-share" aria-hidden="true"></i></div></a></li>
     </ul>
   </div>
 </div>

@@ -12,8 +12,10 @@
     </div>
     <div class="row">
       <div class="col-xs-12 col-md-8 col-md-offset-2 text-center">
-        <a href="/" class="add-competency"><i class="fa fa-plus-circle" id="circle" aria-hidden="true"></i></a>
-        <div id="form-competency">
+        <div id="logo-competency">
+          <a href="/" class="add-competency"><i class="fa fa-plus-circle" id="circle" aria-hidden="true"></i></a>
+        </div>
+        <div id="form-competency" style="display: none">
           <%= render 'user_competencies/form_user_competency', user_competency: @user_competency %>
         </div>
       </div>
@@ -26,7 +28,8 @@
     $(document).ready(function(){
       $('.add-competency').on('click', function(e){
         e.preventDefault();
-        $('#form-competency').show();
+        $('#circle').toggleClass('fa-plus-circle').toggleClass('fa-minus-circle');
+        $('#form-competency').toggle();
       });
     });
   </script>
