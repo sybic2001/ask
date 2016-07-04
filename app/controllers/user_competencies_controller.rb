@@ -1,8 +1,7 @@
 class UserCompetenciesController < ApplicationController
   def create
-    @user = current_user
     @user_competency = UserCompetency.new(user_competency_params)
-    @user.user_competency = @user
+    @user_competency.user = current_user
     if @user_competency.save
       respond_to do |format|
         format.html { redirect_to profile_path(@user) }
@@ -19,6 +18,6 @@ class UserCompetenciesController < ApplicationController
   private
 
   def user_competency_params
-    params.require(:user_competency).permit(:competency, :level)
+    params.require(:user_competency).permit(:level, :competency_id)
   end
 end

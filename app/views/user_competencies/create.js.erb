@@ -1,0 +1,15 @@
+<% if @user_competency.errors.any? %>
+  // Render new review form with errors
+  // $('#new_review').html("<%= j render 'reviews/form', restaurant: @restaurant, review: @review %>");
+<% else %>
+  // Create a paragraph for the new review. But hide it.
+  var new_competency = $("<%= j render 'user_competency_card', user_competency: @user_competency %>").hide();
+  // Add it to the DOM, at the end of the existing reviews. It's still hidden.
+  $('#experiences').append(new_competency);
+  $('#form-competency').hide();
+  // Show the new review with an animation!
+  new_competency.slideDown();
+  // Remove the text from the content textarea.
+  $('#user_competency_level').val('');
+  $('#user_competency_competency_id').val('');
+<% end %>

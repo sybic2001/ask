@@ -5,30 +5,17 @@
         <h1>Mes domaines de compétence</h1>
       </div>
     </div>
-    <div class="row experiences">
+    <div class="row" id="experiences">
       <% current_user.user_competencies.each do |competency| %>
-      <div class="col-xs-12 col-md-8 col-md-offset-2">
-        <div class="product">
-          <div class='product-upvote'>
-            <div class="product-arrow"></div>
-            <div class='product-count'><%= competency.level %></div>
-          </div>
-          <div class='product-body'>
-            <h3><%= competency.competency.name %></h3>
-            <p><%= competency.competency.description %></p>
-          </div>
-          <ul class="list-inline product-controls hidden-sm hidden-xs">
-            <li><a href=""><i class="fa fa-star"></i></a></li>
-            <li><a href=""><i class="fa fa-pencil" aria-hidden="true"></i></a></li>
-          </ul>
-        </div>
-      </div>
+        <%= render 'user_competencies/user_competency_card', user_competency: competency %>
       <% end %>
     </div>
     <div class="row">
       <div class="col-xs-12 col-md-8 col-md-offset-2 text-center">
         <a href="/" class="add-competency"><i class="fa fa-plus-circle" id="circle" aria-hidden="true"></i></a>
-        <%= render 'form_new_competency', user: current_user, user_competency: @user_competency %>
+        <div id="form-competency">
+          <%= render 'user_competencies/form_user_competency', user_competency: @user_competency %>
+        </div>
       </div>
     </div>
   </div>
@@ -39,8 +26,7 @@
     $(document).ready(function(){
       $('.add-competency').on('click', function(e){
         e.preventDefault();
-        console.log("click detecte");
-        $('.experiences').append("<div class='col-xs-12 col-md-8 col-md-offset-2'><p>Test</p></div")
+        $('#form-competency').show();
       });
     });
   </script>

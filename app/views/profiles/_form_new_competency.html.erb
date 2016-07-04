@@ -1,5 +1,0 @@
-<%= simple_form_for([user, user_competency], remote: true) do |f| %>
-  <%= f.input :competency, collection: Competency.all %>
-  <%= f.input :level %>
-  <%= f.submit :button %>
-<% end %>
