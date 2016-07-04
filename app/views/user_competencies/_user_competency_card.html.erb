@@ -16,13 +16,25 @@
     </div>
     <ul class="list-inline product-controls hidden-sm hidden-xs">
       <li><a href=""><i class="fa fa-star"></i></a></li>
-      <li><a href=""><i class="fa fa-pencil" aria-hidden="true"></i></a></li>
+      <li>
+      <%= link_to edit_user_competency_path(user_competency), class: "edit_competency", remote: true do %>
+      <i class="fa fa-pencil" aria-hidden="true"></i>
+      <% end %>
+      </li>
       <li>
       <%= link_to user_competency_path(user_competency), method: :delete, remote: true do %>
         <i class="fa fa-trash-o" aria-hidden="true"></i>
       <% end %>
       </li>
-      <li><a href=""><div class="book"><i class="fa fa-share" aria-hidden="true"></i></div></a></li>
     </ul>
+    <div class="book"><i class="fa fa-share" aria-hidden="true"></i></div>
+  </div>
+  <div class="row" id="experiences-<%= user_competency.id %>" style="display: none">
+    <% user_competency.experiences.each do |experience| %>
+      <%= render 'experiences/experience_card', experience: experience %>
+    <% end %>
+    <div class="col-xs-12 col-md-8 col-md-offset-2 text-center">
+      <a href="/" class="add-experience"><i class="fa fa-plus-circle" id="circle" aria-hidden="true"></i></a>
+    </div>
   </div>
 </div>

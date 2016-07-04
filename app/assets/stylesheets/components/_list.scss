@@ -63,10 +63,14 @@
 .product-upvote:hover .product-arrow { border-bottom: 9px solid #5898f1 }
 
 .book {
+  position: relative;
   background-color: #1F74BA;
+  height: 40px;
+  width: 40px;
   color: white;
-  box-shadow: 0 0 2px #676767;
+  box-shadow: 0 0 2px 2px #676767;
   border-radius: 50%;
   font-size: 20px;
-  padding: -10px;
+  top: 30px;
+  right: -20px;
 }

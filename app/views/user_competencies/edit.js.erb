@@ -1,0 +1,6 @@
+var edit_form = $("<%= j render 'edit_form_user_competency', user_competency: @user_competency %>").hide();
+$('#user-competency-' + <%= @user_competency.id %>).append(edit_form);
+edit_form.slideDown();
+$('#hide-edit-form').on('click', function(e){
+  edit_form.slideUp("normal", function() { $(this).remove(); });
+})
