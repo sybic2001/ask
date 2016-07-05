@@ -8,8 +8,6 @@ class UserCompetenciesController < ApplicationController
         format.js  # <-- will render `app/views/reviews/create.js.erb`
       end
     else
-      p @user_competency.errors
-      p @user_competency.errors.full_messages
       respond_to do |format|
         format.html { render 'profiles/show_private' }
         format.js  # <-- idem

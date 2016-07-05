@@ -34,7 +34,8 @@
 
       $('.product').on('click',function(e){
         var number = $(this).parent().attr('id').match(/\d+/)[0];
-        $('#experiences-' + number).toggle();
+        $('#experiences-' + number).slideToggle();
+        $(this).toggleClass('active');
       });
     });
   </script>

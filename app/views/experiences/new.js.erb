@@ -1,0 +1,10 @@
+var new_experience_form = $("<%= j render 'new_experience_form', experience: @experience, user_competency: @user_competency %>").hide();
+$('#experiences-' + <%= @user_competency.id %>).append(new_experience_form);
+new_experience_form.slideDown();
+$('#user-competency-' + <%= @user_competency.id %> + ' .add-experience').hide();
+$('.remove-experience-form').on('click', function(e){
+  $(this).parent().parent().slideUp("normal", function() {
+    $(this).remove();
+    $('#user-competency-' + <%= @user_competency.id %> + ' .add-experience').show();
+  });
+})

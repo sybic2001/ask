@@ -1,0 +1,12 @@
+<div class="col-xs-12 form-content" id="form-content-<%= user_competency.id%>">
+  <div id="error-messages">
+  </div>
+  <%= simple_form_for [user_competency, experience], remote: true do |f| %>
+    <%= f.input :year %>
+    <%= f.input :company %>
+    <%= f.input :duration %>
+    <%= f.input :description, label: "Décrivez votre expérience en quelques mots" %>
+    <%= f.submit :button, class: "btn btn-primary", value: "Ajouter" %>
+    <input type="button" value="Annuler" class="btn btn-danger remove-experience-form">
+  <% end %>
+</div>

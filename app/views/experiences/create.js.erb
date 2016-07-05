@@ -1,0 +1,14 @@
+<% if @experience.errors.any? %>
+  // Render new review form with errors
+  $('#error-messages').html("<ul class='list-group'><% @user_competency.errors.full_messages.each do |msg| %><li class='list-group-item list-group-item-danger'><%= msg %></li><% end %></ul>");
+<% else %>
+  // Create a paragraph for the new review. But hide it.
+  var new_experience = $("<%= j render 'experience_card', experience: @experience %>").hide();
+  // Add it to the DOM, at the end of the existing reviews. It's still hidden.
+  $('#experiences-' + <%= @experience.user_competency_id %>).prepend(new_experience);
+  $('#new_experience').remove();
+  $('#error-messages').remove();
+  $('#user-competency-' + <%= @experience.user_competency_id %> + ' .add-experience').show();
+  // Show the new review with an animation!
+  new_experience.slideDown();
+<% end %>
