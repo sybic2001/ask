@@ -1,0 +1,9 @@
+<div class="container">
+  <div class="row">
+    <% @meetings.each do |meeting| %>
+      <div class="col-xs-12 col-md-8 col-md-offset-2">
+        <p><%= meeting.helper.first_name %> aide <%= meeting.helpee.first_name %> et ça va parler de <%= meeting.user_competency.competency.name %></p>
+      </div>
+    <% end %>
+  </div>
+</div>

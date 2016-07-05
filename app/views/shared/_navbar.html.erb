@@ -30,7 +30,12 @@
             </li>
             <li>
               <%= link_to "/" do %>
-                <i class="fa fa-home"></i>  <%= t(".profile", default: "Home") %>
+                <i class="fa fa-home"></i>  <%= t(".home", default: "Home") %>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to meetings_path do %>
+                <i class="fa fa-table" aria-hidden="true"></i>  <%= t(".dashboard", default: "Dashboard") %>
               <% end %>
             </li>
             <li>

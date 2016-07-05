@@ -93,3 +93,15 @@
 .favorite {
   color: #F5C400;
 }
+
+.book-meeting {
+  font-size: 35px;
+  color: $blue;
+  text-shadow: 0 0 1px rgba(0,0,0,0.3);
+  transition: all 0.2s ease;
+  &:hover {
+    color: #63C181;
+    text-shadow: none;
+    transform: scale(1.2);
+  }
+}

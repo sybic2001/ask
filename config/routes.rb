@@ -12,9 +12,10 @@ Rails.application.routes.draw do
   resources :memberships, only: [:create, :edit, :update, :destroy]
   resources :user_competencies do
     resources :experiences, shallow: true
+    resources :meetings, except: [:index], shallow: true
     resources :favorites, only: [:create, :destroy]
   end
-  resources :meetings do
+  resources :meetings, only: [:index] do
     resources :reviews, :messages
   end
 

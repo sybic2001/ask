@@ -25,6 +25,27 @@
   </div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Souhaitez-vous organiser un meeting ?</h4>
+      </div>
+      <div class="modal-body">
+        Vous êtes sur le point de solliciter <strong><%= @user.first_name.capitalize %></strong>, et faire appel à ses compétences en <strong><span id="competency-name"></span></strong>. Une fois le meeting créé, une fenêtre vous permettra de dialoguer avec lui pour s'accorder sur la forme : durée, horaire, sujet... Une fois réalisé, vous pourrez enfin évaluer <%= @user.first_name.capitalize %>, sur ses compétences mais aussi sur la qualité de l'échange.
+      </div>
+      <div class="modal-footer">
+        <form action="" method="post" id="link-meeting" class="inline-form">
+          <input name="authenticity_token" value="form_authenticity_token" type="hidden">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+          <input type="submit" value="Créer un meeting" class="btn btn-primary">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 <% content_for :after_js do %>
   <script>
     $(document).ready(function(){
@@ -34,11 +55,20 @@
         $('#form-competency').toggle();
       });
 
-      $('.product').on('click',function(e){
-        var number = $(this).parent().attr('id').match(/\d+/)[0];
+      $('.product-body').on('click',function(e){
+        var number = $(this).parent().parent().attr('id').match(/\d+/)[0];
         $('#experiences-' + number).slideToggle();
-        $(this).toggleClass('active');
+        $(this).parent().toggleClass('active');
       });
+
+      $('.book-meeting').on('click', function(e){
+        e.preventDefault();
+        var index_competency = $(this).parent().parent().parent().parent().attr('id').match(/\d+/)[0];
+        $('#experience-' + index_competency).hide();
+        $('#link-meeting').attr("action", "/user_competencies/" + index_competency + "/meetings");
+        $('#competency-name').html($(this).attr('id'));
+        $('#myModal').modal('show');
+      })
 
       $('.star').on('click', function(e){
         e.preventDefault();

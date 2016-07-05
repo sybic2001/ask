@@ -5,7 +5,7 @@ class Meeting < ActiveRecord::Base
   has_many :reviews, dependent: :destroy
   has_many :messages, dependent: :destroy
 
-  validates :helpee, :user_competency, :date, :duration, :status, presence: true
+  validates :helpee, :user_competency, :helper, :status, presence: true
   validates :status, inclusion: { in: ["pending approval","accepted","refused","pending review","cancelled","finished"], message: "Invalid status"}
 
   before_create do
