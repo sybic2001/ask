@@ -6,20 +6,22 @@
       </div>
     </div>
     <div class="row" id="experiences">
-      <% current_user.user_competencies.each do |competency| %>
-        <%= render 'user_competencies/user_competency_card', user_competency: competency %>
+      <% @user.user_competencies.each do |competency| %>
+        <%= render 'user_competencies/user_competency_card', user_competency: competency, private_profile: @private_profile %>
       <% end %>
     </div>
-    <div class="row">
-      <div class="col-xs-12 col-md-8 col-md-offset-2 text-center">
-        <div id="logo-competency">
-          <a href="/" class="add-competency"><i class="fa fa-plus-circle" id="circle" aria-hidden="true"></i></a>
-        </div>
-        <div id="form-competency" style="display: none">
-          <%= render 'user_competencies/form_user_competency', user_competency: @user_competency %>
+    <% if @private_profile %>
+      <div class="row">
+        <div class="col-xs-12 col-md-8 col-md-offset-2 text-center">
+          <div id="logo-competency">
+            <a href="/" class="add-competency"><i class="fa fa-plus-circle" id="circle" aria-hidden="true"></i></a>
+          </div>
+          <div id="form-competency" style="display: none">
+            <%= render 'user_competencies/form_user_competency', user_competency: @user_competency %>
+          </div>
         </div>
       </div>
-    </div>
+    <% end %>
   </div>
 </div>
 
@@ -36,6 +38,32 @@
         var number = $(this).parent().attr('id').match(/\d+/)[0];
         $('#experiences-' + number).slideToggle();
         $(this).toggleClass('active');
+      });
+
+      $('.star').on('click', function(e){
+        e.preventDefault();
+        var index_competency = $(this).attr('id').match(/(\d+)/gi)[0];
+        if ($(this).children().hasClass("favorite")){
+          var index_favorite = $(this).attr('id').match(/(\d+)/gi)[1];
+          $.ajax({
+            type: "DELETE",
+            url: "/user_competencies/" + index_competency + "/favorites/" + index_favorite,
+            success: function(data) {
+              $('#user-competency-' + index_competency + ' .fa-star').removeClass("favorite");
+              $('#user-competency-' + index_competency + ' .star').attr("id", "star-competency-" + index_competency);
+            }
+          });
+        } else {
+          $.ajax({
+            type: "POST",
+            url: "/user_competencies/" + index_competency + "/favorites",
+            success: function(data) {
+              $(this).children().addClass("favorite");
+              $('#user-competency-' + index_competency + ' .fa-star').addClass("favorite");
+              $('#user-competency-' + index_competency + ' .star').attr("id", "star-competency-" + index_competency + "-favorite-" + index_new_favorite);
+            }
+          });
+        };
       });
     });
   </script>

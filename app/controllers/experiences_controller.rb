@@ -32,6 +32,9 @@ class ExperiencesController < ApplicationController
   end
 
   def destroy
+    @experience = Experience.find(params[:id])
+    @experience_id = @experience.id
+    @experience.destroy
   end
 
   private

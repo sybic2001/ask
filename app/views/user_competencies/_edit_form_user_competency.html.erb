@@ -1,8 +1,10 @@
 <div id="error-messages">
 </div>
+<div class="col-xs-12 form-content">
 <%= simple_form_for user_competency, remote: true, method: :patch do |f| %>
   <%= f.input :level, label: "Niveau" %>
   <%= f.input :description, label: "Décrivez votre expertise en quelques mots" %>
   <%= f.submit :button, class: "btn btn-primary", value: "Mettre à jour" %>
   <input type="button" value="Annuler" class="btn btn-danger" id="hide-edit-form">
 <% end %>
+</div>

@@ -14,31 +14,44 @@
       <p><%= user_competency.competency.description %></p>
       <p><%= user_competency.description %></p>
     </div>
-    <ul class="list-inline product-controls hidden-sm hidden-xs">
-      <li><a href=""><i class="fa fa-star"></i></a></li>
-      <li>
-      <%= link_to edit_user_competency_path(user_competency), class: "edit_competency", remote: true do %>
-      <i class="fa fa-pencil" aria-hidden="true"></i>
+    <ul class="list-inline product-controls">
+      <% if private_profile %>
+        <li>
+        <%= link_to edit_user_competency_path(user_competency), class: "edit_competency", remote: true do %>
+        <i class="fa fa-pencil" aria-hidden="true"></i>
+        <% end %>
+        </li>
+        <li>
+        <%= link_to user_competency_path(user_competency), method: :delete, remote: true do %>
+          <i class="fa fa-trash-o" aria-hidden="true"></i>
+        <% end %>
+        </li>
+      <% else %>
+        <li>
+        <% if Favorite.where(user: current_user, user_competency: user_competency).empty? %>
+          <li><a href="/" class="star" id="star-competency-<%= user_competency.id %>"><i class="fa fa-star"></i></a></li>
+        <% else %>
+          <li><a href="/" class="star" id="star-competency-<%= user_competency.id %>-favorite-<%= Favorite.find_by(user: current_user, user_competency: user_competency).id %>"><i class="fa fa-star favorite"></i></a></li>
+        <% end %>
+        </li>
+        <li>
+          <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+        </li>
       <% end %>
-      </li>
-      <li>
-      <%= link_to user_competency_path(user_competency), method: :delete, remote: true do %>
-        <i class="fa fa-trash-o" aria-hidden="true"></i>
-      <% end %>
-      </li>
     </ul>
-    <div class="book"><i class="fa fa-share" aria-hidden="true"></i></div>
   </div>
   <div class="col-xs-12">
   <div class="row experiences" id="experiences-<%= user_competency.id %>" style="display: none">
-    <% user_competency.experiences.each do |experience| %>
-      <%= render 'experiences/experience_card', experience: experience %>
+    <% user_competency.experiences.order(:year).each do |experience| %>
+      <%= render 'experiences/experience_card', experience: experience, private_profile: private_profile %>
     <% end %>
-    <div class="col-xs-12 text-center">
-      <%= link_to new_user_competency_experience_path(user_competency), class: "add-experience", remote: true do %>
-      <i class="fa fa-plus-circle" style="font-size: 25px" aria-hidden="true"></i><p>Ajouter une expérience</p>
-      <% end %>
-    </div>
+    <% if private_profile %>
+      <div class="col-xs-12 text-center">
+        <%= link_to new_user_competency_experience_path(user_competency), class: "add-experience", remote: true do %>
+        <i class="fa fa-plus-circle" style="font-size: 25px" aria-hidden="true"></i><p>Ajouter une expérience</p>
+        <% end %>
+      </div>
+    <% end %>
   </div>
   </div>
 </div>

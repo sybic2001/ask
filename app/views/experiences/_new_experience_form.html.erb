@@ -2,10 +2,9 @@
   <div id="error-messages">
   </div>
   <%= simple_form_for [user_competency, experience], remote: true do |f| %>
-    <%= f.input :year %>
-    <%= f.input :company %>
-    <%= f.input :duration %>
-    <%= f.input :description, label: "Décrivez votre expérience en quelques mots" %>
+    <%= f.input :year, label: false, placeholder: "Année" %>
+    <%= f.input :company, label: false, placeholder: "Organisation" %>
+    <%= f.input :description, label: false, placeholder: "Décrivez votre poste / expérience en quelques mots" %>
     <%= f.submit :button, class: "btn btn-primary", value: "Ajouter" %>
     <input type="button" value="Annuler" class="btn btn-danger remove-experience-form">
   <% end %>

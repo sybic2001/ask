@@ -6,8 +6,7 @@
   var new_experience = $("<%= j render 'experience_card', experience: @experience %>").hide();
   // Add it to the DOM, at the end of the existing reviews. It's still hidden.
   $('#experiences-' + <%= @experience.user_competency_id %>).prepend(new_experience);
-  $('#new_experience').remove();
-  $('#error-messages').remove();
+  $('#form-content-' + <%= @experience.user_competency_id %>).remove();
   $('#user-competency-' + <%= @experience.user_competency_id %> + ' .add-experience').show();
   // Show the new review with an animation!
   new_experience.slideDown();

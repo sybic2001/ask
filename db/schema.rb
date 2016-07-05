@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160704161921) do
+ActiveRecord::Schema.define(version: 20160705132426) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,16 @@ ActiveRecord::Schema.define(version: 20160704161921) do
   end
 
   add_index "experiences", ["user_competency_id"], name: "index_experiences_on_user_competency_id", using: :btree
+
+  create_table "favorites", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "user_competency_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "favorites", ["user_competency_id"], name: "index_favorites_on_user_competency_id", using: :btree
+  add_index "favorites", ["user_id"], name: "index_favorites_on_user_id", using: :btree
 
   create_table "meetings", force: :cascade do |t|
     t.date     "date"
@@ -142,6 +152,8 @@ ActiveRecord::Schema.define(version: 20160704161921) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "experiences", "user_competencies"
+  add_foreign_key "favorites", "user_competencies"
+  add_foreign_key "favorites", "users"
   add_foreign_key "meetings", "user_competencies"
   add_foreign_key "memberships", "communities"
   add_foreign_key "memberships", "users"

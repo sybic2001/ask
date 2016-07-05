@@ -7,12 +7,12 @@ Rails.application.routes.draw do
   patch "users/:id/profile", to: "profiles#update", as: "update_profile"
   get "users/:id/profile/edit", to: "profiles#edit", as: "edit_profile"
 
-
   resources :competencies, only: [:index, :new, :create, :destroy]
   resources :communities, only: [:index, :new, :create, :edit, :update, :destroy]
   resources :memberships, only: [:create, :edit, :update, :destroy]
   resources :user_competencies do
     resources :experiences, shallow: true
+    resources :favorites, only: [:create, :destroy]
   end
   resources :meetings do
     resources :reviews, :messages
