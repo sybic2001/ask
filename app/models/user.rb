@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+  has_attachment :photo
   has_one :profile, dependent: :destroy
   has_many :memberships, dependent: :destroy
   has_many :user_competencies, dependent: :destroy
@@ -16,7 +17,7 @@ class User < ActiveRecord::Base
   has_many :reviews, through: :helper_meetings
   has_many :favorites
 
-  validates :email, :first_name, :last_name, presence: true
+  validates :email, :first_name, :last_name, :photo, presence: true
 
   before_create :build_default_profile
 
