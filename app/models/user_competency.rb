@@ -2,7 +2,7 @@ class UserCompetency < ActiveRecord::Base
   belongs_to :user
   belongs_to :competency
   has_many :experiences, dependent: :destroy
-  has_many :meetings
+  has_many :meetings, dependent: :destroy
   has_many :reviews, through: :meetings
   has_many :favorites
 

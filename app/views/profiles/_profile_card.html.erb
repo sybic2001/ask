@@ -1,0 +1,36 @@
+<div class="profile-card">
+  <div class="profile-picture">
+    <% if user.profile.photo? %>
+      <%= cl_image_tag user.profile.photo.path, class: 'avatar-extra-large' %>
+    <% else %>
+      <%= image_tag('anonymous.png', class: 'avatar-extra-large') %>
+    <% end %>
+  </div>
+  <div class="profile-content">
+    <h4><%= user.first_name %> <%= user.last_name %></h4>
+    <p><%= user.profile.description %></p>
+  </div>
+  <div class="profile-reviews">
+    <p>Communautés</p>
+    <% user.communities.limit(3).each do |community| %>
+      <% if @product.photo? %>
+        <%= cl_image_tag community.photo.path, class: 'avatar' %>
+      <% end %>
+    <% end %>
+    <i class="fa fa-plus-circle" id="circle" aria-hidden="true"></i>
+    <br>
+    <i class="fa fa-star" aria-hidden="true"></i>
+    <i class="fa fa-star" aria-hidden="true"></i>
+    <i class="fa fa-star" aria-hidden="true"></i>
+    <i class="fa fa-star" aria-hidden="true"></i>
+    <i class="fa fa-star" aria-hidden="true"></i>
+    <br>43 avis
+  </div>
+  <% if private_profile %>
+    <div class="edit-profile">
+      <%= link_to edit_profile_path(current_user.profile) do %>
+        <i class="fa fa-pencil" aria-hidden="true"></i>
+      <% end %>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-md-8 col-md-offset-2">
+      <%= simple_form_for @profile do |f| %>
+        <%= f.input :first_name, label: "Prénom" %>
+        <%= f.input :last_name, label: "Nom" %>
+        <%= f.input :address, label: "Adresse" %>
+        <%= f.input :city, label: "Ville" %>
+        <%= f.input :phone_number, label: "Téléphone", placeholder: "0612001300" %>
+        <%= f.input :description, label: "Mini bio", input_html: { rows: 5 } %>
+        <%= f.input :photo, as: :attachinary %>
+        <%= f.submit :button, class: 'btn btn-primary', value: 'Mettre à jour' %>
+        <%= link_to "Changer Login", edit_user_registration_path, class: 'btn btn-warning' %>
+      <% end %>
+    </div>
+  </div>
+</div>

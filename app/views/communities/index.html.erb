@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 text-center">
+      <h1>Toutes les communautés présentes sur ASK !</h1>
+    </div>
+  </div>
+  <div class="row">
+    <% @communities.each do |community| %>
+     <%= render 'community_card', community: community %>
+    <% end %>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 text-center">
+      <%= link_to new_community_path do %>
+      <i class="fa fa-plus-circle" id="circle" aria-hidden="true"></i>
+      <% end %>
+    </div>
+  </div>
+</div>

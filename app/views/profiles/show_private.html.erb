@@ -2,6 +2,11 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-12 col-md-8 col-md-offset-2 text-center">
+        <%= render 'profile_card', user: @user, private_profile: @private_profile %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-md-8 col-md-offset-2 text-center">
         <h1>Mes domaines de compétence</h1>
       </div>
     </div>
@@ -55,7 +60,7 @@
         $('#form-competency').toggle();
       });
 
-      $('.product-body').on('click',function(e){
+      $(document).on('click', '.product-body', function(e){
         var number = $(this).parent().parent().attr('id').match(/\d+/)[0];
         $('#experiences-' + number).slideToggle();
         $(this).parent().toggleClass('active');
