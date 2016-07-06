@@ -1,9 +1,43 @@
 <div class="container">
   <div class="row">
-    <% @meetings.each do |meeting| %>
-      <div class="col-xs-12 col-md-8 col-md-offset-2">
-        <p><%= meeting.helper.first_name %> aide <%= meeting.helpee.first_name %> et ça va parler de <%= meeting.user_competency.competency.name %></p>
+    <div class="col-xs-12 text-center">
+      <h1>Tableau de bord</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-7">
+      <div class="row">
+      <div class="col-xs-12">
+        <div class="tabs">
+          <a class="tab active" href="#">
+            <h3>350</h3>
+            <p>Followers</p>
+          </a>
+          <a class="tab" href="#">
+            <h3>456</h3>
+            <p>Following</p>
+          </a>
+          <a class="tab" href="#">
+            <h3>189</h3>
+            <p>Upvoted</p>
+          </a>
+          <a class="tab" href="#">
+            <h3>13</h3>
+            <p>Submitted</p>
+          </a>
+        </div>
       </div>
-    <% end %>
+      </div>
+      <div class="row">
+      <% @meetings.each do |meeting| %>
+        <div class="col-xs-12">
+          <p><%= meeting.helper.first_name %> aide <%= meeting.helpee.first_name %> et ça va parler de <%= meeting.user_competency.competency.name %></p>
+        </div>
+      <% end %>
+      </div>
+    </div>
+    <div class="col-xs-5 text-center">
+      <h2>Chatbox</h1>
+    </div>
   </div>
 </div>
