@@ -1,11 +1,12 @@
 .profile-card {
-  background-color: #E2E2E2;
+  background-color: white;
   display: flex;
   align-items: center;
   width: 100%;
   height: 150px;
   margin-top: 10px;
   position: relative;
+  box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.3);
 }
 
 .profile-picture {
@@ -49,6 +50,10 @@
 
 .community-card {
   height: 200px;
+  background-color: white;
+  margin: 10px 0;
+  box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.3);
+  position: relative;
   #circle {
     font-size: 70px;
     color: #5E99D9;
@@ -61,17 +66,62 @@
   }
 }
 
-.community-card {
-  position: relative;
-  background-color: #FEFEFE;
+.community-picture {
+  height: 150px;
+  width: 100%;
+  img {
+    max-height: 100%;
+    max-width: 100%;
+  }
+}
+
+.community-name {
+  height: 50px;
+  background-color: #353535;
+  h3 {
+    padding: 10px 0;
+    margin: 0;
+    color: white;
+  }
 }
 
 .badge-member-count {
-  height: 20px;
-  width: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  height: 30px;
+  width: 30px;
+  padding: 7px 0;
   border-radius: 50%;
-  background-color: #9ACDA0;
+  background-color: #353535;
+  color: white;
   position: absolute;
-  top: 0px;
-  right: 0px;
+  top: -15px;
+  right: -15px;
+}
+
+.community-action {
+  position: absolute;
+  right: 10px;
+  top: 115px;
+  i {
+    font-size: 30px;
+  }
+  .fa-plus-circle {
+    color: $blue;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    &:hover {
+      transform: rotate(90deg);
+      color: #396CB0;
+    }
+  }
+  .pending-approval {
+    color: #FFAC44;
+  }
+  .blacklisted {
+    color: #D01313;
+  }
+  .member {
+    color: #379B48;
+  }
 }

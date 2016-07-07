@@ -17,3 +17,21 @@
     </div>
   </div>
 </div>
+
+
+<% content_for :after_js do %>
+  <script>
+    $(document).ready(function(){
+      $('.join-community').on('click', function(e){
+        var index_community = $(this).attr('id').match(/\d+/)[0];
+        $.ajax({
+          type: "POST",
+          url: "/communities/" + index_community + "/memberships",
+          success: function(data) {
+            $('#join-community-' + index_community).parent().html("<i class='fa fa-check-circle pending-approval' aria-hidden='true'></i>");
+          }
+        });
+      });
+    });
+  </script>
+<% end %>

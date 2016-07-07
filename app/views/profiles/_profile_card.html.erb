@@ -13,7 +13,7 @@
   <div class="profile-reviews">
     <p>Communautés</p>
     <% user.communities.limit(3).each do |community| %>
-      <% if @product.photo? %>
+      <% if community.photo? %>
         <%= cl_image_tag community.photo.path, class: 'avatar' %>
       <% end %>
     <% end %>

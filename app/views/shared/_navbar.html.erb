@@ -4,6 +4,25 @@
     <%= image_tag "logo.png" %>
   <% end %>
 
+  <div class="menu hidden-xs hidden-sm">
+    <div class="flex-menu">
+      <%= link_to communities_path do %>
+        <h3>Communautés</h3>
+      <% end %>
+    </div>
+    <div class="flex-menu">
+      <%= link_to competencies_path do %>
+        <h3>Compétences</h3>
+      <% end %>
+    </div>
+    <div class="flex-menu">
+      <%= link_to user_favorites_path(current_user) do %>
+        <h3>Favoris</h3>
+      <% end %>
+    </div>
+
+  </div>
+
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm">
 

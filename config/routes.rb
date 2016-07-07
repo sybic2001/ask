@@ -8,8 +8,10 @@ Rails.application.routes.draw do
   get "users/:id/profile/edit", to: "profiles#edit", as: "edit_profile"
 
   resources :competencies, only: [:index, :new, :create, :destroy]
-  resources :communities, only: [:index, :new, :create, :edit, :update, :destroy]
-  resources :memberships, only: [:create, :edit, :update, :destroy]
+  resources :communities, only: [:index, :new, :create, :edit, :update, :destroy] do
+    resources :memberships, only: [:create, :index]
+  end
+  resources :memberships, only: [:edit, :update, :destroy]
   resources :user_competencies do
     resources :experiences, shallow: true
     resources :meetings, except: [:index], shallow: true
@@ -18,6 +20,10 @@ Rails.application.routes.draw do
   resources :meetings, only: [:index] do
     resources :reviews, :messages
   end
+  resources :users, only: [] do
+    resources :favorites, only: [:index]
+  end
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
