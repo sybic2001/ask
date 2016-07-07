@@ -4,6 +4,8 @@ class CommunitiesController < ApplicationController
   end
 
   def show
+    @community = Community.find(params[:id])
+    redirect_to root_path(access: "unauthorized") if !current_user.is_member?(@community)
   end
 
   def new
@@ -18,6 +20,11 @@ class CommunitiesController < ApplicationController
     else
       render 'new'
     end
+  end
+
+  def edit
+    @community = Community.find(params[:id])
+    redirect_to communities_path(@community) if !current_user.is_community_manager?(@community)
   end
 
   private

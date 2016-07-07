@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-md-8 col-md-offset-2 text-center">
+      <h1><%= @community.name %></h1>
+      <p><%= @community.description %></p>
+    </div>
+  </div>
+  <% if current_user.is_community_manager?(@community) %>
+  <div class="row">
+    <div class="col-xs-12 col-md-8 col-md-offset-2 text-center">
+      <%= link_to "Gérer ma communauté", edit_community_path(@community), class: 'btn btn-primary' %>
+    </div>
+  </div>
+  <% end %>
+  <div class="row">
+    <% @community.memberships.where(status: "member").each do |membership| %>
+      <%= render 'user_card', user: membership.user %>
+    <% end %>
+  </div>
+</div>

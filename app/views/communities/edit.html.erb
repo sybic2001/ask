@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-md-8 col-md-offset-2 text-center">
+      <h1><%= @community.name %></h1>
+      <p><%= @community.description %></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-md-8 col-md-offset-2">
+      <h3>Membres</h3>
+    </div>
+    <% @community.memberships.where(status: "member").each do |membership| %>
+      <%= render 'user_card_validation', membership: membership, user: membership.user, aprovable: false %>
+    <% end %>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-md-8 col-md-offset-2">
+      <h3>En attente de réponse</h3>
+    </div>
+    <% @community.memberships.where(status: "pending approval").each do |membership| %>
+      <%= render 'user_card_validation', membership: membership, user: membership.user, aprovable: true %>
+    <% end %>
+  </div>
+</div>

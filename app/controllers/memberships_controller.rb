@@ -1,8 +1,6 @@
 class MembershipsController < ApplicationController
 
   def index
-    @community = Community.find(params[:community_id])
-    redirect_to root_path if current_user.memberships.where(community: @community).empty? || !current_user.memberships.find_by(community: @community).community_manager
 
   end
 
@@ -10,4 +8,17 @@ class MembershipsController < ApplicationController
     @community = Community.find(params[:community_id])
     Membership.create(user: current_user, community: @community)
   end
+
+  def update
+    @membership = Membership.find(params[:id])
+    @membership.update(membership_params)
+  end
+
+
+  private
+
+  def membership_params
+    params.require(:membership).permit(:status, :user, :community, :community_time_credit, :community_manager)
+  end
+
 end

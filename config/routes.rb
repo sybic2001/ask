@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get "users/:id/profile/edit", to: "profiles#edit", as: "edit_profile"
 
   resources :competencies, only: [:index, :new, :create, :destroy]
-  resources :communities, only: [:index, :new, :create, :edit, :update, :destroy] do
+  resources :communities, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
     resources :memberships, only: [:create, :index]
   end
   resources :memberships, only: [:edit, :update, :destroy]

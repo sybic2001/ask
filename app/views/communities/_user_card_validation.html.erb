@@ -1,0 +1,26 @@
+<div class="col-xs-12 col-md-8 col-md-offset-2">
+  <div class="user-card" id="user-card-<%= user.id %>">
+    <div class="user-picture">
+    <% if user.profile.photo? %>
+      <%= cl_image_tag user.profile.photo.path, class: 'avatar-large' %>
+    <% end %>
+    </div>
+    <div class="user-name">
+      <h4><%= user.first_name %> <%= user.last_name %></h4>
+    </div>
+    <div class="user-email">
+      <p><em><%= user.email %></em></p>
+    </div>
+    <div class="edit-memberships">
+      <% if aprovable %>
+        <%= link_to "Accepter", membership_path(membership), data: { method: :patch, remote: true, params: { membership: { status: "member" } }.to_param }, class: 'btn btn-success' %>
+        <%= link_to "Refuser", membership_path(membership), data: { method: :patch, remote: true, params: { membership: { status: "refused" } }.to_param }, class: 'btn btn-danger' %>
+      <% else %>
+        <% if !membership.community_manager %>
+        <%= link_to "Rendre admin", membership_path(membership), data: { method: :patch, remote: true, params: { membership: { community_manager: true } }.to_param }, class: 'btn btn-success' %>
+        <%= link_to "Exclure", membership_path(membership), data: { method: :patch, remote: true, params: { membership: { status: "excluded" } }.to_param }, class: 'btn btn-danger' %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

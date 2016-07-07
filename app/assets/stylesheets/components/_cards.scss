@@ -16,7 +16,7 @@
 
 .profile-content {
   text-align: left;
-  flex: 0 1 auto;
+  flex: 1 1 auto;
 }
 
 .profile-reviews {
@@ -64,14 +64,20 @@
       transform: rotate(180deg);
     }
   }
+  a {
+    text-decoration: none;
+  }
 }
 
 .community-picture {
   height: 150px;
   width: 100%;
+  display: flex;
+  align-items: center;
   img {
     max-height: 100%;
     max-width: 100%;
+    margin: auto;
   }
 }
 
@@ -123,5 +129,33 @@
   }
   .member {
     color: #379B48;
+  }
+}
+
+.user-card {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  height: 60px;
+  box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.3);
+  .user-picture {
+    flex: 0 1 auto;
+    margin: 0 10px;
+  }
+  .user-name {
+    flex: 1 1 auto;
+    h3 {
+      margin: 0;
+    }
+  }
+  .user-email {
+    flex: 0 1 auto;
+    p {
+      margin: 0 10px;
+    }
+  }
+  .edit-memberships {
+    flex: 0 1 auto;
+    margin: 0 10px;
   }
 }

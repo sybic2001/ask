@@ -1,13 +1,15 @@
 <div class="col-xs-12 col-md-3 text-center">
   <div class="community-card">
-    <div class="community-picture">
+    <div class="community-picture text-center">
     <% if community.photo? %>
-      <%= cl_image_tag community.photo.path, height: "150px" %>
+      <%= cl_image_tag community.photo.path, height: 150, width: 200, crop: :fit %>
     <% end %>
     </div>
+    <%= link_to community_path(community) do %>
     <div class="community-name">
       <h3><%= community.name %></h3>
     </div>
+    <% end %>
     <div class="badge-member-count">
       <%= community.memberships.where(status: "member").count %>
     </div>

@@ -20,6 +20,16 @@ class User < ActiveRecord::Base
 
   after_create :build_default_profile
 
+  def is_community_manager?(community)
+    user_membership = self.memberships.find_by(community: community)
+    return !user_membership.nil? && user_membership.community_manager
+  end
+
+  def is_member?(community)
+    user_membership = self.memberships.find_by(community: community)
+    return !user_membership.nil? && (user_membership.status == "member")
+  end
+
   private
 
   def build_default_profile
