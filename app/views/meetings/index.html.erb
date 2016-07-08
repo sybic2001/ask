@@ -1,43 +1,50 @@
 <div class="container">
   <div class="row">
-    <div class="col-xs-12 text-center">
-      <h1>Tableau de bord</h1>
-    </div>
-  </div>
-  <div class="row">
     <div class="col-xs-7">
       <div class="row">
-      <div class="col-xs-12">
-        <div class="tabs">
-          <a class="tab active" href="#">
-            <h3>350</h3>
-            <p>Followers</p>
-          </a>
-          <a class="tab" href="#">
-            <h3>456</h3>
-            <p>Following</p>
-          </a>
-          <a class="tab" href="#">
-            <h3>189</h3>
-            <p>Upvoted</p>
-          </a>
-          <a class="tab" href="#">
-            <h3>13</h3>
-            <p>Submitted</p>
-          </a>
-        </div>
-      </div>
-      </div>
-      <div class="row">
-      <% @meetings.each do |meeting| %>
         <div class="col-xs-12">
-          <p><%= meeting.helper.first_name %> aide <%= meeting.helpee.first_name %> et ça va parler de <%= meeting.user_competency.competency.name %></p>
+          <div class="tabs">
+            <a class="tab active" id="tab-1" href="#">
+              <h3>Mes demandes</h3>
+              <p><%= @meetings_as_helpee.count %></p>
+            </a>
+            <a class="tab" id="tab-2" href="#">
+              <h3>Mes prestations</h3>
+              <p><%= @meetings_as_helper.count %></p>
+            </a>
+          </div>
         </div>
+      </div>
+      <div class="row meetings-list" style="display: none">
+      <% @meetings_as_helper.each do |meeting| %>
+        <%= render 'meeting_card', meeting: meeting, status: "aprovable" %>
+      <% end %>
+      </div>
+      <div class="row meetings-list">
+      <% @meetings_as_helpee.each do |meeting| %>
+        <%= render 'meeting_card', meeting: meeting, status: "cancelable" %>
       <% end %>
       </div>
     </div>
     <div class="col-xs-5 text-center">
-      <h2>Chatbox</h1>
+      <div class="chatbox">
+        <h2>Chatbox</h1>
+      </div>
     </div>
   </div>
 </div>
+
+<% content_for :after_js do %>
+  <script>
+    $(document).ready(function(){
+      $('.tab').on('click', function(e){
+        e.preventDefault();
+        if (!$(this).hasClass('active')) {
+          $('.active').removeClass('active');
+          $(this).addClass('active');
+          $('.meetings-list').toggle();
+        }
+      })
+    });
+  </script>
+<% end %>

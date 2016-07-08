@@ -159,3 +159,24 @@
     margin: 0 10px;
   }
 }
+
+.meeting-card {
+  background-color: white;
+  box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  height: 80px;
+  padding: 0 10px;
+  .user-picture {
+    flex: 0 0 auto;
+  }
+  .content {
+    flex: 0 0 auto;
+  }
+  p {
+    margin: 0 10px;
+  }
+  .content-meeting {
+    flex: 1 1 auto;
+  }
+}

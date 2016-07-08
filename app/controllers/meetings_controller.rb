@@ -1,6 +1,7 @@
 class MeetingsController < ApplicationController
   def index
-    @meetings = Meeting.where("helper_id = ? OR helpee_id = ?", current_user.id, current_user.id)
+    @meetings_as_helper = Meeting.where("helper_id = ?", current_user.id)
+    @meetings_as_helpee = Meeting.where("helpee_id = ?", current_user.id)
   end
 
   def create
