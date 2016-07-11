@@ -70,3 +70,15 @@
     </div>
   </div>
 </div>
+
+<% content_for :after_js do %>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      setTimeout(function(){
+        $('#alert').slideUp(300, function(){
+          $(this).remove();
+        });
+      }, 2000);
+     })
+  </script>
+<% end %>

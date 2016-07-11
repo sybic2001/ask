@@ -1,0 +1,9 @@
+<div class="chatbox-message">
+  <% if message.sender == current_user %>
+  <div class="message-right">
+  <% else %>
+  <div class="message-left">
+  <% end %>
+    <p><%= message.description %></p>
+  </div>
+</div>

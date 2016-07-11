@@ -1,0 +1,13 @@
+var new_message_form = $("<%= j render 'chat_form', message: @message, meeting: @meeting %>").hide();
+$('.chat-form').empty().append(new_message_form);
+new_message_form.show();
+
+var chat_box = $('#chatbox');
+chat_box.empty();
+
+<% @messages.each do |message| %>
+  var message = $("<%= j render 'message_card', message: message, meeting: @meeting %>").hide();
+  chat_box.append(message);
+  message.show();
+  chat_box.scrollTop(chat_box[0].scrollHeight);
+<% end %>

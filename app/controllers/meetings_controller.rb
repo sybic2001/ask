@@ -2,6 +2,8 @@ class MeetingsController < ApplicationController
   def index
     @meetings_as_helper = Meeting.where("helper_id = ?", current_user.id)
     @meetings_as_helpee = Meeting.where("helpee_id = ?", current_user.id)
+    @meetings = @meetings_as_helper + @meetings_as_helpee
+    @message = Message.new()
   end
 
   def create

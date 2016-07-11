@@ -1,0 +1,4 @@
+<%= simple_form_for [meeting, message], remote: true do |f| %>
+  <%= f.input :description, as: :text, input_html: { rows: 5 }, label: false %>
+  <%= f.submit :button, value: "Envoyer", class: 'btn btn-success' %>
+<% end %>

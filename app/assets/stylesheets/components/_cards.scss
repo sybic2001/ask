@@ -167,6 +167,7 @@
   align-items: center;
   height: 80px;
   padding: 0 10px;
+  cursor: pointer;
   .user-picture {
     flex: 0 0 auto;
   }
@@ -178,5 +179,8 @@
   }
   .content-meeting {
     flex: 1 1 auto;
+  }
+  &:hover {
+    background-color: #C8C8C8;
   }
 }
