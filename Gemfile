@@ -20,6 +20,7 @@ gem 'cloudinary'
 gem 'attachinary'
 gem 'jquery-fileupload-rails'
 gem 'coffee-rails'
+gem 'bootstrap-datepicker-rails'
 
 group :development, :test do
   gem 'binding_of_caller'

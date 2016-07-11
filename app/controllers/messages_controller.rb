@@ -10,6 +10,7 @@ class MessagesController < ApplicationController
     @meeting = Meeting.find(params[:meeting_id])
     @message.meeting = @meeting
     @message.sender = current_user
+    @message.status = "new"
     if @meeting.helper == current_user
       @message.receiver = @meeting.helpee
     else

@@ -5,24 +5,45 @@
         <div class="col-xs-12">
           <div class="tabs">
             <a class="tab active" id="tab-1" href="#">
-              <h3>Mes demandes</h3>
-              <p><%= @meetings_as_helpee.count %></p>
+              <h3>Mes besoins</h3>
+              <p><%= @meetings_as_helpee_coming.count %></p>
             </a>
             <a class="tab" id="tab-2" href="#">
-              <h3>Mes prestations</h3>
-              <p><%= @meetings_as_helper.count %></p>
+              <h3>Les requêtes</h3>
+              <p><%= @meetings_as_helper_pending.count %></p>
             </a>
           </div>
         </div>
       </div>
       <div class="row meetings-list" style="display: none">
-      <% @meetings_as_helper.each do |meeting| %>
-        <%= render 'meeting_card', meeting: meeting, status: "aprovable" %>
-      <% end %>
+        <div class="pending-approval">
+          <div class="col-xs-12">
+            <h4>Nouvelles demandes</h4>
+          </div>
+          <% @meetings_as_helper_pending.each do |meeting| %>
+            <%= render 'helper_meeting_card', meeting: meeting %>
+          <% end %>
+        </div>
+        <div class="accepted">
+          <div class="col-xs-12">
+            <h4>Agenda</h4>
+          </div>
+          <% @meetings_as_helper_coming.each do |meeting| %>
+            <%= render 'helper_meeting_card', meeting: meeting %>
+          <% end %>
+        </div>
+        <div class="pending-review">
+          <div class="col-xs-12">
+            <h4>En attente de commentaires</h4>
+          </div>
+          <% @meetings_as_helper_done.each do |meeting| %>
+            <%= render 'helper_meeting_card', meeting: meeting %>
+          <% end %>
+        </div>
       </div>
       <div class="row meetings-list">
       <% @meetings_as_helpee.each do |meeting| %>
-        <%= render 'meeting_card', meeting: meeting, status: "cancelable" %>
+        <%= render 'helpee_meeting_card', meeting: meeting, status: "cancelable" %>
       <% end %>
       </div>
     </div>
@@ -36,7 +57,6 @@
       </div>
       <div class="col-xs-12">
         <div class="chat-form">
-
         </div>
       </div>
     </div>
@@ -57,11 +77,23 @@
 
       $('.meeting-card').on('click', function(e){
         var meeting_index = $(this).attr('id').match(/\d+/)[0];
+        $('.meeting-card').removeClass('active');
+        $(this).addClass('active');
         $.ajax({
           type: "GET",
           url: "/meetings/" + meeting_index + "/messages",
           success: function(data){
           }
+        });
+      });
+
+      $('.datepicker-input').each(function(){
+        $(this).datepicker({
+          startDate: "today",
+          language: "fr",
+          daysOfWeekHighlighted: "0,6",
+          autoclose: true,
+          todayHighlight: true
         });
       });
     });

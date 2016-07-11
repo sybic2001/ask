@@ -1,5 +1,5 @@
 .chatbox {
-  margin-top: 20px;
+  margin-top: 25px;
   height: 60vh;
   background-color: white;
   overflow: hidden;
@@ -39,6 +39,15 @@
   background-color: #76B2DB;
   width: 70%;
   margin-right: 0;
+  margin-left: auto;
+  overflow-wrap: break-word;
+}
+.message-auto {
+  border-radius: 5px;
+  background-color: #F8B936;
+  width: 100%;
+  font-style: italic;
+  margin-right: auto;
   margin-left: auto;
   overflow-wrap: break-word;
 }

@@ -1,0 +1,17 @@
+<div class="col-xs-12">
+  <div class="meeting-card" id="meeting-card-<%= meeting.id %>">
+    <div class="user-picture">
+      <%= link_to profile_path(meeting.helper) do %>
+        <% if meeting.helper.profile.photo? %>
+          <%= cl_image_tag meeting.helper.profile.photo.path, class: 'avatar-large' %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="content-meeting">
+      <p><%= meeting.helper.first_name %> vous aide en <%= meeting.user_competency.competency.name %></p>
+    </div>
+    <div class="action-meeting">
+
+    </div>
+  </div>
+</div>

@@ -1,8 +1,12 @@
 <div class="chatbox-message">
-  <% if message.sender == current_user %>
-  <div class="message-right">
+  <% if message.status == "auto" %>
+  <div class="message-auto">
   <% else %>
-  <div class="message-left">
+    <% if message.sender == current_user %>
+    <div class="message-right">
+    <% else %>
+    <div class="message-left">
+    <% end %>
   <% end %>
     <p><%= message.description %></p>
   </div>
