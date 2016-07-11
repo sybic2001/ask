@@ -43,6 +43,8 @@ class MeetingsController < ApplicationController
       elsif @meeting.status == "finished"
         @message = Message.create(meeting: @meeting, sender: @meeting.helper, receiver: @meeting.helpee, status: "auto", description: "Le meeting est terminé. Merci d'avoir contribué !")
       end
+    else
+      render nothing: true
     end
   end
 

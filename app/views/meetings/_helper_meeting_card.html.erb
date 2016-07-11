@@ -27,12 +27,21 @@
       </div>
     <% elsif meeting.status == "accepted" %>
       <div class="action-meeting">
+        <strong><%= meeting.date.strftime("%d/%m/%y") %> - <%= meeting.duration %>h</strong>&nbsp;
+      </div>
+      <div class="action-meeting">
         <%= simple_form_for meeting, html: { class: 'form-inline' }, remote: true do |f| %>
           <%= f.hidden_field :status, value: "cancelled" %>
           <%= f.submit :button, value: "Annuler", class: 'btn btn-danger', data: { confirm: "Etes-vous sûr de vouloir annuler ce meeting ?" } %>
         <% end %>
       </div>
     <% elsif meeting.status == "pending review" %>
+      <div class="action-meeting">
+        <%= simple_form_for [meeting, @message], html: { class: 'form-inline' }, remote: true do |f| %>
+          <%= f.hidden_field :description, value: "N'oublie pas de m'évaluer !" %>
+          <%= f.submit :button, value: "Relancer", class: 'btn btn-danger' %>
+        <% end %>
+      </div>
     <% end %>
   </div>
 </div>

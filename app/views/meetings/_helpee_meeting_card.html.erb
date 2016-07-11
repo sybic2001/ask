@@ -10,8 +10,27 @@
     <div class="content-meeting">
       <p><%= meeting.helper.first_name %> vous aide en <%= meeting.user_competency.competency.name %></p>
     </div>
-    <div class="action-meeting">
+    <% if meeting.status == "pending approval" %>
+      <div class="action-meeting">
+        <%= simple_form_for meeting, html: { class: 'form-inline' }, remote: true do |f| %>
+          <%= f.hidden_field :status, value: "cancelled" %>
+          <%= f.submit :button, value: "Annuler", class: 'btn btn-danger', data: { confirm: "Etes-vous sûr de vouloir annuler ce meeting ?" } %>
+        <% end %>
+      </div>
+    <% elsif meeting.status == "accepted" %>
+      <div class="action-meeting">
+        <strong><%= meeting.date.strftime("%d/%m/%y") %> - <%= meeting.duration %>h</strong>&nbsp;
+      </div>
+      <div class="action-meeting">
+        <%= simple_form_for meeting, html: { class: 'form-inline' }, remote: true do |f| %>
+          <%= f.hidden_field :status, value: "cancelled" %>
+          <%= f.submit :button, value: "Annuler", class: 'btn btn-danger', data: { confirm: "Etes-vous sûr de vouloir annuler ce meeting ?" } %>
+        <% end %>
+      </div>
+    <% elsif meeting.status == "pending review" %>
+      <div class="action-meeting">
 
-    </div>
+      </div>
+    <% end %>
   </div>
 </div>

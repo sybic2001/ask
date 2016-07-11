@@ -42,9 +42,30 @@
         </div>
       </div>
       <div class="row meetings-list">
-      <% @meetings_as_helpee.each do |meeting| %>
-        <%= render 'helpee_meeting_card', meeting: meeting, status: "cancelable" %>
-      <% end %>
+        <div class="pending-approval">
+          <div class="col-xs-12">
+            <h4>Nouvelles demandes</h4>
+          </div>
+          <% @meetings_as_helpee_pending.each do |meeting| %>
+            <%= render 'helpee_meeting_card', meeting: meeting %>
+          <% end %>
+        </div>
+        <div class="accepted">
+          <div class="col-xs-12">
+            <h4>Agenda</h4>
+          </div>
+          <% @meetings_as_helpee_coming.each do |meeting| %>
+            <%= render 'helpee_meeting_card', meeting: meeting %>
+          <% end %>
+        </div>
+        <div class="pending-review">
+          <div class="col-xs-12">
+            <h4>A commenter</h4>
+          </div>
+          <% @meetings_as_helpee_done.each do |meeting| %>
+            <%= render 'helpee_meeting_card', meeting: meeting %>
+          <% end %>
+        </div>
       </div>
     </div>
     <div class="col-xs-4 text-center">

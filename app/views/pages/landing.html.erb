@@ -1,9 +1,13 @@
 <div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url(<%= image_path('background-alumni.jpg') %>);">
   <div class="banner-content">
-    <p>Trouver des compétences parmi vos camarades</p>
-    <input type="text" class="form-control" placeholder="Marketing B2B...">
+    <h1>Bienvenu sur ASK !</h1>
+    <p>La première plateforme de partage de compétences entre alumnis pour booster vos projets d'entreprises</p>
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+      Connectez-vous
+    </button>
   </div>
 </div>
+
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -55,12 +59,6 @@
 
 <% content_for :after_js do %>
   <script type="text/javascript">
-    $(document).ready(function(){
-      setTimeout(function(){
-        $('#alert').slideUp(300, function(){
-          $(this).remove();
-        });
-      }, 2000);
-     })
+
   </script>
 <% end %>
