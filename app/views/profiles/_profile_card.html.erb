@@ -11,13 +11,17 @@
     <p><%= user.profile.description %></p>
   </div>
   <div class="profile-reviews">
-    <p>Communautés</p>
-    <% user.communities.limit(3).each do |community| %>
-      <% if community.photo? %>
-        <%= cl_image_tag community.photo.path, class: 'avatar' %>
+    <% user.memberships.where(status: "member").limit(3).each do |membership| %>
+      <%= link_to community_path(membership.community) do %>
+        <% if membership.community.photo? %>
+          <%= cl_image_tag(membership.community.photo.path, height: 50, width: 50, crop: :fit) %>
+        <% end %>
       <% end %>
     <% end %>
-    <i class="fa fa-plus-circle" id="circle" aria-hidden="true"></i>
+    <br>
+      <%= link_to communities_path do %>
+      <i class="fa fa-plus-circle" aria-hidden="true" id="ajout-communaute"></i>
+      <% end %>
     <br>
     <i class="fa fa-star" aria-hidden="true"></i>
     <i class="fa fa-star" aria-hidden="true"></i>

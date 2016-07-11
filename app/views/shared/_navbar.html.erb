@@ -6,13 +6,18 @@
 
   <div class="menu hidden-xs hidden-sm">
     <div class="flex-menu">
-      <%= link_to communities_path do %>
-        <h3>Communautés</h3>
+      <%= link_to meetings_path do %>
+        <h3>Dashboard</h3>
       <% end %>
     </div>
     <div class="flex-menu">
-      <%= link_to competencies_path do %>
-        <h3>Compétences</h3>
+      <%= link_to profile_path(current_user) do %>
+        <h3>Mon profile</h3>
+      <% end %>
+    </div>
+    <div class="flex-menu">
+      <%= link_to communities_path do %>
+        <h3>Mes communautés</h3>
       <% end %>
     </div>
     <div class="flex-menu">
