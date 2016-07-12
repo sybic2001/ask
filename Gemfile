@@ -21,6 +21,7 @@ gem 'attachinary'
 gem 'jquery-fileupload-rails'
 gem 'coffee-rails'
 gem 'bootstrap-datepicker-rails'
+gem 'algoliasearch-rails'
 
 group :development, :test do
   gem 'binding_of_caller'
