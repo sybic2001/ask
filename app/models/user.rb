@@ -15,6 +15,8 @@ class User < ActiveRecord::Base
   has_many :helpee_meetings, class_name: "Meeting", foreign_key: "helpee_id", dependent: :destroy
   has_many :reviews, through: :helper_meetings
   has_many :favorites, dependent: :destroy
+  has_many :users, -> { distinct }, through: :communities
+  has_many :peer_competencies, through: :users, source: :user_competencies
 
   validates :email, :first_name, :last_name, presence: true
 

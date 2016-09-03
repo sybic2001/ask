@@ -1,4 +1,13 @@
 class UserCompetenciesController < ApplicationController
+
+  def index
+    @peer_competencies = current_user.peer_competencies.where.not(user: current_user)
+  end
+
+  def search
+    @peer_competencies = current_user.peer_competencies.where.not(user: current_user)
+  end
+
   def create
     @user_competency = UserCompetency.new(user_competency_params)
     @user_competency.user = current_user
