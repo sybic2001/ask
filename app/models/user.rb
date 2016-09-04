@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+  include AlgoliaSearch
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_one :profile, dependent: :destroy
@@ -21,6 +22,10 @@ class User < ActiveRecord::Base
   validates :email, :first_name, :last_name, presence: true
 
   after_create :build_default_profile
+
+  algoliasearch do
+    attribute :first_name, :last_name
+  end
 
   def is_community_manager?(community)
     user_membership = self.memberships.find_by(community: community)
