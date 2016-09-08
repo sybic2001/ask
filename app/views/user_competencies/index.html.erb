@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-4">
+      <h1>Coucou</h1>
+      <%= simple_form_for :filters, { url: search_user_competencies_path, remote: true } do |f| %>
+        <%= f.input :level %>
+        <%= f.collection_check_boxes :competencies, Competency.all, :id, :name %>
+        <%= f.collection_check_boxes :communities, current_user.communities, :id, :name %>
+        <%= f.button :submit, "Sign In" %>
+      <% end %>
+    </div>
+    <div class="col-xs-8">
+      <% @peer_competencies.each do |peer_competency| %>
+        <%= render 'user_competency_card', user_competency: peer_competency, private_profile: false %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -9,7 +9,15 @@ class Community < ActiveRecord::Base
   validates :name, uniqueness: true
 
   algoliasearch do
-    attribute :name
+    attributes :name, :members_count
+
+    attributesToIndex ['name']
+
+    customRanking ['desc(members_count)']
+  end
+
+  def members_count
+    self.memberships.where(status: 'member').count
   end
 
 end

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get "users/:id/profile", to: "profiles#show", as: "profile"
   patch "users/:id/profile", to: "profiles#update", as: "update_profile"
   get "users/:id/profile/edit", to: "profiles#edit", as: "edit_profile"
+  post "user_competencies/search", to: "user_competencies#search", as: "search_user_competencies"
 
   resources :competencies, only: [:index, :new, :create, :destroy]
   resources :communities, only: [:index, :show, :new, :create, :edit, :update, :destroy] do

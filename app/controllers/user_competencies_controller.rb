@@ -1,11 +1,17 @@
 class UserCompetenciesController < ApplicationController
 
   def index
-    @peer_competencies = current_user.peer_competencies.where.not(user: current_user)
+    @peer_competencies = current_user.peer_competencies.where.not(user: current_user).order(:competency_id, level: :desc)
+    @competencies = Competency.all
   end
 
   def search
-    @peer_competencies = current_user.peer_competencies.where.not(user: current_user)
+    @peer_competencies = current_user.peer_competencies.where.not(user: current_user).where(competency_id: params[:filters][:competencies]).order(:competency_id, level: :desc)
+    # @cities = params[:city]
+    # @competencies = params[:competences]
+    # @communities = params[:communities]
+    # @levelmin = params[:level]
+    p @peer_competencies
   end
 
   def create
