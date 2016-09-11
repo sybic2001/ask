@@ -1,0 +1,14 @@
+$('#list').empty()
+
+<% if @peer_competencies.empty? %>
+  $('#list').append("<p>Pas de résultats. Elargissez votre recherche !</p>")
+<% end %>
+
+<% @peer_competencies.each do |peer_competency| %>
+// Create a paragraph for the new review. But hide it.
+var new_competency = $("<%= j render 'user_competency_card', user_competency: peer_competency, private_profile: false %>").hide();
+// Add it to the DOM, at the end of the existing reviews. It's still hidden.
+$('#list').append(new_competency);
+<% end %>
+
+$('#list > div').show()
