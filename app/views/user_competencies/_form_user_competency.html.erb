@@ -1,7 +1,7 @@
 <div id="error-messages">
 </div>
 <%= simple_form_for(user_competency, remote: true) do |f| %>
-  <%= f.input :competency_id, collection: Competency.all, label: "Compétence", include_blank: false %>
+  <%= f.input :competency_id, collection: Competency.parent_competencies, as: :grouped_select, group_method: :child_competencies, label: "Compétences", include_blank: false %>
   <%= f.input :level, label: "Niveau" %>
   <%= f.input :description, label: "Décrivez votre expertise en quelques mots" %>
   <%= f.submit :button, class: "btn btn-primary", value: "Ajouter" %>
