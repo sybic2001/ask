@@ -7,11 +7,11 @@ class UserCompetenciesController < ApplicationController
 
   def search
     # @cities = params[:filters][:cities].reject(&:empty?)
-    @competencies = params[:filters][:competencies].reject(&:empty?)
+    @competency_id = params[:filters][:competency_id]
     @communities = params[:filters][:communities].reject(&:empty?)
     @levelmin = params[:filters][:level].to_i
     @peer_competencies = current_user.peer_competencies.where.not(user: current_user)
-    @peer_competencies = @peer_competencies.where(competency_id: @competencies) unless @competencies.empty?
+    @peer_competencies = @peer_competencies.where(competency_id: @competency_id) unless @competency_id.empty?
     @peer_competencies = @peer_competencies.joins(user: :memberships).where(memberships: { community_id: @communities} ) unless @communities.empty?
     @peer_competencies = @peer_competencies.where('level >= ?', @levelmin) unless @levelmin.nil?
     @peer_competencies = @peer_competencies.order(:competency_id, level: :desc)

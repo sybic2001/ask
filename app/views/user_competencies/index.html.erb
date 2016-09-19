@@ -1,18 +1,66 @@
 <div class="container">
   <div class="row">
-    <div class="col-xs-4">
-      <h1>Coucou</h1>
+    <div class="col-xs-3">
+      <h3>Filtrez les résultats</h3>
       <%= simple_form_for :filters, { url: search_user_competencies_path, remote: true } do |f| %>
+        <%= f.input :competency_id, collection: Competency.parent_competencies, as: :grouped_select, group_method: :child_competencies, label: "Compétences", include_blank: 'Toutes' %>
         <%= f.input :level %>
-        <%= f.collection_check_boxes :competencies, Competency.all, :id, :name %>
         <%= f.collection_check_boxes :communities, current_user.communities, :id, :name %>
-        <%= f.button :submit, "Sign In" %>
+        <%= f.button :submit, "Chercher" %>
       <% end %>
     </div>
-    <div class="col-xs-8" id="list">
+    <div class="col-xs-9" id="list">
       <% @peer_competencies.each do |peer_competency| %>
-        <%= render 'user_competency_card', user_competency: peer_competency, private_profile: false %>
+        <%= render 'user_competency_search_card', user_competency: peer_competency, private_profile: false %>
       <% end %>
     </div>
   </div>
 </div>
+
+<% content_for :after_js do %>
+  <script>
+    $(document).ready(function(){
+
+      $(document).on('click', '.product-body', function(e){
+        var number = $(this).parent().parent().attr('id').match(/\d+/)[0];
+        $('#experiences-' + number).slideToggle();
+        $(this).parent().toggleClass('active');
+      });
+
+      $('.book-meeting').on('click', function(e){
+        e.preventDefault();
+        var index_competency = $(this).parent().parent().parent().parent().attr('id').match(/\d+/)[0];
+        $('#experience-' + index_competency).hide();
+        $('#link-meeting').attr("action", "/user_competencies/" + index_competency + "/meetings");
+        $('#competency-name').html($(this).attr('id'));
+        $('#myModal').modal('show');
+      })
+
+      $('.star').on('click', function(e){
+        e.preventDefault();
+        var index_competency = $(this).attr('id').match(/(\d+)/gi)[0];
+        if ($(this).children().hasClass("favorite")){
+          var index_favorite = $(this).attr('id').match(/(\d+)/gi)[1];
+          $.ajax({
+            type: "DELETE",
+            url: "/user_competencies/" + index_competency + "/favorites/" + index_favorite,
+            success: function(data) {
+              $('#user-competency-' + index_competency + ' .fa-star').removeClass("favorite");
+              $('#user-competency-' + index_competency + ' .star').attr("id", "star-competency-" + index_competency);
+            }
+          });
+        } else {
+          $.ajax({
+            type: "POST",
+            url: "/user_competencies/" + index_competency + "/favorites",
+            success: function(data) {
+              $(this).children().addClass("favorite");
+              $('#user-competency-' + index_competency + ' .fa-star').addClass("favorite");
+              $('#user-competency-' + index_competency + ' .star').attr("id", "star-competency-" + index_competency + "-favorite-" + index_new_favorite);
+            }
+          });
+        };
+      });
+    });
+  </script>
+<% end %>
