@@ -1,5 +1,12 @@
 <div class="col-xs-12" id="user-competency-<%= user_competency.id %>">
   <div class="product">
+   <div class="profile-picture">
+    <% if user_competency.user.profile.photo? %>
+      <%= cl_image_tag user_competency.user.profile.photo.path, class: 'avatar-extra-large' %>
+    <% else %>
+      <%= image_tag('anonymous.png', class: 'avatar-extra-large') %>
+    <% end %>
+    </div>
     <div class="clearfix">
       <div class="c100 p<%= user_competency.level %> small">
           <span><%= "#{user_competency.level}%" %></span>
