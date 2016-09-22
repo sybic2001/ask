@@ -2,25 +2,24 @@
   <div class="product">
    <div class="profile-picture">
     <% if user_competency.user.profile.photo? %>
-      <%= cl_image_tag user_competency.user.profile.photo.path, class: 'avatar-extra-large' %>
+      <%= cl_image_tag user_competency.user.profile.photo.path, class: 'avatar-xlarge' %>
     <% else %>
-      <%= image_tag('anonymous.png', class: 'avatar-extra-large') %>
+      <%= image_tag('anonymous.png', class: 'avatar-xlarge') %>
     <% end %>
+  </div>
+  <div class="clearfix">
+    <div class="c100 p<%= user_competency.level %> small">
+        <span><%= "#{user_competency.level}%" %></span>
+        <div class="slice">
+            <div class="bar"></div>
+            <div class="fill"></div>
+        </div>
     </div>
-    <div class="clearfix">
-      <div class="c100 p<%= user_competency.level %> small">
-          <span><%= "#{user_competency.level}%" %></span>
-          <div class="slice">
-              <div class="bar"></div>
-              <div class="fill"></div>
-          </div>
-      </div>
-    </div>
-    <div class='product-body'>
-      <h3><%= user_competency.competency.name %></h3>
-      <p><%= user_competency.competency.description %></p>
-      <p><%= user_competency.description %></p>
-    </div>
+  </div>
+  <div class='product-body'>
+    <h4><%= user_competency.competency.name %></h4>
+    <p><%= user_competency.description %></p>
+  </div>
     <ul class="list-inline product-controls">
       <li>
       <% if Favorite.where(user: current_user, user_competency: user_competency).empty? %>
@@ -34,11 +33,5 @@
       </li>
     </ul>
   </div>
-  <div class="col-xs-12">
-  <div class="row experiences" id="experiences-<%= user_competency.id %>" style="display: none">
-    <% user_competency.experiences.order(:year).each do |experience| %>
-      <%= render 'experiences/experience_card', experience: experience, private_profile: private_profile %>
-    <% end %>
-  </div>
-  </div>
 </div>
+

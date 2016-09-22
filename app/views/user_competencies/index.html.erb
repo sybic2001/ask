@@ -17,14 +17,34 @@
   </div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel"></h4>
+      </div>
+      <div class="modal-body">
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+
 <% content_for :after_js do %>
   <script>
     $(document).ready(function(){
 
       $(document).on('click', '.product-body', function(e){
         var number = $(this).parent().parent().attr('id').match(/\d+/)[0];
-        $('#experiences-' + number).slideToggle();
-        $(this).parent().toggleClass('active');
+        $.ajax({
+          type: "GET",
+          url: "/user_competencies/" + number,
+          success: function(data) {
+            $('#myModal').modal('show');
+          }
+        });
       });
 
       $('.book-meeting').on('click', function(e){

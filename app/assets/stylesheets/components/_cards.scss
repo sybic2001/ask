@@ -10,8 +10,16 @@
 }
 
 .profile-picture {
-  padding: 0px 20px;
+  padding: 0px 10px;
   flex: 0 0 auto;
+  text-align: center;
+}
+
+.profile-description {
+  padding: 0px 10px;
+  flex: 0 0 auto;
+  text-align: center;
+  align-items: center;
 }
 
 .profile-content {

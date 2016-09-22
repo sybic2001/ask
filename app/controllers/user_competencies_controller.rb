@@ -5,6 +5,10 @@ class UserCompetenciesController < ApplicationController
     @competencies = Competency.all
   end
 
+  def show
+    @user_competency = UserCompetency.find(params[:id])
+  end
+
   def search
     # @cities = params[:filters][:cities].reject(&:empty?)
     @competency_id = params[:filters][:competency_id]
