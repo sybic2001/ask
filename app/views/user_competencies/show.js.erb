@@ -1,2 +1,2 @@
-$('.modal-title').empty().append('<%= @user_competency.user.first_name %>');
+$('.modal-content').empty().append("<%= j render 'user_competency_modale', user_competency: @user_competency %>");
 

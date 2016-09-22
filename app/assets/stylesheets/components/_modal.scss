@@ -8,3 +8,30 @@
 #link-meeting{
   padding: 5px 20px;
 }
+
+.modal-headbox {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.profile-rating {
+  flex: 0 0 auto;
+  text-align: center;
+}
+
+.modal-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  li {
+    padding: 0px 20px;
+    font-size: 40px;
+  }
+}
+
+.experience-list {
+  list-style: none;
+}
