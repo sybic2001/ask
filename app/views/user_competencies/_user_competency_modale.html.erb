@@ -10,30 +10,34 @@
     <div class="profile-content">
       <h4 class="modal-title" id="myModalLabel"><%= user_competency.user.first_name %> <%= user_competency.user.last_name %></h4>
       <p><%= user_competency.user.profile.description %></p>
-      </div>
-      <div class="profile-rating">
-        <p><%= '18' %>h données</p>
-        <i class="fa fa-star"></i>
-        <i class="fa fa-star"></i>
-        <i class="fa fa-star"></i>
-        <i class="fa fa-star"></i>
-        <i class="fa fa-star"></i>
-        <p><em><%= '3' %> avis</em></p>
     </div>
+    <% unless user_competency.reviews.count == 0 %>
+    <div class="profile-rating">
+      <p><%= user_competency.user.total_given %>h données</p>
+      <% user_competency.user.average_rating.times do %>
+        <i class="fa fa-star yellow" aria-hidden="true"></i>
+      <% end %>
+      <p><em><%= user_competency.reviews.count %> avis</em></p>
+    </div>
+    <% end %>
   </div>
 </div>
 <div class="modal-body">
-  <div class="clearfix">
-    <div class="c100 p<%= user_competency.level %> small">
-        <span><%= "#{user_competency.level}%" %></span>
-        <div class="slice">
-            <div class="bar"></div>
-            <div class="fill"></div>
-        </div>
+  <div class="modal-bodybox">
+    <div class="clearfix profile-score">
+      <div class="c100 p<%= user_competency.level %> small">
+          <span><%= "#{user_competency.level}%" %></span>
+          <div class="slice">
+              <div class="bar"></div>
+              <div class="fill"></div>
+          </div>
+      </div>
+    </div>
+    <div class="competency-content">
+      <h4><%= user_competency.competency.name %></h4>
+      <p><%= user_competency.description %></p>
     </div>
   </div>
-  <h4><%= user_competency.competency.name %></h4>
-  <p><%= user_competency.description %></p>
   <div class="experience-content">
     <ul class="experience-list">
     <% user_competency.experiences.each do |experience| %>
@@ -42,14 +46,29 @@
     <% end %>
     </ul>
   </div>
-  <div class="review-content">
-
-  </div>
 </div>
+<% if user_competency.reviews.any? %>
+<div class="modal-review">
+  <ul class="review-list">
+    <% user_competency.reviews.last(5).each do |review| %>
+      <li>
+        <% review.user_rating.times do %>
+          <i class="fa fa-star yellow" aria-hidden="true"></i>
+        <% end %>
+      <em>&nbsp;<%= review.meeting.helpee.first_name %> a écrit :</em></li>
+      <li><%= review.user_comment %></li>
+    <% end %>
+    </ul>
+</div>
+<% end %>
 <div class="modal-footer">
   <ul class="modal-menu">
-    <li><i class="fa fa-times-circle" aria-hidden="true"></i></li>
-    <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-    <li><i class="fa fa-arrow-circle-right" aria-hidden="true"></i></li>
+    <li><button type="button" class="btn btn-primary" data-dismiss="modal">Fermer</button></li>
+    <li>
+      <form action="/user_competencies/<%= user_competency.id %>/meetings" method="post" id="link-meeting" class="inline-form">
+        <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+        <input type="submit" value="Organiser un meeting !" class="btn btn-success">
+      </form>
+    </li>
   </ul>
 </div>

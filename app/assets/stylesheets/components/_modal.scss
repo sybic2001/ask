@@ -1,18 +1,32 @@
 .modal-footer {
-  padding: 10px 0;
+  padding: 10px;
   .modal-button {
     width: 48%;
   }
 }
 
 #link-meeting{
-  padding: 5px 20px;
+  padding: 0;
+}
+
+.yellow {
+  color: #F7BB06;
 }
 
 .modal-headbox {
   display: flex;
   align-items: center;
+  padding: 0px 10px;
+}
+
+.modal-bodybox {
+  display: flex;
+  align-items: center;
   padding: 10px;
+  .competency-content {
+    flex: 0 0 auto;
+    align-self: flex-start;
+  }
 }
 
 .profile-rating {
@@ -32,6 +46,21 @@
   }
 }
 
+.experience-content {
+  max-height: 100px;
+  overflow-y: scroll;
+}
+
 .experience-list {
   list-style: none;
+}
+
+.modal-review {
+  padding: 15px;
+  border-top: 1px solid #e5e5e5;
+  .review-list {
+    list-style: none;
+    max-height: 100px;
+    overflow-y: scroll;
+  }
 }

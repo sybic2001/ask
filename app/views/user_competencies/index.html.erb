@@ -5,7 +5,8 @@
       <%= simple_form_for :filters, { url: search_user_competencies_path, remote: true } do |f| %>
         <%= f.input :competency_id, collection: Competency.parent_competencies, as: :grouped_select, group_method: :child_competencies, label: "Compétences", include_blank: 'Toutes' %>
         <%= f.input :level %>
-        <%= f.collection_check_boxes :communities, current_user.communities, :id, :name %>
+        <%= f.input :communities, as: :check_boxes, collection: current_user.communities, wrapper: :vertical_radio_and_checkboxes %>
+        <%= f.input :favorite, as: :boolean, checked_value: true, unchecked_value: false %>
         <%= f.button :submit, "Chercher" %>
       <% end %>
     </div>

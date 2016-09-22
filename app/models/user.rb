@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
   has_many :helpee_meetings, class_name: "Meeting", foreign_key: "helpee_id", dependent: :destroy
   has_many :reviews, through: :helper_meetings
   has_many :favorites, dependent: :destroy
+  has_many :favorite_user_competencies, -> { distinct }, through: :favorites, source: :user_competency
   has_many :users, -> { distinct }, through: :communities
   has_many :peer_competencies, -> { distinct }, through: :users, source: :user_competencies
 
@@ -32,10 +33,20 @@ class User < ActiveRecord::Base
     return !user_membership.nil? && (user_membership.status == "member")
   end
 
+  def total_given
+    self.helper_meetings.where(status: 'finished').sum(:duration).to_i
+  end
+
+  def average_rating
+    self.reviews.average(:user_rating).to_i
+  end
+
   private
 
   def build_default_profile
     Profile.create(first_name: self.first_name, last_name: self.last_name, user: self)
   end
+
+
 
 end
