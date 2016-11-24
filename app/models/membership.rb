@@ -4,5 +4,5 @@ class Membership < ActiveRecord::Base
 
   validates :community, :user, :status, presence: true
   validates :community, uniqueness: { scope: :user }
-  validates :status, inclusion: { in: ["pending approval","member","refused","left","excluded"]}
+  validates :status, inclusion: { in: ["pending_approval","member","refused","left","excluded"]}
 end

@@ -1,16 +1,9 @@
 class MeetingsController < ApplicationController
   def index
+    @meetings = Meeting.includes(:helper, :helpee, [user_competency: :competency]).where("helper_id = ? OR helpee_id = ?", current_user.id, current_user.id)
+    @pending_meetings = @meetings.where(status: "pending_approval")
+    @agenda_meetings = @meetings.where(status: "accepted").order(:date)
     @meetings_as_helper = Meeting.where("helper_id = ?", current_user.id)
-    @meetings_as_helper_pending = @meetings_as_helper.where("status = 'pending approval'")
-    @meetings_as_helper_coming = @meetings_as_helper.where("status = 'accepted'")
-    @meetings_as_helper_done = @meetings_as_helper.where("status = 'pending review'")
-    @meetings_as_helper_finished = @meetings_as_helper.where("status = 'finished'")
-    @meetings_as_helpee = Meeting.where("helpee_id = ?", current_user.id)
-    @meetings_as_helpee_pending = @meetings_as_helpee.where("status = 'pending approval'")
-    @meetings_as_helpee_coming = @meetings_as_helpee.where("status = 'accepted'")
-    @meetings_as_helpee_done = @meetings_as_helpee.where("status = 'pending review'")
-    @meetings_as_helpee_finished = @meetings_as_helpee.where("status = 'finished'")
-    @meetings = @meetings_as_helper + @meetings_as_helpee
     @message = Message.new()
   end
 
@@ -20,7 +13,7 @@ class MeetingsController < ApplicationController
     @meeting.user_competency = @user_competency
     @meeting.helpee_id = current_user.id
     @meeting.helper_id = @user_competency.user_id
-    @meeting.status = "pending approval"
+    @meeting.status = "pending_approval"
     if @meeting.save
       Message.create(meeting: @meeting, sender: @meeting.helper, receiver: @meeting.helpee, status: "auto", description: "Meeting créé ! Utilisez cette chatbox pour s'accorder sur une date et une durée. #{@meeting.helper.first_name} devra ensuite valider la demande.")
       redirect_to meetings_path

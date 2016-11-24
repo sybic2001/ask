@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160711165837) do
+ActiveRecord::Schema.define(version: 20161124180509) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,7 +87,7 @@ ActiveRecord::Schema.define(version: 20160711165837) do
   create_table "memberships", force: :cascade do |t|
     t.integer  "community_id"
     t.integer  "user_id"
-    t.string   "status",                default: "pending approval"
+    t.string   "status",                default: "pending_approval"
     t.integer  "community_time_credit", default: 2
     t.boolean  "community_manager",     default: false
     t.datetime "created_at",                                         null: false

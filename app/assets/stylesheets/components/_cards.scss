@@ -188,6 +188,10 @@
   .user-picture {
     flex: 0 0 auto;
   }
+  .arrow-meeting {
+    font-size: 25px;
+    padding: 0 10px;
+  }
   .content {
     flex: 0 0 auto;
   }
@@ -204,11 +208,14 @@
     flex: 0 0 auto;
     padding-right: 5px;
     .form-group {
-      width: 80px;
+      width: 120px;
     }
     .form-control {
       width: 100%;
       padding: 0px 5px;
+    }
+    input {
+      width: 100px;
     }
   }
 }

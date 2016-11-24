@@ -20,7 +20,7 @@
         <% status = current_user.memberships.find_by(community: community).status %>
         <% if status == "member" %>
           <i class="fa fa-check-circle member" aria-hidden="true"></i>
-        <% elsif status == "pending approval" %>
+        <% elsif status == "pending_approval" %>
           <i class="fa fa-check-circle pending-approval" aria-hidden="true"></i>
         <% else %>
           <i class="fa fa-minus-circle blacklisted" aria-hidden="true"></i>

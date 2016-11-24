@@ -10,7 +10,7 @@
     <div class="content-meeting">
       <p><%= meeting.helper.first_name %> vous aide en <%= meeting.user_competency.competency.name %></p>
     </div>
-    <% if meeting.status == "pending approval" %>
+    <% if meeting.status == "pending_approval" %>
       <div class="action-meeting">
         <%= simple_form_for meeting, html: { class: 'form-inline' }, remote: true do |f| %>
           <%= f.hidden_field :status, value: "cancelled" %>

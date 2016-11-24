@@ -1,3 +1,11 @@
+$('#meeting-card-<%= @meeting.id %>').slideUp();
+<% if @meeting.active? %>
+var meeting_card = $("<%= j render 'meeting_card', meeting: @meeting %>").hide();
+$('#<%= @meeting.status %>').prepend(meeting_card);
+meeting_card.slideDown();
+<% end %>
+
+
 var new_message = $("<%= j render 'messages/message_card', message: @message, meeting: @meeting %>").hide();
 $('#chatbox').append(new_message);
 new_message.show();
@@ -5,7 +13,3 @@ new_message.show();
 $('#chatbox').stop().animate({
   scrollTop: $('#chatbox')[0].scrollHeight
 }, 1200);
-
-setTimeout(function(){
-  window.location.replace("<%= meetings_path %>");
-}, 2000);
