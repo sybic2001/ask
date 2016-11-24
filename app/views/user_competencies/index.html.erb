@@ -1,13 +1,13 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-3">
-      <h3>Filtrez les résultats</h3>
+      <h4>Filtrez les résultats</h4>
       <%= simple_form_for :filters, { url: search_user_competencies_path, remote: true } do |f| %>
+        <%= f.input :favorite, as: :boolean, checked_value: true, unchecked_value: false, label: "Afficher mes favoris" %>
         <%= f.input :competency_id, collection: Competency.parent_competencies, as: :grouped_select, group_method: :child_competencies, label: "Compétences", include_blank: 'Toutes' %>
-        <%= f.input :level %>
-        <%= f.input :communities, as: :check_boxes, collection: current_user.communities, wrapper: :vertical_radio_and_checkboxes %>
-        <%= f.input :favorite, as: :boolean, checked_value: true, unchecked_value: false %>
-        <%= f.button :submit, "Chercher" %>
+        <%= f.input :level, label: "Niveau minimum" %>
+        <%= f.input :communities, as: :check_boxes, collection: current_user.communities, wrapper: :vertical_radio_and_checkboxes, label: "Communautés" %>
+        <%= f.button :submit, "Chercher", class: 'btn btn-primary' %>
       <% end %>
     </div>
     <div class="col-xs-9" id="list">
@@ -30,7 +30,7 @@
   <script>
     $(document).ready(function(){
 
-      $(document).on('click', '.product-body', function(e){
+      $('.product-body, .profile-picture, .profile-score').click(function(e){
         var number = $(this).parent().parent().attr('id').match(/\d+/)[0];
         $.ajax({
           type: "GET",
@@ -40,15 +40,6 @@
           }
         });
       });
-
-      $('.book-meeting').on('click', function(e){
-        e.preventDefault();
-        var index_competency = $(this).parent().parent().parent().parent().attr('id').match(/\d+/)[0];
-        $('#experience-' + index_competency).hide();
-        $('#link-meeting').attr("action", "/user_competencies/" + index_competency + "/meetings");
-        $('#competency-name').html($(this).attr('id'));
-        $('#myModal').modal('show');
-      })
 
       $('.star').on('click', function(e){
         e.preventDefault();

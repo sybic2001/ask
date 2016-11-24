@@ -5,7 +5,7 @@
   transition: all 0.3s ease;
   display: flex;
   height: 60px;
-  padding: 0px 30px;
+  padding: 0px 40px;
   align-items: center;
   justify-content: space-between;
 }
@@ -20,8 +20,20 @@
 }
 
 /* Navbar logo */
-.navbar-wagon-brand img {
-  width: 50px;
+.navbar-wagon-brand {
+  a {
+    text-decoration: none;
+  }
+  h1 {
+    font-family: 'Open Sans';
+    font-size: 40px;
+    font-weight: 300;
+    margin: 0;
+    color: black;
+    &:hover {
+      color: #505050;
+    }
+  }
 }
 
 /* Navbar right section (with form, links, button) */
@@ -153,4 +165,5 @@
 
 body {
   background-color: #FAFAFA;
+  overflow-y: scroll;
 }

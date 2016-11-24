@@ -1,7 +1,7 @@
 $('#list').empty()
 
 <% if @peer_competencies.empty? %>
-  $('#list').append("<p>Pas de résultats. Elargissez votre recherche !</p>")
+  $('#list').append("<h4>Pas de résultats. Elargissez votre recherche !</h4>")
 <% end %>
 
 <% @peer_competencies.each do |peer_competency| %>

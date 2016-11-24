@@ -3,27 +3,24 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-12">
-          <h3>Recherche instantanée</h3>
-          <input type="text" class="form-control">
+
         </div>
       </div>
       <div class="row">
         <div class="col-xs-12 col-md-6">
-          <%= render 'dashboard_summary' %>
+          <h3>Je cherche du support et des compétences dans mon réseau</h3>
+          <%= link_to "Trouver des compétences", user_competencies_path, class: "btn btn-success" %>
         </div>
         <div class="col-xs-12 col-md-6">
-          <%= render 'profile_summary' %>
-        </div>
-        <div class="col-xs-12 col-md-6">
-          <%= render 'communities_summary' %>
-        </div>
-        <div class="col-xs-12 col-md-6">
-          <%= render 'competencies_summary' %>
+          <h3>Je gère mes demandes et planifie mes échanges</h3>
+          <%= link_to "Accéder à mon tableau de bord", meetings_path, class: "btn btn-success" %>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+
 
 
 

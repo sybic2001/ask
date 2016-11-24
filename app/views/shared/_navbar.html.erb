@@ -1,10 +1,11 @@
 <div class="navbar-wagon">
   <!-- Logo -->
-  <%= link_to root_path, class: "navbar-wagon-brand" do %>
-    <%= image_tag "logo.png" %>
-  <% end %>
-
-  <div class="menu hidden-xs hidden-sm">
+  <div class="navbar-wagon-brand">
+    <%= link_to root_path do %>
+      <h1>S.Y.K.E</h1>
+    <% end %>
+  </div>
+  <!-- <div class="menu hidden-xs hidden-sm">
     <div class="flex-menu">
       <%= link_to meetings_path do %>
         <h3>Dashboard</h3>
@@ -26,7 +27,7 @@
       <% end %>
     </div>
 
-  </div>
+  </div> -->
 
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm">
@@ -52,18 +53,23 @@
           <% end %>
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
             <li>
-              <%= link_to "/users/#{current_user.id}/profile" do %>
-                <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
+              <%= link_to "/" do %>
+                <i class="fa fa-home"></i>  <%= t(".home", default: "Accueil") %>
               <% end %>
             </li>
             <li>
-              <%= link_to "/" do %>
-                <i class="fa fa-home"></i>  <%= t(".home", default: "Home") %>
+              <%= link_to "/users/#{current_user.id}/profile" do %>
+                <i class="fa fa-user"></i> <%= t(".profile", default: "Mon profil") %>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to communities_path do %>
+                <i class="fa fa-users" aria-hidden="true"></i>  <%= t(".dashboard", default: "Mes communautés") %>
               <% end %>
             </li>
             <li>
               <%= link_to meetings_path do %>
-                <i class="fa fa-table" aria-hidden="true"></i>  <%= t(".dashboard", default: "Dashboard") %>
+                <i class="fa fa-table" aria-hidden="true"></i>  <%= t(".dashboard", default: "Tableau de bord") %>
               <% end %>
             </li>
             <li>

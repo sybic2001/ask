@@ -67,7 +67,7 @@
     <li>
       <form action="/user_competencies/<%= user_competency.id %>/meetings" method="post" id="link-meeting" class="inline-form">
         <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-        <input type="submit" value="Organiser un meeting !" class="btn btn-success">
+        <input type="submit" value="Organiser un meeting avec <%= user_competency.user.first_name %> !" class="btn btn-success">
       </form>
     </li>
   </ul>
