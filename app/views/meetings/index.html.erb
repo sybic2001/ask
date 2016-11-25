@@ -1,9 +1,9 @@
 <div class="container">
   <div class="row">
-    <h2>Vous avez 5 actions en attentes</h2>
+    <h3>Vous avez 5 actions en attentes</h3>
   </div>
   <div class="row">
-    <h2>Meetings en cours de création</h2>
+    <h3>Meetings en cours de création</h3>
     <div id="pending_approval">
       <% @pending_meetings.each do |meeting| %>
         <%= render 'meeting_card', meeting: meeting %>
@@ -11,7 +11,7 @@
     </div>
   </div>
   <div class="row">
-    <h2>Agenda</h2>
+    <h3>Agenda</h3>
     <div id="accepted">
       <% @agenda_meetings.each do |meeting| %>
         <%= render 'meeting_card', meeting: meeting %>
@@ -28,10 +28,6 @@
   </div>
 </div>
 
-<% content_for :head_links do %>
-  <link href="http://addtocalendar.com/atc/1.5/atc-style-button-icon.css" rel="stylesheet" type="text/css">
-<% end %>
-
 <% content_for :after_js do %>
   <script>
 
@@ -45,24 +41,33 @@
 
     $(document).ready(function(){
 
-      $('.meeting-card').click(function(e){
-        var number = $(this).attr('id').match(/\d+/)[0];
-        console.log(number);
-
+      $('.content-meeting').click(function(e){
+        var number = $(this).parent().attr('id').match(/\d+/)[0];
+        $.ajax({
+          type: "GET",
+          url: "/meetings/" + number + "/messages",
+          success: function(data) {
+            $('#myModal').modal('show');
+          }
+        });
       });
 
-      $('.meeting-card').on('click', function(e){
-        var meeting_index = $(this).attr('id').match(/\d+/)[0];
+      $('#myModal').on('shown.bs.modal', function () {
+        $('.chatbox').stop().animate({
+          scrollTop: $('.chatbox')[0].scrollHeight
+        }, 1200);;
       });
 
-      $('.datepicker-input').each(function(){
-        $(this).datepicker({
-          format: "yyyy-mm-dd",
-          startDate: "today",
-          language: "fr",
-          daysOfWeekHighlighted: "0,6",
-          autoclose: true,
-          todayHighlight: true
+      $('.datetimepicker').each(function(){
+        $(this).datetimepicker({
+          stepping: 30,
+          format: "YYYY-MM-DD HH:mm",
+          minDate: new Date(),
+          sideBySide: true,
+          showTodayButton: true,
+          showClear: true,
+          showClose: true,
+          useCurrent: false
         });
       });
     });

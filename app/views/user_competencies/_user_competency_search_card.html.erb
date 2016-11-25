@@ -1,5 +1,5 @@
-<div class="col-xs-12" id="user-competency-<%= user_competency.id %>">
-  <div class="product">
+<div class="col-xs-12">
+  <div class="product" id="user-competency-<%= user_competency.id %>">
    <div class="profile-picture">
     <% if user_competency.user.profile.photo? %>
       <%= cl_image_tag user_competency.user.profile.photo.path, class: 'avatar-xlarge' %>
@@ -23,9 +23,9 @@
     <ul class="list-inline product-controls">
       <li>
       <% if Favorite.where(user: current_user, user_competency: user_competency).empty? %>
-        <li><a href="/" class="star" id="star-competency-<%= user_competency.id %>"><i class="fa fa-star"></i></a></li>
+        <li><a class="star" id="star-competency-<%= user_competency.id %>"><i class="fa fa-star"></i></a></li>
       <% else %>
-        <li><a href="/" class="star" id="star-competency-<%= user_competency.id %>-favorite-<%= Favorite.find_by(user: current_user, user_competency: user_competency).id %>"><i class="fa fa-star favorite"></i></a></li>
+        <li><a class="star" id="star-competency-<%= user_competency.id %>-favorite-<%= Favorite.find_by(user: current_user, user_competency: user_competency).id %>"><i class="fa fa-star favorite"></i></a></li>
       <% end %>
       </li>
       <li>

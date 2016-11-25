@@ -2,6 +2,8 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require bootstrap-datepicker
+//= require moment
+//= require bootstrap-datetimepicker
 //= require bootstrap-datepicker/core
 //= require jquery-fileupload/basic
 //= require cloudinary/jquery.cloudinary

@@ -23,8 +23,8 @@
     <% if meeting.status == "pending_approval" %>
       <% if meeting.helper == current_user %>
       <div class="action-meeting">
-        <%= simple_form_for meeting, html: { class: 'form-inline' }, remote: true do |f| %>
-          <%= f.input :date, as: :string, label: false, required: true, input_html: { class: 'datepicker-input' }, placeholder: "Date" %>
+        <%= simple_form_for meeting, html: { class: 'form-inline', autocomplete: 'off' }, remote: true do |f| %>
+          <%= f.input :date, as: :string, label: false, required: true, input_html: { class: 'datetimepicker' }, placeholder: "Date et heure" %>
           <%= f.input :duration, label: false, required: true, placeholder: "Durée" %>
           <%= f.hidden_field :status, value: "accepted" %>
           <%= f.submit :button, value: "Accepter", class: 'btn btn-success' %>
@@ -53,7 +53,7 @@
               <var class="atc_date_end"><%= meeting.date + meeting.duration.hours %></var>
               <var class="atc_timezone">Europe/Paris</var>
               <var class="atc_location">Paris</var>
-              <var class="atc_title">SYKE meeting <%= meeting.helper.first_name %> / <%= meeting.helpee.first_name %></var>
+              <var class="atc_title">SYKE meeting <%= meeting.helper.first_name %> --> <%= meeting.helpee.first_name %></var>
               <var class="atc_description"><%= meeting.duration%>h d'échanges : <%= meeting.user_competency.competency.name%></var>
               <var class="atc_organizer"><%= meeting.helper.first_name %></var>
               <var class="atc_organizer_email"><%= meeting.helper.email %></var>
@@ -62,7 +62,7 @@
       </div>
       <div class="action-meeting">
         <%= simple_form_for meeting, html: { class: 'form-inline' }, defaults: {disabled: (true if current_user == meeting.helpee)} , remote: true do |f| %>
-          <%= f.input :date, as: :string, label: false, required: true, input_html: { class: 'datepicker-input' }, placeholder: "Date" %>
+          <%= f.input :date, as: :string, label: false, required: true, input_html: { class: 'datetimepicker' } %>
           <%= f.input :duration, label: false, required: true, placeholder: "Durée" %>
           <%= f.hidden_field :status, value: "accepted" %>
           <%= f.submit :button, value: "Changer", class: 'btn btn-warning', disabled: (true if current_user == meeting.helpee) %>

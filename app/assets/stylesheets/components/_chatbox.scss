@@ -1,14 +1,21 @@
 .chatbox {
-  margin-top: 25px;
-  height: 60vh;
+  height: 50vh;
   background-color: white;
   overflow: hidden;
   overflow-y: scroll;
-  box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.3);
+  box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.3);
 }
 
 .chat-form {
-  padding-top: 10px;
+  text-align: center;
+
+}
+
+.message_description {
+    width: 60%;
+    #message_description {
+      width: 90%;
+  }
 }
 
 .meetings-list {
@@ -20,35 +27,38 @@
 
 .chatbox-message {
   width: 100%;
-  padding: 10px;
+  padding: 5px;
   p {
-    margin: 0;
+    margin: 5px;
   }
 }
 
 .message-left {
-  border-radius: 5px;
+  border-radius: 7px;
   background-color: #DCDCDC;
-  width: 70%;
+  width: 50%;
   margin-left: 0;
   margin-right: auto;
   overflow-wrap: break-word;
+  padding: 2px;
 }
 .message-right {
-  border-radius: 5px;
+  border-radius: 7px;
   background-color: #76B2DB;
-  width: 70%;
+  width: 50%;
   margin-right: 0;
   margin-left: auto;
   overflow-wrap: break-word;
+  padding: 2px;
 }
 .message-auto {
-  border-radius: 5px;
+  border-radius: 7px;
   background-color: #F8B936;
-  width: 100%;
+  width: 80%;
   font-style: italic;
   margin-right: auto;
   margin-left: auto;
   overflow-wrap: break-word;
+  padding: 2px;
 }
 

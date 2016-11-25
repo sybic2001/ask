@@ -1,8 +1,8 @@
 $('#message_description').val('');
-var new_message = $("<%= j render 'message_card', message: @message, meeting: @meeting %>").hide();
-$('#chatbox').append(new_message);
+var new_message = $("<%= j render 'message_card', message: @message %>").hide();
+$('.chatbox').append(new_message);
 new_message.show();
 
-$('#chatbox').stop().animate({
-  scrollTop: $('#chatbox')[0].scrollHeight
+$('.chatbox').stop().animate({
+  scrollTop: $('.chatbox')[0].scrollHeight
 }, 1200);

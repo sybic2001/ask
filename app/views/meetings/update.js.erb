@@ -5,11 +5,35 @@ $('#<%= @meeting.status %>').prepend(meeting_card);
 meeting_card.slideDown();
 <% end %>
 
+$(document).ready(function(){
 
-var new_message = $("<%= j render 'messages/message_card', message: @message, meeting: @meeting %>").hide();
-$('#chatbox').append(new_message);
-new_message.show();
+  $('.content-meeting').click(function(e){
+    var number = $(this).parent().attr('id').match(/\d+/)[0];
+    $.ajax({
+      type: "GET",
+      url: "/meetings/" + number + "/messages",
+      success: function(data) {
+        $('#myModal').modal('show');
+      }
+    });
+  });
 
-$('#chatbox').stop().animate({
-  scrollTop: $('#chatbox')[0].scrollHeight
-}, 1200);
+  $('#myModal').on('shown.bs.modal', function () {
+    $('.chatbox').stop().animate({
+      scrollTop: $('.chatbox')[0].scrollHeight
+    }, 1200);;
+  });
+
+  $('.datetimepicker').each(function(){
+    $(this).datetimepicker({
+      stepping: 30,
+      format: "YYYY-MM-DD HH:mm",
+      minDate: new Date(),
+      sideBySide: true,
+      showTodayButton: true,
+      showClear: true,
+      showClose: true,
+      useCurrent: false
+    });
+  });
+});

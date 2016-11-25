@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
   def index
-    @meeting = Meeting.find(params[:meeting_id])
+    @meeting = Meeting.includes(:messages).find(params[:meeting_id])
     @messages = @meeting.messages
     @message = Message.new
   end

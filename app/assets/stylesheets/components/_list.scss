@@ -7,15 +7,19 @@
   border-radius: 3px;
   box-shadow: 1px 1px 1px 1px #C1C1C1;
   transition: all 0.15s ease;
+  height: 130px;
 }
 
 /* Body design */
 .product-body {
   flex: 1 1 auto;
   align-self: flex-start;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
-.product-body h3 {
-  font-weight: bold;
+.product-body h4 {
   font-size: 23px;
   margin-top: 0;
 }

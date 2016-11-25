@@ -1,0 +1,22 @@
+<div class="modal-header">
+  <div class="modal-headbox">
+    <h4><%= "Dicussion entre #{meeting.helper.first_name} et #{meeting.helpee.first_name}" %></h4>
+  </div>
+</div>
+<div class="modal-body">
+  <div class="chatbox">
+  <% messages.each do |message| %>
+   <%= render 'message_card', message: message %>
+  <% end %>
+  </div>
+</div>
+
+<div class="modal-footer">
+  <div class="chat-form">
+  <%= simple_form_for [meeting, message], html: {class: 'form-inline', autocomplete: 'off' }, remote: true do |f| %>
+    <button type="button" class="btn btn-primary" data-dismiss="modal">Fermer</button>
+    <%= f.input :description, as: :text, label: false, placeholder: "Entrer votre message", input_html: {'rows' => 3} %>
+    <%= f.submit :button, value: "Envoyer", class: 'btn btn-success' %>
+  <% end %>
+  </div>
+</div>

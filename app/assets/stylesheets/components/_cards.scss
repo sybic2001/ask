@@ -200,6 +200,11 @@
   }
   .content-meeting {
     flex: 1 1 auto;
+    display: flex;
+    height: 100%;
+    p {
+      margin: auto 10px;
+    }
   }
   &:hover {
     background-color: #C8C8C8;
@@ -207,8 +212,11 @@
   .action-meeting {
     flex: 0 0 auto;
     padding-right: 5px;
-    .form-group {
-      width: 120px;
+    .meeting_date {
+      width: 180px;
+    }
+    .meeting_duration {
+      width: 80px;
     }
     .form-control {
       width: 100%;

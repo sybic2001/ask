@@ -12,3 +12,42 @@ $('#list').append(new_competency);
 <% end %>
 
 $('#list > div').show()
+
+$(document).ready(function(){
+  $('.product-body, .profile-picture, .profile-score').click(function(e){
+    var number = $(this).parent().parent().attr('id').match(/\d+/)[0];
+    $.ajax({
+      type: "GET",
+      url: "/user_competencies/" + number,
+      success: function(data) {
+        $('#myModal').modal('show');
+      }
+    });
+  });
+
+  $('.star').on('click', function(e){
+    e.preventDefault();
+    var index_competency = $(this).attr('id').match(/(\d+)/gi)[0];
+    if ($(this).children().hasClass("favorite")){
+      var index_favorite = $(this).attr('id').match(/(\d+)/gi)[1];
+      $.ajax({
+        type: "DELETE",
+        url: "/user_competencies/" + index_competency + "/favorites/" + index_favorite,
+        success: function(data) {
+          $('#user-competency-' + index_competency + ' .fa-star').removeClass("favorite");
+          $('#user-competency-' + index_competency + ' .star').attr("id", "star-competency-" + index_competency);
+        }
+      });
+    } else {
+      $.ajax({
+        type: "POST",
+        url: "/user_competencies/" + index_competency + "/favorites",
+        success: function(data) {
+          $(this).children().addClass("favorite");
+          $('#user-competency-' + index_competency + ' .fa-star').addClass("favorite");
+          $('#user-competency-' + index_competency + ' .star').attr("id", "star-competency-" + index_competency + "-favorite-" + index_new_favorite);
+        }
+      });
+    };
+  });
+});
