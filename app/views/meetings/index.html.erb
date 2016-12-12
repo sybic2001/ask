@@ -26,6 +26,14 @@
       <% end %>
     </div>
   </div>
+  <div class="row">
+    <h3>Historique</h3>
+    <div id="finished">
+      <% @finished_meetings.each do |meeting| %>
+        <%= render 'meeting_card', meeting: meeting %>
+      <% end %>
+    </div>
+  </div>
 </div>
 
 <!-- Modal -->

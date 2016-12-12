@@ -4,6 +4,7 @@ class MeetingsController < ApplicationController
     @pending_meetings = @meetings.where(status: "pending_approval")
     @agenda_meetings = @meetings.where(status: "accepted").order(:date)
     @pending_review_meetings = @meetings.where(status: "pending_review").order(:date)
+    @finished_meetings = @meetings.where(status: "finished").order(:date)
     # @meetings_as_helper = Meeting.where("helper_id = ?", current_user.id)
     @message = Message.new()
   end

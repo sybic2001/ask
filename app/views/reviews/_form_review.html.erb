@@ -19,7 +19,7 @@
         <i class="fa fa-star rating" aria-hidden="true" id="4"></i>
         <i class="fa fa-star rating" aria-hidden="true" id="5"></i>
       </div>
-      <%= f.input :user_comment, as: :text, label: false, input_html: { rows: 3 } %>
+      <%= f.input :user_comment, as: :text, label: false, input_html: { rows: 3 }, placeholder: "Votre commentaire" %>
       <%= f.submit :button, value: "Envoyer", class: "btn btn-success" %>
     <% end %>
   </div>
