@@ -74,9 +74,13 @@
           <%= f.submit :button, value: "Annuler", class: 'btn btn-danger', data: { confirm: "Etes-vous sûr de vouloir annuler ce meeting ?" } %>
         <% end %>
       </div>
-    <% elsif %>
-
-
+    <% elsif meeting.status == "pending_review" %>
+      <div class="info-meeting">
+        <h3>+<%= meeting.duration %>h</h3>
+      </div>
+      <div class="action-meeting">
+        <a href="/" class="btn btn-success button-review">Evaluer votre échange</a>
+      </div>
     <% else %>
     <% end %>
   </div>

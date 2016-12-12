@@ -3,7 +3,7 @@
     <h3>Vous avez 5 actions en attentes</h3>
   </div>
   <div class="row">
-    <h3>Meetings en cours de création</h3>
+    <h3>Discussions en cours</h3>
     <div id="pending_approval">
       <% @pending_meetings.each do |meeting| %>
         <%= render 'meeting_card', meeting: meeting %>
@@ -11,9 +11,17 @@
     </div>
   </div>
   <div class="row">
-    <h3>Agenda</h3>
+    <h3>Agenda des échanges</h3>
     <div id="accepted">
       <% @agenda_meetings.each do |meeting| %>
+        <%= render 'meeting_card', meeting: meeting %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <h3>En attente d'évaluation pour créditer le temps</h3>
+    <div id="pending_review">
+      <% @pending_review_meetings.each do |meeting| %>
         <%= render 'meeting_card', meeting: meeting %>
       <% end %>
     </div>
@@ -52,10 +60,24 @@
         });
       });
 
+      $('.button-review').click(function(e){
+        e.preventDefault();
+        var number = $(this).parent().parent().attr('id').match(/\d+/)[0];
+        $.ajax({
+          type: "GET",
+          url: "/meetings/" + number + "/reviews/new",
+          success: function(data) {
+            $('#myModal').modal('show');
+          }
+        });
+      });
+
       $('#myModal').on('shown.bs.modal', function () {
-        $('.chatbox').stop().animate({
-          scrollTop: $('.chatbox')[0].scrollHeight
-        }, 1200);;
+        if ($('.chatbox').length){
+          $('.chatbox').stop().animate({
+            scrollTop: $('.chatbox')[0].scrollHeight
+          }, 1200);
+        }
       });
 
       $('.datetimepicker').each(function(){

@@ -1,0 +1,28 @@
+<div class="modal-header">
+  <div class="modal-headbox">
+    <h4><%= "Evaluer votre échange avec #{meeting.helper.first_name}" %></h4>
+  </div>
+</div>
+<div class="modal-body">
+  <div class="div-errors"></div>
+  <div class="competency-score">
+    <h5>Avant d'évaluer votre expérience, <%= meeting.helper.first_name %> évalue son niveau à <%= meeting.user_competency.level %>% en "<%= meeting.user_competency.competency.name %>". Comment qualifieriez vous son niveau ? Cette information est anonyme et permet à chacun d'affiner son auto-évaluation.</h5>
+    <%= simple_form_for [meeting, review], remote: true do |f| %>
+      <%= f.collection_radio_buttons :competency_rating, [[-1, 'Plutôt inférieur'], [0, 'Tout à fait conforme'], [1, 'Plutôt supérieur']], :first, :last, label: false, item_wrapper_tag: :div, checked: 0 %>
+      <h5>Evaluez maintenant votre échange :</h5>
+      <%= f.hidden_field :user_rating, value: 0 %>
+      <%= f.hidden_field :meeting_id, value: meeting.id %>
+      <div class="review-rating">
+        <i class="fa fa-star rating" aria-hidden="true" id="1"></i>
+        <i class="fa fa-star rating" aria-hidden="true" id="2"></i>
+        <i class="fa fa-star rating" aria-hidden="true" id="3"></i>
+        <i class="fa fa-star rating" aria-hidden="true" id="4"></i>
+        <i class="fa fa-star rating" aria-hidden="true" id="5"></i>
+      </div>
+      <%= f.input :user_comment, as: :text, label: false, input_html: { rows: 3 } %>
+      <%= f.submit :button, value: "Envoyer", class: "btn btn-success" %>
+    <% end %>
+  </div>
+</div>
+<div class="modal-footer">
+</div>

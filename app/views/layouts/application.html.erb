@@ -10,8 +10,8 @@
     <%= yield :head_links %>
   </head>
   <body>
-    <% if user_signed_in? %>
     <%= render 'shared/navbar' %>
+    <% if user_signed_in? %>
     <%= render 'shared/flashes' %>
     <% end %>
 

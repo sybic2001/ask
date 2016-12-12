@@ -5,29 +5,6 @@
       <h1>S.Y.K.E</h1>
     <% end %>
   </div>
-  <!-- <div class="menu hidden-xs hidden-sm">
-    <div class="flex-menu">
-      <%= link_to meetings_path do %>
-        <h3>Dashboard</h3>
-      <% end %>
-    </div>
-    <div class="flex-menu">
-      <%= link_to profile_path(current_user) do %>
-        <h3>Mon profile</h3>
-      <% end %>
-    </div>
-    <div class="flex-menu">
-      <%= link_to communities_path do %>
-        <h3>Mes communautés</h3>
-      <% end %>
-    </div>
-    <div class="flex-menu">
-      <%= link_to user_competencies_path do %>
-        <h3>Rechercher des compétences</h3>
-      <% end %>
-    </div>
-
-  </div> -->
 
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm">
@@ -95,9 +72,11 @@
     <div class="dropdown">
       <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
       <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-        <li><a href="/users/<%= current_user.id %>/profile">Profile</a></li>
-        <li><a href="/">Home</a></li>
-        <li><%= link_to "Log out", destroy_user_session_path, method: :delete %>
+        <% if user_signed_in? %>
+          <li><a href="/users/<%= current_user.id %>/profile">Profile</a></li>
+          <li><a href="/">Home</a></li>
+          <li><%= link_to "Log out", destroy_user_session_path, method: :delete %>
+        <% end %>
     </div>
   </div>
 </div>

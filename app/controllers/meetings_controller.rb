@@ -3,7 +3,8 @@ class MeetingsController < ApplicationController
     @meetings = Meeting.includes(:helper, :helpee, [user_competency: :competency]).where("helper_id = ? OR helpee_id = ?", current_user.id, current_user.id)
     @pending_meetings = @meetings.where(status: "pending_approval")
     @agenda_meetings = @meetings.where(status: "accepted").order(:date)
-    @meetings_as_helper = Meeting.where("helper_id = ?", current_user.id)
+    @pending_review_meetings = @meetings.where(status: "pending_review").order(:date)
+    # @meetings_as_helper = Meeting.where("helper_id = ?", current_user.id)
     @message = Message.new()
   end
 
@@ -31,7 +32,7 @@ class MeetingsController < ApplicationController
         @message = Message.create(meeting: @meeting, sender: @meeting.helper, receiver: @meeting.helpee, status: "auto", description: "Meeting accepté. Bon échange !")
       elsif @meeting.status == "cancelled"
         @message = Message.create(meeting: @meeting, sender: @meeting.helper, receiver: @meeting.helpee, status: "auto", description: "Meeting annulé.")
-      elsif @meeting.status == "pending review"
+      elsif @meeting.status == "pending_review"
         @message = Message.create(meeting: @meeting, sender: @meeting.helper, receiver: @meeting.helpee, status: "auto", description: "Le meeting s'est bien passé ? #{@meeting.helpee.first_name} doit laisser un avis pour que le crédit temps soit validé !")
       elsif @meeting.status == "finished"
         @message = Message.create(meeting: @meeting, sender: @meeting.helper, receiver: @meeting.helpee, status: "auto", description: "Le meeting est terminé. Merci d'avoir contribué !")

@@ -1,0 +1,18 @@
+$('.modal-content').empty().append("<%= j render 'form_review', review: @review, meeting: @meeting %>");
+
+$(document).ready(function() {
+  $('.rating').on('click', function(){
+    if ($('#review_user_rating').val() === this.id ) {
+      for (i = 1 ; i <= this.id ; i += 1){
+        $('#' + i).toggleClass('rating-yellow');
+      };
+      $('#review_user_rating').val(0);
+    } else {
+      $('.rating').removeClass('rating-yellow');
+      $('#review_user_rating').val(this.id)
+      for (i = 1 ; i <= this.id ; i += 1){
+        $('#' + i).addClass('rating-yellow');
+      }
+    }
+  });
+});

@@ -1,0 +1,4 @@
+<% if @review.errors.any? %>
+  // Render new review form with errors
+  $('.div-errors').append("<%= @review.errors.messages %>");
+<% end %>
