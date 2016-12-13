@@ -19,9 +19,11 @@ $(document).ready(function(){
   });
 
   $('#myModal').on('shown.bs.modal', function () {
-    $('.chatbox').stop().animate({
-      scrollTop: $('.chatbox')[0].scrollHeight
-    }, 1200);;
+    if ($('.chatbox').length){
+      $('.chatbox').stop().animate({
+        scrollTop: $('.chatbox')[0].scrollHeight
+      }, 1200);
+    };
   });
 
   $('.datetimepicker').each(function(){

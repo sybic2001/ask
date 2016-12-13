@@ -76,12 +76,15 @@
       </div>
     <% elsif meeting.status == "pending_review" %>
       <div class="info-meeting">
-        <h3>+<%= meeting.duration %>h</h3>
+        <h3><%= (current_user == meeting.helpee) ? "-" : "+" %><%= meeting.duration %>h</h3>
       </div>
       <div class="action-meeting">
-        <a href="/" class="btn btn-success button-review">Evaluer votre échange</a>
+        <button class="btn btn-success button-review" <%= (current_user == meeting.helpee) ? "" : "disabled = 'true'"%>>Evaluer votre échange</button>
       </div>
-    <% else %>
+    <% elsif meeting.status == "finished" %>
+      <div class="info-meeting">
+        <h3><%= (current_user == meeting.helpee) ? "-" : "+" %><%= meeting.duration %>h</h3>
+      </div>
     <% end %>
   </div>
 </div>

@@ -6,5 +6,46 @@
 
   setTimeout(function(){
     $('#myModal').modal('hide');
+    $('#meeting-card-<%= @review.meeting.id %>').slideUp();
+    var meeting_card = $("<%= j render 'meetings/meeting_card', meeting: @review.meeting %>").hide();
+    $('#<%= @review.meeting.status %>').prepend(meeting_card);
+    meeting_card.slideDown();
+    $('.badge').empty().append("<%= current_user.profile.total_time_credit %>");
   }, 1500);
+
+
+  $(document).ready(function(){
+
+    $('.content-meeting').click(function(e){
+      var number = $(this).parent().attr('id').match(/\d+/)[0];
+      $.ajax({
+        type: "GET",
+        url: "/meetings/" + number + "/messages",
+        success: function(data) {
+          $('#myModal').modal('show');
+        }
+      });
+    });
+
+    $('#myModal').on('shown.bs.modal', function () {
+      if ($('.chatbox').length){
+        $('.chatbox').stop().animate({
+          scrollTop: $('.chatbox')[0].scrollHeight
+        }, 1200);
+      };
+    });
+
+    $('.datetimepicker').each(function(){
+      $(this).datetimepicker({
+        stepping: 30,
+        format: "YYYY-MM-DD HH:mm",
+        minDate: new Date(),
+        sideBySide: true,
+        showTodayButton: true,
+        showClear: true,
+        showClose: true,
+        useCurrent: false
+      });
+    });
+  });
 <% end %>

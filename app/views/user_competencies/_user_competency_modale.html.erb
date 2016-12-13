@@ -17,7 +17,10 @@
       <% user_competency.user.average_rating.times do %>
         <i class="fa fa-star yellow" aria-hidden="true"></i>
       <% end %>
-      <p><em><%= user_competency.reviews.count %> avis</em></p>
+      <% (5 - user_competency.user.average_rating).times do %>
+        <i class="fa fa-star" aria-hidden="true"></i>
+      <% end %>
+      <p><em><%= user_competency.user.reviews.count %> avis</em></p>
     </div>
     <% end %>
   </div>

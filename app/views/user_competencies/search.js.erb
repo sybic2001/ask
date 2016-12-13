@@ -15,15 +15,24 @@ $('#list > div').show()
 
 $(document).ready(function(){
   $('.product-body, .profile-picture, .profile-score').click(function(e){
-    var number = $(this).parent().parent().attr('id').match(/\d+/)[0];
+    var number = $(this).parent().attr('id').match(/\d+/)[0];
+    ajax_call(number);
+  });
+
+  $('.book-meeting').click(function(e){
+    var number = $(this).parent().parent().parent().attr('id').match(/\d+/)[0];
+    ajax_call(number);
+  });
+
+  function ajax_call(competency_id){
     $.ajax({
       type: "GET",
-      url: "/user_competencies/" + number,
+      url: "/user_competencies/" + competency_id,
       success: function(data) {
         $('#myModal').modal('show');
       }
     });
-  });
+  };
 
   $('.star').on('click', function(e){
     e.preventDefault();
