@@ -34,8 +34,13 @@
 
 .profile-reviews {
   flex: 0 0 auto;
+  height: 100%;
   padding: 0px 20px;
   align-self: flex-start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .edit-profile {

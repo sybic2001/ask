@@ -11,24 +11,33 @@
     <p><%= user.profile.description %></p>
   </div>
   <div class="profile-reviews">
+    <div class="profile-communities">
     <% user.memberships.where(status: "member").limit(3).each do |membership| %>
       <%= link_to community_path(membership.community) do %>
         <% if membership.community.photo? %>
-          <%= cl_image_tag(membership.community.photo.path, height: 50, width: 50, crop: :fit) %>
+          <%= cl_image_tag(membership.community.photo.path, height: 40, width: 40, crop: :fit) %>
         <% end %>
       <% end %>
     <% end %>
-    <br>
+    </div>
+    <% if current_user == user %>
+    <div class="add-community">
       <%= link_to communities_path do %>
       <i class="fa fa-plus-circle" aria-hidden="true" id="ajout-communaute"></i>
       <% end %>
-    <br>
-    <i class="fa fa-star" aria-hidden="true"></i>
-    <i class="fa fa-star" aria-hidden="true"></i>
-    <i class="fa fa-star" aria-hidden="true"></i>
-    <i class="fa fa-star" aria-hidden="true"></i>
-    <i class="fa fa-star" aria-hidden="true"></i>
-    <br>43 avis
+    </div>
+    <% end %>
+    <div class="profile-rating">
+    <% user.average_rating.times do %>
+      <i class="fa fa-star yellow" aria-hidden="true"></i>
+    <% end %>
+    <% (5 - user.average_rating).times do %>
+      <i class="fa fa-star" aria-hidden="true"></i>
+    <% end %>
+    </div>
+    <div class="profile-evaluations">
+      <p><em><%= user.reviews.count %> avis</em></p>
+    </div>
   </div>
   <% if private_profile %>
     <div class="edit-profile">

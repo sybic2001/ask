@@ -9,6 +9,7 @@
      <%= render 'community_card', community: community %>
     <% end %>
   </div>
+  <% if current_user.admin %>
   <div class="row">
     <div class="col-xs-12 text-center">
       <%= link_to new_community_path do %>
@@ -16,6 +17,7 @@
       <% end %>
     </div>
   </div>
+  <% end %>
 </div>
 
 
