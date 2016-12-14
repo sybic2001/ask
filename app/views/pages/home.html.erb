@@ -3,23 +3,47 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-md-3">
-          <%= link_to profile_path(current_user) do %>
-          <h3>1. Gérer votre profil</h3>
+          <%= link_to edit_profile_path(current_user), id: "home-link-card" do %>
+          <div class="home-card">
+          <i class="fa fa-user" aria-hidden="true"></i>
+          <h3>Complétez votre profil</h3>
+          <div class="home-badge">
+            <i class="fa fa-check-circle" aria-hidden="true"></i>
+          </div>
+          </div>
           <% end %>
         </div>
         <div class="col-xs-12 col-md-3">
-          <%= link_to profile_path(current_user) do %>
-          <h3>2. Ajouter des compétences</h3>
+          <%= link_to profile_path(current_user), id: "home-link-card" do %>
+          <div class="home-card">
+          <i class="fa fa-cog fa-spin" aria-hidden="true"></i>
+          <h3>Ajoutez des compétences</h3>
+          <div class="home-badge">
+            <i class="fa fa-check-circle <%= current_user.user_competencies.count == 0 ? "red-check" : "green-check" %>" aria-hidden="true"></i>
+          </div>
+          </div>
           <% end %>
         </div>
         <div class="col-xs-12 col-md-3">
-          <%= link_to profile_path(current_user) do %>
-          <h3>3. Complétez vos expériences</h3>
+          <%= link_to profile_path(current_user), id: "home-link-card" do %>
+          <div class="home-card">
+          <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+          <h3>Complétez-les de vos expériences</h3>
+          <div class="home-badge">
+            <i class="fa fa-check-circle" aria-hidden="true"></i>
+          </div>
+          </div>
           <% end %>
         </div>
         <div class="col-xs-12 col-md-3">
-          <%= link_to communities_path do %>
-          <h3>4. Rejoignez vos communautés !</h3>
+          <%= link_to communities_path, id: "home-link-card" do %>
+          <div class="home-card">
+          <i class="fa fa-users" aria-hidden="true"></i>
+          <h3>Rejoignez vos communautés !</h3>
+          <div class="home-badge">
+            <i class="fa fa-check-circle <%= current_user.memberships.where(status: "member").count == 0 ? "red-check" : "green-check" %>" aria-hidden="true"></i>
+          </div>
+          </div>
           <% end %>
         </div>
       </div>
