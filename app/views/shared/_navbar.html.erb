@@ -13,12 +13,21 @@
     <% if user_signed_in? %>
 
       <!-- Notification -->
-      <%= link_to "#", class: "navbar-wagon-item navbar-wagon-link" do %>
-        <div class="badge-container">
-          <i class="fa fa-clock-o"></i>
-          <div class="badge badge-blue"><%= current_user.profile.total_time_credit %></div>
+      <div class="navbar-wagon-item">
+        <div class="dropdown">
+          <div class="badge-container dropdown-toggle" data-toggle="dropdown" id="navbar-wagon-menu">
+            <i class="fa fa-clock-o"></i>
+            <div class="badge badge-blue"><%= current_user.profile.total_time_credit %></div>
+          </div>
+          <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+            <li>
+              <%= link_to "/" do %>
+                <i class="fa fa-clock-o"></i> Vous avez <%= current_user.profile.total_time_credit %>h de crédit
+              <% end %>
+            </li>
+          </ul>
         </div>
-      <% end %>
+      </div>
 
       <!-- Profile picture and dropdown -->
       <div class="navbar-wagon-item">
@@ -57,11 +66,6 @@
           </ul>
         </div>
       </div>
-
-    <% else %>
-
-      <!-- Login text link -->
-      <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
 
     <% end %>
 

@@ -20,6 +20,13 @@
   <% end %>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+    </div>
+  </div>
+</div>
 
 <% content_for :after_js do %>
   <script>
@@ -27,10 +34,10 @@
       $('.join-community').on('click', function(e){
         var index_community = $(this).attr('id').match(/\d+/)[0];
         $.ajax({
-          type: "POST",
-          url: "/communities/" + index_community + "/memberships",
+          type: "GET",
+          url: "/communities/" + index_community + "/memberships/new",
           success: function(data) {
-            $('#join-community-' + index_community).parent().html("<i class='fa fa-check-circle pending-approval' aria-hidden='true'></i>");
+            $('#myModal').modal('show');
           }
         });
       });

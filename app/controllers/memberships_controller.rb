@@ -4,9 +4,17 @@ class MembershipsController < ApplicationController
 
   end
 
+  def new
+    @membership = Membership.new
+    @community = Community.find(params[:community_id])
+  end
+
   def create
     @community = Community.find(params[:community_id])
-    Membership.create(user: current_user, community: @community)
+    @membership = Membership.new(membership_params)
+    @membership.user = current_user
+    @membership.community = @community
+    @membership.save
   end
 
   def update
@@ -18,7 +26,7 @@ class MembershipsController < ApplicationController
   private
 
   def membership_params
-    params.require(:membership).permit(:status, :user, :community, :community_time_credit, :community_manager)
+    params.require(:membership).permit(:promotion)
   end
 
 end

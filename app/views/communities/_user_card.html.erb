@@ -1,4 +1,4 @@
-<div class="col-xs-12 col-md-8 col-md-offset-2">
+<div class="col-xs-12 col-md-8 col-md-offset-2 link-user-card">
   <%= link_to profile_path(user) do %>
   <div class="user-card">
     <div class="user-picture">
@@ -7,8 +7,24 @@
     <% end %>
     </div>
     <div class="user-name">
-      <h3><%= user.first_name %> <%= user.last_name %></h3>
+      <h5><%= user.first_name %> <%= user.last_name %></h5>
     </div>
+    <ul class="list-inline product-controls">
+      <li>
+        <i class="fa fa-clock-o" aria-hidden="true"></i> <%= user.profile.total_time_credit %>h
+      </li>
+      <li>
+        <i class="fa fa-users" aria-hidden="true"></i> <%= user.helper_meetings.where(status: "finished").count %>
+      </li>
+      <li>
+        <% user.average_rating.times do %>
+          <i class="fa fa-star yellow" aria-hidden="true"></i>
+        <% end %>
+        <% (5 - user.average_rating).times do %>
+          <i class="fa fa-star" aria-hidden="true"></i>
+        <% end %>
+      </li>
+    </ul>
   </div>
   <% end %>
 </div>

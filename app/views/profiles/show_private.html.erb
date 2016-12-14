@@ -84,7 +84,7 @@
             type: "DELETE",
             url: "/user_competencies/" + index_competency + "/favorites/" + index_favorite,
             success: function(data) {
-              $('#user-competency-' + index_competency + ' .fa-star').removeClass("favorite");
+              $('#user-competency-' + index_competency + ' .fa-heart').removeClass("favorite");
               $('#user-competency-' + index_competency + ' .star').attr("id", "star-competency-" + index_competency);
             }
           });
@@ -94,7 +94,7 @@
             url: "/user_competencies/" + index_competency + "/favorites",
             success: function(data) {
               $(this).children().addClass("favorite");
-              $('#user-competency-' + index_competency + ' .fa-star').addClass("favorite");
+              $('#user-competency-' + index_competency + ' .fa-heart').addClass("favorite");
               $('#user-competency-' + index_competency + ' .star').attr("id", "star-competency-" + index_competency + "-favorite-" + index_new_favorite);
             }
           });

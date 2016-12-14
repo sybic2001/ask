@@ -1,1 +1,13 @@
 var index_community = <%= @community.id %>
+
+<% if @membership.errors.any? %>
+  // Render new review form with errors
+  $('.div-errors').empty().append("Tous les champs doivent re remplis.");
+<% else %>
+  $('.modal-body').empty().append("Votre demande sera examinée par l'administrateur de la communauté sous peu.");
+
+  setTimeout(function(){
+    $('#myModal').modal('hide');
+    $('#join-community-' + index_community).removeClass().addClass("fa fa-check-circle pending-approval");
+  }, 2500);
+<% end %>

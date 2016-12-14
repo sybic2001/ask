@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   resources :competencies, only: [:index, :new, :create, :destroy]
   resources :communities, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
-    resources :memberships, only: [:create, :index]
+    resources :memberships, only: [:new, :create, :index]
   end
   resources :memberships, only: [:edit, :update, :destroy]
   resources :user_competencies do

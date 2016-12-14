@@ -2,8 +2,34 @@
   <div class="banner-content">
     <div class="container">
       <div class="row">
+        <div class="col-xs-12 col-md-3">
+          <%= link_to profile_path(current_user) do %>
+          <h3>1. Gérer votre profil</h3>
+          <% end %>
+        </div>
+        <div class="col-xs-12 col-md-3">
+          <%= link_to profile_path(current_user) do %>
+          <h3>2. Ajouter des compétences</h3>
+          <% end %>
+        </div>
+        <div class="col-xs-12 col-md-3">
+          <%= link_to profile_path(current_user) do %>
+          <h3>3. Complétez vos expériences</h3>
+          <% end %>
+        </div>
+        <div class="col-xs-12 col-md-3">
+          <%= link_to communities_path do %>
+          <h3>4. Rejoignez vos communautés !</h3>
+          <% end %>
+        </div>
+      </div>
+      <div class="row">
         <div class="col-xs-12">
-
+          <p>Nombre d'heures</p>
+          <p>Nombres de nouveaux messages</p>
+          <p>Nombre de discussions en cours</p>
+          <p>Prochain rendez-vous</p>
+          <p>Evaluations en attentes</p>
         </div>
       </div>
       <div class="row">
