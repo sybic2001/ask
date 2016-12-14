@@ -26,17 +26,20 @@ class MeetingsController < ApplicationController
 
   def update
     @meeting = Meeting.find(params[:id])
+    current_status = @meeting.status
     if @meeting.update(meeting_params)
-      if @meeting.status == "refused"
-        @message = Message.create(meeting: @meeting, sender: @meeting.helper, receiver: @meeting.helpee, status: "auto", description: "Meeting refusé.")
-      elsif @meeting.status == "accepted"
-        @message = Message.create(meeting: @meeting, sender: @meeting.helper, receiver: @meeting.helpee, status: "auto", description: "Meeting accepté. Bon échange !")
-      elsif @meeting.status == "cancelled"
-        @message = Message.create(meeting: @meeting, sender: @meeting.helper, receiver: @meeting.helpee, status: "auto", description: "Meeting annulé.")
-      elsif @meeting.status == "pending_review"
-        @message = Message.create(meeting: @meeting, sender: @meeting.helper, receiver: @meeting.helpee, status: "auto", description: "Le meeting s'est bien passé ? #{@meeting.helpee.first_name} doit laisser un avis pour que le crédit temps soit validé !")
-      elsif @meeting.status == "finished"
-        @message = Message.create(meeting: @meeting, sender: @meeting.helper, receiver: @meeting.helpee, status: "auto", description: "Le meeting est terminé. Merci d'avoir contribué !")
+      if current_status != @meeting.status
+        if @meeting.status == "refused"
+          @message = Message.create(meeting: @meeting, sender: @meeting.helper, receiver: @meeting.helpee, status: "auto", description: "Meeting refusé.")
+        elsif @meeting.status == "accepted"
+          @message = Message.create(meeting: @meeting, sender: @meeting.helper, receiver: @meeting.helpee, status: "auto", description: "Meeting accepté. Bon échange !")
+        elsif @meeting.status == "cancelled"
+          @message = Message.create(meeting: @meeting, sender: @meeting.helper, receiver: @meeting.helpee, status: "auto", description: "Meeting annulé.")
+        elsif @meeting.status == "pending_review"
+          @message = Message.create(meeting: @meeting, sender: @meeting.helper, receiver: @meeting.helpee, status: "auto", description: "Le meeting s'est bien passé ? #{@meeting.helpee.first_name} doit laisser un avis pour que le crédit temps soit validé !")
+        elsif @meeting.status == "finished"
+          @message = Message.create(meeting: @meeting, sender: @meeting.helper, receiver: @meeting.helpee, status: "auto", description: "Le meeting est terminé. Merci d'avoir contribué !")
+        end
       end
     else
       render nothing: true

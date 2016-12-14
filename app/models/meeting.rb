@@ -6,7 +6,7 @@ class Meeting < ActiveRecord::Base
   has_many :messages, dependent: :destroy
 
   validates :helpee, :user_competency, :helper, :status, presence: true
-  validates :date, :duration, presence: true, if: "(status != 'pending_approval') && (status != 'refused')"
+  validates :date, :duration, presence: true, if: "(status == 'accepted')"
   validates :status, inclusion: { in: ["pending_approval","accepted","refused","pending_review","cancelled","finished"], message: "Invalid status"}
 
   before_create do

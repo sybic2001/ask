@@ -5,6 +5,6 @@
   <%= f.input :level, label: "Niveau" %>
   <%= f.input :description, label: "Décrivez votre expertise en quelques mots" %>
   <%= f.submit :button, class: "btn btn-primary", value: "Mettre à jour" %>
-  <input type="button" value="Annuler" class="btn btn-danger" id="hide-edit-form">
+  <input type="button" value="Annuler" class="btn btn-danger hide-edit-form" id="<%=user_competency.id%>">
 <% end %>
 </div>

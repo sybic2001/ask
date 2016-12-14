@@ -5,7 +5,7 @@ class CommunitiesController < ApplicationController
 
   def show
     @community = Community.find(params[:id])
-    redirect_to root_path(access: "unauthorized") if !current_user.is_member?(@community)
+    @authorized = current_user.is_member?(@community) ? true : false
   end
 
   def new
