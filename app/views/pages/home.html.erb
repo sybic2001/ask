@@ -61,7 +61,7 @@
                 <i class="fa fa-comments-o" aria-hidden="true"></i> Discussions en cours : <%= current_user.pending_meetings_nb %>
               </li>
               <li>
-                <i class="fa fa-calendar-check-o" aria-hidden="true"></i> Prochain échange confirmé : <%= I18n.localize(current_user.next_meeting.date, format: '%a %e %B, %H:%M') %>
+                <i class="fa fa-calendar-check-o" aria-hidden="true"></i> Prochain échange confirmé : <%= I18n.localize(current_user.next_meeting.date, format: '%a %e %B, %H:%M') unless current_user.next_meeting.nil? %>
               </li>
               <li>
                 <i class="fa fa-star-o" aria-hidden="true"></i> Evaluations en attente : <%= current_user.helpee_meetings.where(status: "pending_review").count %>
