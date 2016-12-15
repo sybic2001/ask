@@ -26,7 +26,7 @@ class MembershipsController < ApplicationController
   private
 
   def membership_params
-    params.require(:membership).permit(:promotion, :status)
+    params.require(:membership).permit(:promotion, :status, :community_manager)
   end
 
 end
