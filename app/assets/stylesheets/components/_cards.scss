@@ -204,6 +204,20 @@
   padding: 0 10px;
   cursor: pointer;
   margin: 5px 0px;
+  position: relative;
+  .message-badge{
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background-color: #4091DC;
+    color: white;
+    text-align: center;
+    font-size: 12px;
+    padding-top: 2px;
+  }
   .user-picture {
     flex: 0 0 auto;
   }

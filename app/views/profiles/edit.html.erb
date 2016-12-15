@@ -5,8 +5,13 @@
       <%= simple_form_for @profile do |f| %>
         <%= f.input :first_name, label: "Prénom" %>
         <%= f.input :last_name, label: "Nom" %>
-        <%= f.input :address, label: "Adresse" %>
-        <%= f.input :city, label: "Ville" %>
+        <%= f.input :address, label: "Adresse", placeholder: 'Tapez votre addresse ici...' %>
+        <%= f.input :city, label: "Ville", disabled: true %>
+        <%= f.hidden_field :city %>
+        <%= f.input :zip_code, label: "Code postal", disabled: true %>
+        <%= f.hidden_field :zip_code %>
+        <%= f.input :country, as: :string, label: "Pays", disabled: true %>
+        <%= f.hidden_field :country %>
         <%= f.input :phone_number, label: "Téléphone", placeholder: "0612001300" %>
         <%= f.input :description, label: "Mini bio", input_html: { rows: 5 } %>
         <%= f.input :photo, as: :attachinary %>
@@ -18,3 +23,74 @@
     </div>
   </div>
 </div>
+
+<% content_for(:after_js) do %>
+  <script src="https://maps.googleapis.com/maps/api/js?libraries=places&amp;key=AIzaSyCKWJZpQXBhJfukHX2dveUFk1W9UG7EhOY"></script>
+  <script>
+
+    $(document).ready(function() {
+      var profile_address = $('#profile_address').get(0);
+
+      if (profile_address) {
+        var autocomplete = new google.maps.places.Autocomplete(profile_address, { types: ['geocode'] });
+        google.maps.event.addListener(autocomplete, 'place_changed', onPlaceChanged);
+        google.maps.event.addDomListener(profile_address, 'keydown', function(e) {
+          if (e.keyCode == 13) {
+            e.preventDefault(); // Do not submit the form on Enter.
+          }
+        });
+      }
+    });
+
+    function onPlaceChanged() {
+      var place = this.getPlace();
+      var components = getAddressComponents(place);
+
+      $('#profile_address').each(function() {
+        $(this).trigger('blur').val(components.address);
+      });
+      $('#profile_zip_code').each(function() {
+        $(this).val(components.zip_code);
+      });
+      $('#profile_city').each(function() {
+        $(this).val(components.city);
+      });
+      if (components.country_code) {
+        $('#profile_country').each(function() {
+          $(this).val(components.country_code);
+        });
+      }
+    }
+
+    function getAddressComponents(place) {
+
+      var zip_code = null;
+      var city = null;
+      var country_code = null;
+      for (var i in place.address_components) {
+        var component = place.address_components[i];
+        for (var j in component.types) {
+          var type = component.types[j];
+          if (type == 'street_number') {
+            street_number = component.long_name;
+          } else if (type == 'route') {
+            route = component.long_name;
+          } else if (type == 'postal_code') {
+            zip_code = component.long_name;
+          } else if (type == 'locality') {
+            city = component.long_name;
+          } else if (type == 'country') {
+            country_code = component.long_name;
+          }
+        }
+      }
+
+      return {
+        address: street_number == null ? route : (street_number + ' ' + route),
+        zip_code: zip_code,
+        city: city,
+        country_code: country_code,
+      };
+    }
+  </script>
+<% end %>

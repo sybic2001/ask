@@ -17,4 +17,7 @@ class Meeting < ActiveRecord::Base
     ["pending_approval", "accepted", "pending review"].include?(self.status)
   end
 
+  def new_messages(user)
+    self.messages.where(receiver: user, status: "new").count
+  end
 end

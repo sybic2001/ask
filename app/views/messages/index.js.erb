@@ -1,1 +1,2 @@
 $('.modal-content').empty().append("<%= j render 'chatbox_modale', meeting: @meeting, messages: @messages, message: @message %>");
+$('#meeting-card-<%= @meeting.id %> .message-badge').remove();
