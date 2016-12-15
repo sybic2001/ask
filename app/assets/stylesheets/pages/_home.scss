@@ -13,3 +13,14 @@
     justify-content: center;
   }
 }
+
+
+
+.more {
+  display: none;
+  transition: all ease 0.3s;
+}
+
+h1:hover .more {
+  display: inline-block;
+}
