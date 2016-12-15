@@ -41,6 +41,14 @@ class User < ActiveRecord::Base
     self.reviews.average(:user_rating).to_i
   end
 
+  def pending_meetings_nb
+    Meeting.where("(helper_id = ? OR helpee_id = ?) AND status = ?", self.id, self.id, "pending_approval").count
+  end
+
+  def next_meeting
+    Meeting.where("(helper_id = ? OR helpee_id = ?) AND status = ?", self.id, self.id, "accepted").order(:date).first
+  end
+
   private
 
   def build_default_profile

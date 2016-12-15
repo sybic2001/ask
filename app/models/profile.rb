@@ -8,4 +8,8 @@ class Profile < ActiveRecord::Base
     self.user.update_attribute(:first_name, self.first_name) if self.first_name != self.user.first_name
     self.user.update_attribute(:last_name, self.last_name) if self.last_name != self.user.last_name
   end
+
+  def complete?
+    return !self.address.blank? && !self.phone_number.blank? && !self.city.blank? && !self.description.blank? &&self.photo?
+  end
 end

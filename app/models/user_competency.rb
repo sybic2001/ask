@@ -4,7 +4,7 @@ class UserCompetency < ActiveRecord::Base
   has_many :experiences, dependent: :destroy
   has_many :meetings, dependent: :destroy
   has_many :reviews, through: :meetings
-  has_many :favorites
+  has_many :favorites, dependent: :destroy
   has_many :communities, through: :user
 
   validates :user, :competency, :level, :description, presence: true
