@@ -1,7 +1,8 @@
 <p>Bonjour <%= @helper.first_name %>,</p>
 <p>Vous avez reçu une nouvelle demande de <%= @helpee.first_name %>. Votre camarade souhaite faire appel à vos compétences en "<%= @user_competency.competency.name %>"</p>
-<p>A vous de jouer maintenant : discutez avec <%= @helpee.first_name %> sur le site ou directement pour vous accorder sur une date et une durée.<strong>Important : pensez à valider le créneau et la durée sur votre tableau de bord, sinon vous ne serez pas créditez des heures sur votre compte !</strong></p>
-<a href="http://www.syke.fr/meetings">Accédez à votre tableau de bord pour chater avec <%= @helpee.first_name %>, valider la date et la demande</a>
+<p>A vous de jouer maintenant : discutez avec <%= @helpee.first_name %> sur le site ou directement pour vous accorder sur une date et une durée.</p>
+<p><strong>Important : pensez à valider le créneau et la durée sur votre tableau de bord, sinon vous ne serez pas créditez des heures sur votre compte !</strong></p>
+<a href="http://www.syke.fr/meetings">Accédez à votre tableau de bord pour chater avec <%= @helpee.first_name %>, valider la date et la demande</a><br>
 <a href="mailto:<%= @helpee.email %>">Contacter <%= @helpee.first_name %> directement par e-mail</a>
 <p>Bonne discussion,</p>
 <p>Arthur de l'équipe <a href="http://www.syke.fr">Syke</a></p>
