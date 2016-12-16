@@ -13,11 +13,17 @@ class Meeting < ActiveRecord::Base
     self.helper_id = self.user_competency.user_id if self.helper_id.nil?
   end
 
+  after_create :new_meeting_email
+
   def active?
     ["pending_approval", "accepted", "pending review"].include?(self.status)
   end
 
   def new_messages(user)
     self.messages.where(receiver: user, status: "new").count
+  end
+
+  def new_meeting_email
+    UserMailer.new_meeting(self).deliver_now
   end
 end

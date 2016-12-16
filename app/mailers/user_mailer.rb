@@ -9,4 +9,11 @@ class UserMailer < ApplicationMailer
     @user = user
     mail(to: user.email, subject: "Bienvenue sur SYKE !")
   end
+
+  def new_meeting(meeting)
+    @meeting = meeting
+    @user_competency = meeting.user_competency
+    @helper = meeting.helper
+    @helpee = meeting.helpee
+  end
 end

@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
 
   validates :email, :first_name, :last_name, presence: true
 
-  after_create :build_default_profile
+  after_create :build_default_profile, :welcome_email
 
   def is_community_manager?(community)
     user_membership = self.memberships.find_by(community: community)
@@ -55,6 +55,9 @@ class User < ActiveRecord::Base
     Profile.create(first_name: self.first_name, last_name: self.last_name, user: self)
   end
 
+  def welcome_email
+    UserMailer.welcome(self).deliver_now
+  end
 
 
 end
