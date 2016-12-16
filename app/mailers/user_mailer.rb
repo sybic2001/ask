@@ -15,5 +15,6 @@ class UserMailer < ApplicationMailer
     @user_competency = meeting.user_competency
     @helper = meeting.helper
     @helpee = meeting.helpee
+    mail(to: @helper.email, subject: "Nouvelle demande sur SYKE !")
   end
 end
