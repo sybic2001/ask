@@ -7,23 +7,23 @@
   </div>
   <div class="row">
     <div class="col-xs-12 col-md-8 col-md-offset-2 text-center">
-      <%= link_to "Retour à la communauté", community_path(@community), class: "btn btn-primary" %>
+      <%= link_to t('.back'), community_path(@community), class: "btn btn-primary" %>
     </div>
   </div>
   <div class="row" id="member">
     <div class="col-xs-12 col-md-8 col-md-offset-2">
-      <h3>Membres</h3>
+      <h3><%= t '.members' %></h3>
     </div>
     <% @community.memberships.where(status: "member").each do |membership| %>
-      <%= render 'user_card_validation', membership: membership, user: membership.user, aprovable: false %>
+      <%= render 'user_card_admin', membership: membership, user: membership.user, aprovable: false %>
     <% end %>
   </div>
   <div class="row" id="pending_approval">
     <div class="col-xs-12 col-md-8 col-md-offset-2">
-      <h3>En attente de réponse</h3>
+      <h3><%= t '.pending_approval' %></h3>
     </div>
     <% @community.memberships.where(status: "pending_approval").each do |membership| %>
-      <%= render 'user_card_validation', membership: membership, user: membership.user, aprovable: true %>
+      <%= render 'user_card_admin', membership: membership, user: membership.user, aprovable: true %>
     <% end %>
   </div>
 </div>

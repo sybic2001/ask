@@ -119,8 +119,35 @@ en:
       sign_out: Sign out
   profiles:
     show:
-      competencies: My fields of expertise
+      competencies: Fields of expertise
     edit:
       update: Update
       cancel: Cancel
       edit: Change Login / Email / Password
+    profile_card:
+      add_community: Add a community
+  communities:
+    index:
+      welcome: Communities existing on SYKE
+    edit:
+      back: Back to the community
+      members: Members
+      pending_approval: Pending approval
+    show:
+      manage_community: Manage my community
+      back: Back to the list
+    user_card_admin:
+      accept: Accept
+      refuse: Refuse
+      exclude: Exclude
+      make_admin: Make admin
+      remove_admin: Remove admin
+    form:
+      submit: Create
+  experiences:
+    new_experience_form:
+      year_placeholder: Year
+      company_placeholder: Company or Organization
+      description_placeholder: Describe your experience with a few words...
+      add: Add
+      cancel: Cancel

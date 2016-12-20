@@ -1,4 +1,4 @@
 $('#user-card-<%= @membership.user_id %>').slideUp();
-var user_card = $("<%= j render 'communities/user_card_validation', membership: @membership, user: @membership.user, aprovable: false %>").hide();
+var user_card = $("<%= j render 'communities/user_card_admin', membership: @membership, user: @membership.user, aprovable: false %>").hide();
 $('#<%= @membership.status %>').append(user_card);
 user_card.slideDown();

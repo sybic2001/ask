@@ -1,7 +1,7 @@
 <%= simple_form_for community do |f| %>
-  <%= f.input :name, label: "Nom de la communauté" %>
-  <%= f.input :description, label: "Description" %>
-  <%= f.input :url, label: "Site internet de la communauté" %>
+  <%= f.input :name %>
+  <%= f.input :description %>
+  <%= f.input :url %>
   <%= f.input :photo, as: :attachinary %>
-  <%= f.submit :button, value: "Créer", class: 'btn btn-primary' %>
+  <%= f.submit :button, value: t('.submit'), class: 'btn btn-primary' %>
 <% end %>

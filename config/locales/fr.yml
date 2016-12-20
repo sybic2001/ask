@@ -99,8 +99,35 @@ fr:
       sign_out: Déconnexion
   profiles:
     show:
-      competencies: Mes domaines de compétences
+      competencies: Domaines de compétences
     edit:
       update: Mettre à jour
       cancel: Annuler
       edit: Changer Email / Mot de passe
+    profile_card:
+      add_community: Ajouter une communauté
+  communities:
+    index:
+      welcome: Communautés présentes sur SYKE
+    edit:
+      back: Retour à la communauté
+      members: Membres
+      pending_approval: En attente de validation
+    show:
+      manage_community: Gérer ma communauté
+      back: Retour à la liste
+    user_card_admin:
+      accept: Accepter
+      refuse: Refuser
+      exclude: Exclure
+      make_admin: Rendre admin
+      remove_admin: Supprimer admin
+    form:
+      submit: Créer
+  experiences:
+    new_experience_form:
+      year_placeholder: Année
+      company_placeholder: Entreprise ou Organisation
+      description_placeholder: Décrivez votre expérience en quelques mots...
+      add: Ajouter
+      cancel: Annuler
