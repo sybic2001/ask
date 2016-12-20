@@ -1,6 +1,32 @@
 fr:
   hello: ""
-  home:
-    welcome: "Bienvenue sur SYKE !"
-    pitch: "La première plateforme de partage de compétences entre alumnis pour booster vos projets d'entreprises"
-    connect: "Connectez-vous"
+  pages:
+    landing:
+      welcome: Bienvenue sur SYKE !
+      pitch: La première plateforme de partage de compétences entre alumnis pour booster vos projets d'entreprises
+      connect: Connectez-vous
+      modal_title: Connectez-vous ou inscrivez-vous
+      close: Fermer
+    home:
+      profile: Complétez votre profil
+      competences: Ajoutez des compétences
+      experiences: Ajoutez des expériences
+      communities: Rejoignez vos communautés
+      time_credit:
+        zero: Vous n'avez plus de crédit !
+        other: "Crédit de temps : %{count}h"
+      new_messages:
+        zero: Vous n'avez aucun nouveaux messages
+        one: Vous avez un nouveau message
+        other: Vous avez %{count} nouveaux messages
+      discussions:
+        zero: Vous n'avez aucune discussion en cours
+        one: Vous avez une discussion en cours
+        other: Vous avez %{count} discussions en cours
+      next_meeting:
+        zero: Vous n'avez pas d'échanges planifiés
+        one: "Prochain rendez-vous :"
+      pending_reviews:
+        zero: Pas d'évaluation en attente
+        one: Une évaluetaion en attente
+        other: "%{count} évaluations en attente"

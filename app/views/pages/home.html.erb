@@ -6,7 +6,7 @@
           <%= link_to edit_profile_path(current_user), id: "home-link-card" do %>
           <div class="home-card">
           <i class="fa fa-user" aria-hidden="true"></i>
-          <h3>Complétez votre profil</h3>
+          <h3><%= t('.profile') %></h3>
           <div class="home-badge">
             <i class="fa fa-check-circle <%= current_user.profile.complete? ? "green-check" : "yellow-check" %>" aria-hidden="true"></i>
           </div>
@@ -17,7 +17,7 @@
           <%= link_to profile_path(current_user), id: "home-link-card" do %>
           <div class="home-card">
           <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-          <h3>Ajoutez des compétences</h3>
+          <h3><%= t('.competences') %></h3>
           <div class="home-badge">
             <i class="fa fa-check-circle <%= case current_user.user_competencies.count; when 0; "red-check"; when 1; "yellow-check"; else "green-check"; end; %>" aria-hidden="true"></i>
           </div>
@@ -28,7 +28,7 @@
           <%= link_to profile_path(current_user), id: "home-link-card" do %>
           <div class="home-card">
           <i class="fa fa-list" aria-hidden="true"></i>
-          <h3>Complétez-les de vos expériences</h3>
+          <h3><%= t('.experiences') %></h3>
           <div class="home-badge">
             <i class="fa fa-check-circle <%= case current_user.experiences.count; when 0; "red-check"; when 1; "yellow-check"; else "green-check"; end; %>" aria-hidden="true"></i>
           </div>
@@ -39,7 +39,7 @@
           <%= link_to communities_path, id: "home-link-card" do %>
           <div class="home-card">
           <i class="fa fa-users" aria-hidden="true"></i>
-          <h3>Rejoignez vos communautés !</h3>
+          <h3><%= t('.communities') %></h3>
           <div class="home-badge">
             <i class="fa fa-check-circle <%= current_user.memberships.where(status: "member").count == 0 ? "red-check" : "green-check" %>" aria-hidden="true"></i>
           </div>
@@ -52,19 +52,19 @@
           <div class="col-xs-12 col-md-6 content">
             <ul class="list-unstyled">
               <li>
-                <i class="fa fa-clock-o" aria-hidden="true"></i> Votre crédit d'heures : <%= current_user.profile.total_time_credit %>h
+                <i class="fa fa-clock-o" aria-hidden="true"></i> <%= t('.time_credit', count: current_user.profile.total_time_credit) %>
               </li>
               <li>
-                <i class="fa fa-envelope-o" aria-hidden="true"></i> Nouveaux messages : <%= current_user.received_messages.where(status: "new").count %>
+                <i class="fa fa-envelope-o" aria-hidden="true"></i> <%= t('.new_messages', count: current_user.received_messages.where(status: "new").count) %>
               </li>
               <li>
-                <i class="fa fa-comments-o" aria-hidden="true"></i> Discussions en cours : <%= current_user.pending_meetings_nb %>
+                <i class="fa fa-comments-o" aria-hidden="true"></i> <%= t('.discussions', count: current_user.pending_meetings_nb) %>
               </li>
               <li>
-                <i class="fa fa-calendar-check-o" aria-hidden="true"></i> Prochain échange confirmé : <%= current_user.next_meeting.nil? ? "Aucun" : I18n.localize(current_user.next_meeting.date, format: '%a %e %B, %H:%M')  %>
+                <i class="fa fa-calendar-check-o" aria-hidden="true"></i> <%= current_user.next_meeting.nil? ? t('.next_meeting', count: 0) : t('.next_meeting', count: 1 ) + ' ' + I18n.localize(current_user.next_meeting.date, format: '%a %e %B, %H:%M') %>
               </li>
               <li>
-                <i class="fa fa-star-o" aria-hidden="true"></i> Evaluations en attente : <%= current_user.helpee_meetings.where(status: "pending_review").count %>
+                <i class="fa fa-star-o" aria-hidden="true"></i> <%= t('.pending_reviews', count: current_user.helpee_meetings.where(status: "pending_review").count) %>
               </li>
             </ul>
           </div>

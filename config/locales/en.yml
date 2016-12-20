@@ -21,7 +21,33 @@
 
 en:
   hello: "Hello world"
-  home:
-    welcome: "Welcome on SYKE !"
-    pitch: "THE platform to Share Your Knowledge & Experience between alumnis and boost your projects."
-    connect: "Sign or Log In"
+  pages:
+    landing:
+      welcome: Welcome on SYKE !
+      pitch: The platform to Share Your Knowledge & Experience between alumnis and boost your projects.
+      connect: Sign in or join
+      modal_title: Sign in or create an account
+      close: Close
+    home:
+      profile: Enrich your profile
+      competences: Add competencies
+      experiences: Add experiences
+      communities: Join communities
+      time_credit:
+        zero: You have no more time credit
+        other: "Time credit: %{count}h"
+      new_messages:
+        zero: You have no incoming messages
+        one: You have 1 new message
+        other: You have %{count} new messages
+      discussions:
+        zero: You have no ongoing discussion
+        one: You have %{count} ongoing discussion
+        other: You have %{count} ongoing discussions
+      next_meeting:
+        zero: You have no meeting planned
+        one: "Next:"
+      pending_reviews:
+        zero: You have no pending reviews
+        one: You have 1 pending review
+        other: You have %{count} pending reviews
