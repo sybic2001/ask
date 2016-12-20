@@ -19,7 +19,7 @@ class ExperiencesController < ApplicationController
       end
     else
       respond_to do |format|
-        format.html { render 'profiles/show_private' }
+        format.html { render 'profiles/show' }
         format.js  # <-- idem
       end
     end

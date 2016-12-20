@@ -9,6 +9,8 @@ fr:
         remember_me: Se souvenir de moi
         reset_password_token: Clé de Réinitialisation du Mot de Passe
         unlock_token: Clé de déblocage
+        first_name: Prénom
+        last_name: Nom
     models:
       user: Utilisateur
   devise:

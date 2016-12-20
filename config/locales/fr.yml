@@ -1,5 +1,57 @@
 fr:
-  hello: ""
+  activerecord:
+    models:
+      community: Communauté
+      competency: Compétence
+      experience: Expérience
+      favorite: Favori
+      meeting: Echange
+      membership: Adhésion
+      message: Message
+      profile: Profil
+      review: Evaluation
+      user_competency: Competence
+    attributes:
+      community:
+        name: Nom
+        description: Description
+        url: Adresse web
+      competency:
+        name: Name
+        description: Description
+      experience:
+        company: Entreprise / Organisation
+        project: Role / Projet
+        description: Description
+        year: Année
+        duration: Durée
+      meeting:
+        date: Date
+        duration: Durée
+        status: Statut
+      membership:
+        status: Statut
+        community_time_credit: Crédit temps
+        community_manager: Administrateur de communauté
+        promotion: Promo
+      message:
+        description: Description
+        status: Statut
+      profile:
+        first_name: Prénom
+        last_name: Nom
+        address: Adresse
+        city: Ville
+        zip_code: Code Postal
+        country: Pays
+        phone_number: Téléphone
+        description: Biographie
+      review:
+        user_rating: Note
+        user_comment: Commentaire
+      user_competency:
+        level: Niveau
+        description: Description
   pages:
     landing:
       welcome: Bienvenue sur SYKE !
@@ -14,6 +66,7 @@ fr:
       communities: Rejoignez vos communautés
       time_credit:
         zero: Vous n'avez plus de crédit !
+        one: "Crédit de temps : %{count}h"
         other: "Crédit de temps : %{count}h"
       new_messages:
         zero: Vous n'avez aucun nouveaux messages
@@ -30,3 +83,20 @@ fr:
         zero: Pas d'évaluation en attente
         one: Une évaluetaion en attente
         other: "%{count} évaluations en attente"
+      dashboard: Mon tableau de bord
+      search: Je cherche des compétences et du support dans mon réseau
+      search_button: Trouver des compétences
+  shared:
+    navbar:
+      time_credit:
+        zero: Vous n'avez plus de crédit !
+        one: Vous avez %{count}h de crédit
+        other: Vous avez %{count}h de crédit
+      home: Accueil
+      profile: Mon profil
+      communities: Mes communautés
+      dashboard: Tableau de bord
+      sign_out: Déconnexion
+  profiles:
+    show:
+      competencies: Mes domaines de compétences

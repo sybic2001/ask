@@ -9,6 +9,8 @@ en:
         remember_me: Remember me
         reset_password_token: Reset password token
         unlock_token: Unlock token
+        first_name: First Name
+        last_name: Last Name
     models:
       user: User
   devise:

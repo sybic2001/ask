@@ -20,7 +20,7 @@ class MeetingsController < ApplicationController
       Message.create(meeting: @meeting, sender: @meeting.helper, receiver: @meeting.helpee, status: "auto", description: "Meeting créé ! Utilisez cette chatbox pour s'accorder sur une date et une durée. #{@meeting.helper.first_name} devra ensuite valider la demande.")
       redirect_to meetings_path
     else
-      render 'profile/show_private'
+      render 'profile/show'
     end
   end
 

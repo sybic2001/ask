@@ -20,7 +20,59 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    models:
+      community: Community
+      competency: Competency
+      experience: Experience
+      favorite: Favorite
+      meeting: Meeting
+      membership: Membership
+      message: Message
+      profile: Profile
+      review: Review
+      user_competency: Competency
+    attributes:
+      community:
+        name: Name
+        description: Description
+        url: Web link
+      competency:
+        name: Name
+        description: Description
+      experience:
+        company: Company / Organisation
+        project: Role / Project
+        description: Description
+        year: Year
+        duration: Duration
+      meeting:
+        date: Date
+        duration: Duration
+        status: Status
+      membership:
+        status: Status
+        community_time_credit: Community time credit
+        community_manager: Community manager
+        promotion: Promotion
+      message:
+        description: Description
+        status: Status
+      profile:
+        first_name: First Name
+        last_name: Last Name
+        address: Address
+        city: City
+        zip_code: Zip Code
+        country: Country
+        phone_number: Phone
+        description: Biography
+      review:
+        user_rating: Rating
+        user_comment: Comment
+      user_competency:
+        level: Level
+        description: Description
   pages:
     landing:
       welcome: Welcome on SYKE !
@@ -51,3 +103,20 @@ en:
         zero: You have no pending reviews
         one: You have 1 pending review
         other: You have %{count} pending reviews
+      dashboard: My dashboard
+      search: Look for competencies and support in my communities
+      search_button: Find competencies
+  shared:
+    navbar:
+      time_credit:
+        zero: You have no more credit !
+        one: You have %{count}h of credit
+        other: You have %{count}h of credit
+      home: Home
+      profile: My profile
+      communities: Communities
+      dashboard: Dashboard
+      sign_out: Sign out
+  profiles:
+    show:
+      competencies: My fields of expertise

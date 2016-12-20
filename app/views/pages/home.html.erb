@@ -69,14 +69,14 @@
             </ul>
           </div>
           <div class="col-xs-12 col-md-6 content">
-            <%= link_to "Accéder à mon tableau de bord", meetings_path, class: "btn btn-success" %>
+            <%= link_to t('.dashboard'), meetings_path, class: "btn btn-success" %>
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-xs-12">
-          <h3>Je cherche du support et des compétences dans mon réseau</h3>
-          <%= link_to "Trouver des compétences", user_competencies_path, class: "btn btn-success" %>
+          <h3><%= t '.search' %></h3>
+          <%= link_to t('.search_button'), user_competencies_path, class: "btn btn-success" %>
         </div>
       </div>
     </div>
