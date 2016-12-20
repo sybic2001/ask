@@ -151,3 +151,23 @@ en:
       description_placeholder: Describe your experience with a few words...
       add: Add
       cancel: Cancel
+  meetings:
+    index:
+      pending_approval:
+        zero: No discussions in progress
+        one: Current discussion
+        other: Current discussions (%{count})
+      agenda:
+        zero: No planned meetings
+        one: Next meeting
+        other: Next meetings (%{count})
+      pending_review:
+        zero: No pending reviews
+        one: Pending review to get time credit
+        other: Pending reviews (%{count}) to get time credit
+      finished:
+        zero: No former meetings
+        one: Historic
+        other: Historic (%{count})
+    meeting_card:
+

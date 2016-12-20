@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <h3>Discussions en cours</h3>
+    <h3><%= t '.pending_approval', count: @pending_meetings.length  %></h3>
     <div id="pending_approval">
       <% @pending_meetings.each do |meeting| %>
         <%= render 'meeting_card', meeting: meeting %>
@@ -8,7 +8,7 @@
     </div>
   </div>
   <div class="row">
-    <h3>Agenda des échanges</h3>
+    <h3><%= t '.agenda', count: @agenda_meetings.length %></h3>
     <div id="accepted">
       <% @agenda_meetings.each do |meeting| %>
         <%= render 'meeting_card', meeting: meeting %>
@@ -16,7 +16,7 @@
     </div>
   </div>
   <div class="row">
-    <h3>En attente d'évaluation pour créditer le temps</h3>
+    <h3><%= t '.pending_review', count: @pending_review_meetings.length %></h3>
     <div id="pending_review">
       <% @pending_review_meetings.each do |meeting| %>
         <%= render 'meeting_card', meeting: meeting %>
@@ -24,7 +24,7 @@
     </div>
   </div>
   <div class="row">
-    <h3>Historique</h3>
+    <h3><%= t '.finished', count: @finished_meetings.length %></h3>
     <div id="finished">
       <% @finished_meetings.each do |meeting| %>
         <%= render 'meeting_card', meeting: meeting %>
