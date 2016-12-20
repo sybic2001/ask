@@ -120,3 +120,7 @@ en:
   profiles:
     show:
       competencies: My fields of expertise
+    edit:
+      update: Update
+      cancel: Cancel
+      edit: Change Login / Email / Password

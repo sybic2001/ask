@@ -15,9 +15,9 @@
         <%= f.input :phone_number, placeholder: "0612001300" %>
         <%= f.input :description, input_html: { rows: 5 } %>
         <%= f.input :photo, as: :attachinary %>
-        <%= f.submit :button, class: 'btn btn-primary', value: 'Mettre à jour' %>
-        <%= link_to "Annuler", profile_path(current_user), class: 'btn btn-danger' %>
-        <%= link_to "Changer Login / Email / Mot de passe", edit_user_registration_path, class: 'btn btn-warning' %>
+        <%= f.submit :button, class: 'btn btn-primary', value: t('.update') %>
+        <%= link_to t('.cancel'), profile_path(current_user), class: 'btn btn-danger' %>
+        <%= link_to t('.edit'), edit_user_registration_path, class: 'btn btn-warning' %>
       <% end %>
       </div>
     </div>

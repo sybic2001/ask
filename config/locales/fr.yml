@@ -100,3 +100,7 @@ fr:
   profiles:
     show:
       competencies: Mes domaines de compétences
+    edit:
+      update: Mettre à jour
+      cancel: Annuler
+      edit: Changer Email / Mot de passe
