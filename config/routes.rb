@@ -1,30 +1,31 @@
 Rails.application.routes.draw do
   mount Attachinary::Engine => "/attachinary"
   devise_for :users, :controllers => {sessions: 'sessions'}
-  root to: 'pages#home'
+  scope '(:locale)', locale: /fr/ do
+    root to: 'pages#home'
 
-  get "users/:id/profile", to: "profiles#show", as: "profile"
-  patch "users/:id/profile", to: "profiles#update", as: "update_profile"
-  get "users/:id/profile/edit", to: "profiles#edit", as: "edit_profile"
-  post "user_competencies/search", to: "user_competencies#search", as: "search_user_competencies"
+    get "users/:id/profile", to: "profiles#show", as: "profile"
+    patch "users/:id/profile", to: "profiles#update", as: "update_profile"
+    get "users/:id/profile/edit", to: "profiles#edit", as: "edit_profile"
+    post "user_competencies/search", to: "user_competencies#search", as: "search_user_competencies"
 
-  resources :competencies, only: [:index, :new, :create, :destroy]
-  resources :communities, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
-    resources :memberships, only: [:new, :create, :index]
+    resources :competencies, only: [:index, :new, :create, :destroy]
+    resources :communities, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
+      resources :memberships, only: [:new, :create, :index]
+    end
+    resources :memberships, only: [:edit, :update, :destroy]
+    resources :user_competencies do
+      resources :experiences, shallow: true
+      resources :meetings, except: [:index], shallow: true
+      resources :favorites, only: [:create, :destroy]
+    end
+    resources :meetings, only: [:index] do
+      resources :reviews, :messages
+    end
+    resources :users, only: [] do
+      resources :favorites, only: [:index]
+    end
   end
-  resources :memberships, only: [:edit, :update, :destroy]
-  resources :user_competencies do
-    resources :experiences, shallow: true
-    resources :meetings, except: [:index], shallow: true
-    resources :favorites, only: [:create, :destroy]
-  end
-  resources :meetings, only: [:index] do
-    resources :reviews, :messages
-  end
-  resources :users, only: [] do
-    resources :favorites, only: [:index]
-  end
-
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -21,3 +21,7 @@
 
 en:
   hello: "Hello world"
+  home:
+    welcome: "Welcome on SYKE !"
+    pitch: "THE platform to Share Your Knowledge & Experience between alumnis and boost your projects."
+    connect: "Sign or Log In"

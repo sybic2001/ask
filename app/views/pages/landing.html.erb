@@ -1,9 +1,9 @@
 <div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url(<%= image_path('background-alumni.jpg') %>);">
   <div class="banner-content">
-    <h1>Bienvenue sur <br><span>S</span><span class="more">hare</span><span> Y</span><span class="more">our </span><span> K</span><span class="more">nowledge &amp;</span><span> E</span><span class="more">xperience</span> !</h1>
-    <p>La première plateforme de partage de compétences entre alumnis pour booster vos projets d'entreprises</p>
+    <h1><%= t('home.welcome') %></h1>
+    <p><%= t('home.pitch') %></p>
     <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-      Connectez-vous
+      <%= t('home.connect') %>
     </button>
   </div>
 </div>
