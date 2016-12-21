@@ -16,7 +16,7 @@
   <%= simple_form_for [meeting, message], html: {class: 'form-inline', autocomplete: 'off' }, remote: true do |f| %>
     <button type="button" class="btn btn-primary" data-dismiss="modal">Fermer</button>
     <%= f.input :description, as: :text, label: false, placeholder: "Entrer votre message", input_html: {'rows' => 3} %>
-    <%= f.submit :button, value: "Envoyer", class: 'btn btn-success' %>
+    <%= f.submit :button, value: "Envoyer", class: 'btn btn-success', disabled: true, id: "send" %>
   <% end %>
   </div>
 </div>

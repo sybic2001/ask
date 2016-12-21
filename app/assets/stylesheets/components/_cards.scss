@@ -212,11 +212,15 @@
     height: 20px;
     width: 20px;
     border-radius: 50%;
-    background-color: #4091DC;
+    background-color: #C8C8C8;
     color: white;
     text-align: center;
     font-size: 12px;
     padding-top: 2px;
+    transition: all 0.15s ease;
+    &.blue-badge {
+      background-color: #4091DC;
+    }
   }
   .user-picture {
     flex: 0 0 auto;
@@ -241,6 +245,10 @@
   }
   &:hover {
     box-shadow: 0px 0px 2px 2px #51A1E4;
+    .message-badge {
+      background-color: #676767;
+      box-shadow: 0px 0px 1px 1px #51A1E4;
+    }
   }
   .action-meeting {
     flex: 0 0 auto;

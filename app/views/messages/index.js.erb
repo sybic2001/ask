@@ -1,2 +1,13 @@
 $('.modal-content').empty().append("<%= j render 'chatbox_modale', meeting: @meeting, messages: @messages, message: @message %>");
-$('#meeting-card-<%= @meeting.id %> .message-badge').remove();
+$('#meeting-card-<%= @meeting.id %> .message-badge').removeClass('blue-badge');
+
+$(document).ready(function() {
+    $('#message_description').keyup(function() {
+        var empty = ($(this).val().length == 0);
+        if (empty) {
+            $('#send').attr('disabled', 'disabled');
+        } else {
+            $('#send').removeAttr('disabled');
+        }
+    });
+});

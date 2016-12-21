@@ -170,4 +170,12 @@ en:
         one: Historic
         other: Historic (%{count})
     meeting_card:
-
+      date_placeholder: Date and time...
+      duration_placeholder: Length
+      propose: Propose
+      accept: Accept
+      refuse: Refuse
+      cancel: Cancel
+      change: Change
+      cancel_confirmation: This will cancel the meeting definitively. Are you sure ?
+      meeting_review_button: Review your session

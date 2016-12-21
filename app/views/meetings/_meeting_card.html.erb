@@ -1,10 +1,6 @@
 <div class="col-xs-12">
   <div class="meeting-card" id="meeting-card-<%= meeting.id %>">
-    <% case nb_messages = meeting.new_messages(current_user) %>
-    <% when 0 %>
-    <% else %>
-    <div class="message-badge"><i class="fa fa-envelope" aria-hidden="true"></i></div>
-    <% end %>
+    <div class="message-badge <%="blue-badge" if meeting.new_messages(current_user) != 0 %>"><i class="fa fa-envelope" aria-hidden="true"></i></div>
     <div class="user-picture">
       <%= link_to profile_path(meeting.helper) do %>
         <% if meeting.helper.profile.photo? %>
@@ -26,36 +22,16 @@
       <p><%= meeting.user_competency.competency.name %></p>
     </div>
     <% if meeting.status == "pending_approval" %>
-      <% if meeting.helper == current_user %>
       <div class="action-meeting">
         <%= simple_form_for meeting, html: { class: 'form-inline', autocomplete: 'off' }, remote: true do |f| %>
-          <%= f.input :date, as: :string, label: false, required: true, input_html: { class: 'datetimepicker' }, placeholder: "Date et heure" %>
-          <%= f.input :duration, label: false, required: true, placeholder: "Durée" %>
-          <%= f.hidden_field :status, value: "accepted" %>
-          <%= f.submit :button, value: "Accepter", class: 'btn btn-success' %>
+          <%= f.input :date, as: :string, label: false, required: true, input_html: { class: 'datetimepicker' }, placeholder: t('.date_placeholder') %>
+          <%= f.hidden_field :status %>
+          <%= f.input :duration, label: false, required: true, placeholder: t('.duration_placeholder') %>
+          <%= f.submit :button, name: "commit[propose]", value: t('.propose'), class: 'btn btn-success' %>
+          <%= f.submit :button, name: "commit[accept]", value: t('.accept'), class: 'btn btn-success', disabled: (true if current_user == meeting.helpee) %>
+          <%= f.submit :button, name: "commit[cancel]", value: current_user == meeting.helpee ? t('.cancel') : t('.refuse'), class: 'btn btn-danger', data: { confirm: t('.cancel_confirmation') } %>
         <% end %>
       </div>
-      <div class="action-meeting">
-        <%= simple_form_for meeting, html: { class: 'form-inline' }, remote: true do |f| %>
-          <%= f.hidden_field :status, value: "refused" %>
-          <%= f.submit :button, value: "Refuser", class: 'btn btn-danger', data: { confirm: "Etes-vous sûr de vouloir annuler ce meeting ?" } %>
-        <% end %>
-      </div>
-      <% else %>
-        <div class="action-meeting">
-          <%= simple_form_for meeting, html: { class: 'form-inline', autocomplete: 'off' }, remote: true do |f| %>
-            <%= f.input :date, as: :string, label: false, required: true, input_html: { class: 'datetimepicker' }, placeholder: "Date et heure" %>
-            <%= f.input :duration, label: false, required: true, placeholder: "Durée" %>
-            <%= f.submit :button, value: "Proposer", class: 'btn btn-success' %>
-          <% end %>
-        </div>
-        <div class="action-meeting">
-          <%= simple_form_for meeting, html: { class: 'form-inline' }, remote: true do |f| %>
-            <%= f.hidden_field :status, value: "refused" %>
-            <%= f.submit :button, value: "Annuler", class: 'btn btn-danger', data: { confirm: "Etes-vous sûr de vouloir annuler ce meeting ?" } %>
-          <% end %>
-        </div>
-      <% end %>
     <% elsif meeting.status == "accepted" %>
       <div class="add-to-calendar">
         <span class="addtocalendar atc-style-icon atc-style-menu-wb" data-calendars="iCalendar, Google Calendar, Outlook">
@@ -66,24 +42,19 @@
               <var class="atc_timezone">Europe/Paris</var>
               <var class="atc_location">Paris</var>
               <var class="atc_title">SYKE meeting <%= meeting.helper.first_name %> --> <%= meeting.helpee.first_name %></var>
-              <var class="atc_description"><%= meeting.duration%>h d'échanges : <%= meeting.user_competency.competency.name%></var>
+              <var class="atc_description"><%= meeting.duration%>h meeting : <%= meeting.user_competency.competency.name%></var>
               <var class="atc_organizer"><%= meeting.helper.first_name %></var>
               <var class="atc_organizer_email"><%= meeting.helper.email %></var>
           </var>
         </span>
       </div>
       <div class="action-meeting">
-        <%= simple_form_for meeting, html: { class: 'form-inline' }, defaults: {disabled: (true if current_user == meeting.helpee)} , remote: true do |f| %>
-          <%= f.input :date, as: :string, label: false, required: true, input_html: { class: 'datetimepicker' } %>
-          <%= f.input :duration, label: false, required: true, placeholder: "Durée" %>
-          <%= f.hidden_field :status, value: "accepted" %>
-          <%= f.submit :button, value: "Changer", class: 'btn btn-warning', disabled: (true if current_user == meeting.helpee) %>
-        <% end %>
-      </div>
-      <div class="action-meeting">
         <%= simple_form_for meeting, html: { class: 'form-inline' }, remote: true do |f| %>
-          <%= f.hidden_field :status, value: "cancelled" %>
-          <%= f.submit :button, value: "Annuler", class: 'btn btn-danger', data: { confirm: "Etes-vous sûr de vouloir annuler ce meeting ?" } %>
+          <%= f.input :date, as: :string, label: false, required: true, input_html: { class: 'datetimepicker' } %>
+          <%= f.input :duration, label: false, required: true, placeholder: t('.duration_placeholder') %>
+          <%= f.hidden_field :status %>
+          <%= f.submit :button, name: "commit[change]", value: t('.change'), class: 'btn btn-warning', disabled: (true if current_user == meeting.helpee) %>
+          <%= f.submit :button, name: "commit[cancel]", value: t('.cancel'), class: 'btn btn-danger', data: { confirm: t('.cancel_confirmation') } %>
         <% end %>
       </div>
     <% elsif meeting.status == "pending_review" %>
@@ -91,7 +62,7 @@
         <h3><%= (current_user == meeting.helpee) ? "-" : "+" %><%= meeting.duration %>h</h3>
       </div>
       <div class="action-meeting">
-        <button class="btn btn-success button-review" <%= (current_user == meeting.helpee) ? "" : "disabled = 'true'"%>>Evaluer votre échange</button>
+        <button class="btn btn-success button-review" <%= (current_user == meeting.helpee) ? "" : "disabled = 'true'"%>><%= t('.meeting_review_button') %></button>
       </div>
     <% elsif meeting.status == "finished" %>
       <div class="info-meeting">

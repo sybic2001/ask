@@ -27,6 +27,8 @@ class MeetingsController < ApplicationController
   def update
     @meeting = Meeting.find(params[:id])
     current_status = @meeting.status
+    params[:meeting][:status] = "accepted" if params[:commit].has_key?('accept')
+    params[:meeting][:status] = "cancelled" if params[:commit].has_key?('cancel')
     if @meeting.update(meeting_params)
       if current_status != @meeting.status
         if @meeting.status == "refused"
