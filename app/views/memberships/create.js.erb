@@ -2,9 +2,9 @@ var index_community = <%= @community.id %>
 
 <% if @membership.errors.any? %>
   // Render new review form with errors
-  $('.div-errors').empty().append("Tous les champs doivent re remplis.");
+  $('.div-errors').empty().append("<%= t('.errors') %>");
 <% else %>
-  $('.modal-body').empty().append("Votre demande sera examinée par l'administrateur de la communauté sous peu.");
+  $('.modal-body').empty().append("<%= t('.answer') %>");
 
   setTimeout(function(){
     $('#myModal').modal('hide');

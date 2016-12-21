@@ -178,4 +178,26 @@ en:
       cancel: Cancel
       change: Change
       cancel_confirmation: This will cancel the meeting definitively. Are you sure ?
-      meeting_review_button: Review your session
+      meeting_review_button: Review your exchange
+  memberships:
+    create:
+      errors: All fields should be filled.
+      answer: Your request will be soon examinated by the community manager.
+    modale_form:
+      title: You're about to join the community of %{community}
+      promo_placeholder: "Ex: %{format}"
+      cancel: Cancel
+      join: Join
+  messages:
+    chatbox_modale:
+      title: Chat between %{helper} and %{helpee}
+      send: Send
+      close: Close
+      chat_placeholder: Type your message...
+    message_card:
+      meeting_created: Meeting created. Use this chatbox to find a common date and time. Then %{helper} should validate it.
+      meeting_accepted: Meeting accepted. %{helper} can still change date and duration if necessary.
+      meeting_refused: Meeting refused.
+      meeting_cancelled: Meeting cancelled.
+      pending_review: We hope the meeting went well. %{helpee} has to post a review to confirm time credit and debit for both participants.
+      meeting_finished: Meeting finished.

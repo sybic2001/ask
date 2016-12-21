@@ -1,6 +1,6 @@
 <div class="modal-header">
   <div class="modal-headbox">
-    <h4><%= "Dicussion entre #{meeting.helper.first_name} et #{meeting.helpee.first_name}" %></h4>
+    <h4><%= t('.title', helper: meeting.helper.first_name, helpee: meeting.helpee.first_name) %></h4>
   </div>
 </div>
 <div class="modal-body">
@@ -14,9 +14,9 @@
 <div class="modal-footer">
   <div class="chat-form">
   <%= simple_form_for [meeting, message], html: {class: 'form-inline', autocomplete: 'off' }, remote: true do |f| %>
-    <button type="button" class="btn btn-primary" data-dismiss="modal">Fermer</button>
-    <%= f.input :description, as: :text, label: false, placeholder: "Entrer votre message", input_html: {'rows' => 3} %>
-    <%= f.submit :button, value: "Envoyer", class: 'btn btn-success', disabled: true, id: "send" %>
+    <button type="button" class="btn btn-primary" data-dismiss="modal"><%= t '.close' %></button>
+    <%= f.input :description, as: :text, label: false, placeholder: t('.chat_placeholder'), input_html: {'rows' => 3} %>
+    <%= f.submit :button, value: t('.send'), class: 'btn btn-success', disabled: true, id: "send" %>
   <% end %>
   </div>
 </div>

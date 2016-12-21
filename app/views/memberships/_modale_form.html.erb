@@ -1,11 +1,11 @@
 <div class="modal-header">
-  <h4>Vous êtes sur le point de rejoindre la communauté "<%= community.name %>".</h4>
+  <h4><%= t('.title', community: community.name) %></h4>
 </div>
 <div class="modal-body">
   <div class="div-errors"></div>
   <%= simple_form_for([community, membership], remote: true) do |f| %>
-    <%= f.input :promotion, placeholder: "Ex : #{community.promo_format}" %>
-    <button type="button" class="btn btn-primary" data-dismiss="modal">Annuler</button>
-    <%= f.submit :button, value: "Rejoindre", class: "btn btn-success" %>
+    <%= f.input :promotion, placeholder: t('.promo_placeholder', format: community.promo_format) %>
+    <button type="button" class="btn btn-primary" data-dismiss="modal"><%= t '.cancel' %></button>
+    <%= f.submit :button, value: t('.join'), class: "btn btn-success" %>
   <% end %>
 </div>
