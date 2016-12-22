@@ -20,6 +20,9 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  time:
+    formats:
+      classic: "%m/%d/%y"
   activerecord:
     models:
       community: Community
@@ -179,6 +182,8 @@ en:
       change: Change
       cancel_confirmation: This will cancel the meeting definitively. Are you sure ?
       meeting_review_button: Review your exchange
+      button_follow_up: Shake %{helpee} !
+      message_follow_up: Hi %{helpee}, don't forget to post a review so I can get the time credit ! Thanks.
   memberships:
     create:
       errors: All fields should be filled.
@@ -201,3 +206,47 @@ en:
       meeting_cancelled: Meeting cancelled.
       pending_review: We hope the meeting went well. %{helpee} has to post a review to confirm time credit and debit for both participants.
       meeting_finished: Meeting finished.
+  reviews:
+    create:
+      errors: All fields should be filled.
+      answer: Thanks for your review ! Time has now been credited.
+    form_review:
+      title: How was your meeting with %{helper}?
+      description: Help us to refine %{helper}'s level estimate. It will remain anonymous. %{helper} has a level of %{level} in "%{competency}". How was its level?
+      less: Rather lower
+      conform: Corresponding
+      better: Rather higher
+      review_invitation: "Evaluate your meeting:"
+      send: Send
+      review_placeholder: Your comment
+  user_competencies:
+    index:
+      filter_title: Filter results
+      favorite_label: Show favorites
+      all_competencies: All
+      search: Search
+    search:
+      no_results: Sorry, no results. Change your search parameters.
+    user_competency_card:
+      add_experience: Add an experience
+    form_user_competency:
+      level_placeholder: From 0 to 100
+      description: Describe your competency with a few words
+      add: Add
+      select_item: Select a competency...
+    edit_form_user_competency:
+      description: Describe your competency with a few words
+      update: Update
+      cancel: Cancel
+    user_competency_modale:
+      nb_reviews:
+        zero: No reviews
+        one: 1 review
+        other: "%{count} reviews"
+      nb_hours:
+        zero: No time given
+        one: 1h given
+        other: "%{count}h given"
+      close: Close
+      contact_button: Contact %{helper} !
+      review_description: "%{helpee} wrote:"

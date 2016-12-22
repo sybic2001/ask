@@ -9,8 +9,11 @@
   padding: 0;
 }
 
-.yellow {
-  color: #F7BB06;
+.fa-star {
+  color: #E7E7E7;
+  &.yellow {
+    color: #F7BB06;
+  }
 }
 
 .modal-headbox {

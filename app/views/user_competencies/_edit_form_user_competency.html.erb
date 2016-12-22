@@ -2,9 +2,9 @@
 </div>
 <div class="col-xs-12 form-content">
 <%= simple_form_for user_competency, remote: true, method: :patch do |f| %>
-  <%= f.input :level, label: "Niveau" %>
-  <%= f.input :description, label: "Décrivez votre expertise en quelques mots" %>
-  <%= f.submit :button, class: "btn btn-primary", value: "Mettre à jour" %>
-  <input type="button" value="Annuler" class="btn btn-danger hide-edit-form" id="<%=user_competency.id%>">
+  <%= f.input :level %>
+  <%= f.input :description, label: t('.description') %>
+  <%= f.submit :button, class: "btn btn-primary", value: t('.update') %>
+  <input type="button" value=<%= t '.cancel' %> class="btn btn-danger hide-edit-form" id="<%=user_competency.id%>">
 <% end %>
 </div>

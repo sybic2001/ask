@@ -7,6 +7,7 @@
     <% if message.sender == current_user %>
     <div class="message-right">
     <% else %>
+    <span class="message-date"><p><%= message.sender.first_name %>, <%= l(message.created_at, format: :short) %></p></span>
     <div class="message-left">
     <% end %>
     <p><%= message.description %></p>

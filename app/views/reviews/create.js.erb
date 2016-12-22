@@ -1,8 +1,8 @@
 <% if @review.errors.any? %>
   // Render new review form with errors
-  $('.div-errors').append("Tous les champs doivent être remplis");
+  $('.div-errors').append("<%= t '.errors' %>");
 <% else %>
-  $('.modal-body').empty().append("Merci pour votre évaluation ! Le crédit des heures a bien été effectué.");
+  $('.modal-body').empty().append("<%= t '.answer' %>");
 
   setTimeout(function(){
     $('#myModal').modal('hide');
@@ -11,41 +11,41 @@
     $('#<%= @review.meeting.status %>').prepend(meeting_card);
     meeting_card.slideDown();
     $('.badge').empty().append("<%= current_user.profile.total_time_credit %>");
+    $(document).ready(function(){
+
+      $('.content-meeting').click(function(e){
+        var number = $(this).parent().attr('id').match(/\d+/)[0];
+        $.ajax({
+          type: "GET",
+          url: "/meetings/" + number + "/messages",
+          success: function(data) {
+            $('#myModal').modal('show');
+          }
+        });
+      });
+
+      $('#myModal').on('shown.bs.modal', function () {
+        if ($('.chatbox').length){
+          $('.chatbox').stop().animate({
+            scrollTop: $('.chatbox')[0].scrollHeight
+          }, 1200);
+        };
+      });
+
+      $('.datetimepicker').each(function(){
+        $(this).datetimepicker({
+          stepping: 30,
+          format: "YYYY-MM-DD HH:mm",
+          minDate: new Date(),
+          sideBySide: true,
+          showTodayButton: true,
+          showClear: true,
+          showClose: true,
+          useCurrent: false
+        });
+      });
+    });
   }, 1500);
 
 
-  $(document).ready(function(){
-
-    $('.content-meeting').click(function(e){
-      var number = $(this).parent().attr('id').match(/\d+/)[0];
-      $.ajax({
-        type: "GET",
-        url: "/meetings/" + number + "/messages",
-        success: function(data) {
-          $('#myModal').modal('show');
-        }
-      });
-    });
-
-    $('#myModal').on('shown.bs.modal', function () {
-      if ($('.chatbox').length){
-        $('.chatbox').stop().animate({
-          scrollTop: $('.chatbox')[0].scrollHeight
-        }, 1200);
-      };
-    });
-
-    $('.datetimepicker').each(function(){
-      $(this).datetimepicker({
-        stepping: 30,
-        format: "YYYY-MM-DD HH:mm",
-        minDate: new Date(),
-        sideBySide: true,
-        showTodayButton: true,
-        showClear: true,
-        showClose: true,
-        useCurrent: false
-      });
-    });
-  });
 <% end %>

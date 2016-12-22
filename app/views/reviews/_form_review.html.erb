@@ -1,15 +1,15 @@
 <div class="modal-header">
   <div class="modal-headbox">
-    <h4><%= "Evaluer votre échange avec #{meeting.helper.first_name}" %></h4>
+    <h4><%= t('.title', helper: meeting.helper.first_name) %></h4>
   </div>
 </div>
 <div class="modal-body">
   <div class="div-errors"></div>
   <div class="competency-score">
-    <h5>Avant d'évaluer votre expérience, <%= meeting.helper.first_name %> évalue son niveau à <%= meeting.user_competency.level %>% en "<%= meeting.user_competency.competency.name %>". Comment qualifieriez vous son niveau ? Cette information est anonyme et permet à chacun d'affiner son auto-évaluation.</h5>
+    <h5><%= t('.description', helper: meeting.helper.first_name, level: meeting.user_competency.level, competency: meeting.user_competency.competency.name) %></h5>
     <%= simple_form_for [meeting, review], remote: true do |f| %>
-      <%= f.collection_radio_buttons :competency_rating, [[-1, 'Plutôt inférieur'], [0, 'Tout à fait conforme'], [1, 'Plutôt supérieur']], :first, :last, label: false, item_wrapper_tag: :div, checked: 0 %>
-      <h5>Evaluez maintenant votre échange :</h5>
+      <%= f.collection_radio_buttons :competency_rating, [[-1, t('.less')], [0, t('.conform')], [1, t('.better')]], :first, :last, label: false, item_wrapper_tag: :div, checked: 0 %>
+      <h5><%= t '.review_invitation' %></h5>
       <%= f.hidden_field :user_rating, value: 0 %>
       <%= f.hidden_field :meeting_id, value: meeting.id %>
       <div class="review-rating">
@@ -19,8 +19,8 @@
         <i class="fa fa-star rating" aria-hidden="true" id="4"></i>
         <i class="fa fa-star rating" aria-hidden="true" id="5"></i>
       </div>
-      <%= f.input :user_comment, as: :text, label: false, input_html: { rows: 3 }, placeholder: "Votre commentaire" %>
-      <%= f.submit :button, value: "Envoyer", class: "btn btn-success" %>
+      <%= f.input :user_comment, as: :text, label: false, input_html: { rows: 3 }, placeholder: t('.review_placeholder') %>
+      <%= f.submit :button, value: t('.send'), class: "btn btn-success" %>
     <% end %>
   </div>
 </div>

@@ -8,7 +8,7 @@ class ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
     if @review.save
-      Message.create(meeting: @review.meeting, sender: @review.meeting.helper, receiver: @review.meeting.helpee, status: "auto", description: "Merci pour votre évaluation. Les heures sont maintenant créditées sur vos comptes.")
+      Message.create(meeting: @review.meeting, sender: @review.meeting.helper, receiver: @review.meeting.helpee, status: "auto", description: "meeting_finished")
       @review.meeting.update(status: "finished")
       @review.meeting.helper.profile.increment!(:total_time_credit, by = @review.meeting.duration)
       @review.meeting.helpee.profile.decrement!(:total_time_credit, by = @review.meeting.duration)

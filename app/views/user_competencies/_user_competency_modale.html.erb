@@ -15,14 +15,14 @@
     </div>
     <% unless user_competency.reviews.count == 0 %>
     <div class="profile-rating">
-      <p><%= user_competency.user.total_given %>h données</p>
+      <p><%= t('.nb_hours', count: user_competency.user.total_given) %></p>
       <% user_competency.user.average_rating.times do %>
         <i class="fa fa-star yellow" aria-hidden="true"></i>
       <% end %>
       <% (5 - user_competency.user.average_rating).times do %>
         <i class="fa fa-star" aria-hidden="true"></i>
       <% end %>
-      <p><em><%= user_competency.user.reviews.count %> avis</em></p>
+      <p><em><%= t('.nb_reviews', count: user_competency.user.reviews.count) %></em></p>
     </div>
     <% end %>
   </div>
@@ -60,7 +60,10 @@
         <% review.user_rating.times do %>
           <i class="fa fa-star yellow" aria-hidden="true"></i>
         <% end %>
-      <em>&nbsp;<%= review.meeting.helpee.first_name %> a écrit :</em></li>
+        <% (5 - review.user_rating).times do %>
+          <i class="fa fa-star" aria-hidden="true"></i>
+        <% end %>
+      <em><%= l(review.created_at, format: :classic) + ", " + t('.review_description', helpee: review.meeting.helpee.first_name) %></em></li>
       <li><%= review.user_comment %></li>
     <% end %>
     </ul>
@@ -68,11 +71,11 @@
 <% end %>
 <div class="modal-footer">
   <ul class="modal-menu">
-    <li><button type="button" class="btn btn-primary" data-dismiss="modal">Fermer</button></li>
+    <li><button type="button" class="btn btn-primary" data-dismiss="modal"><%= t '.close' %></button></li>
     <li>
       <form action="/user_competencies/<%= user_competency.id %>/meetings" method="post" id="link-meeting" class="inline-form">
         <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
-        <input type="submit" value="Contacter <%= user_competency.user.first_name %> !" class="btn btn-success">
+        <input type="submit" value="<%= t('.contact_button', helper: user_competency.user.first_name) %>" class="btn btn-success">
       </form>
     </li>
   </ul>

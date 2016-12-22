@@ -48,7 +48,7 @@
     <% if private_profile %>
       <div class="col-xs-12 text-center">
         <%= link_to new_user_competency_experience_path(user_competency), class: "add-experience", remote: true do %>
-        <i class="fa fa-plus-circle" style="font-size: 25px" aria-hidden="true"></i><p>Ajouter une expérience</p>
+        <i class="fa fa-plus-circle" style="font-size: 25px" aria-hidden="true"></i><p><%= t '.add_experience' %></p>
         <% end %>
       </div>
     <% end %>
