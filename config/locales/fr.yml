@@ -1,4 +1,28 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
 fr:
+  time:
+    formats:
+      classic: "%d/%m/%y"
   activerecord:
     models:
       community: Communauté
@@ -131,3 +155,99 @@ fr:
       description_placeholder: Décrivez votre expérience en quelques mots...
       add: Ajouter
       cancel: Annuler
+  meetings:
+    index:
+      pending_approval:
+        zero: Pas de discussions en cours
+        one: Discussion en cours
+        other: Discussions en cours (%{count})
+      agenda:
+        zero: Pas d'échanges planifiés
+        one: Prochain échange
+        other: Prochains échanges (%{count})
+      pending_review:
+        zero: Pas d'évaluations en attente
+        one: Evaluation en attente pour créditer le temps
+        other: Evaluations en attente (%{count}) pour créditer le temps
+      finished:
+        zero: Pas d'historique
+        one: Historique
+        other: Historique (%{count})
+    meeting_card:
+      date_placeholder: Date et heure...
+      duration_placeholder: Durée
+      propose: Proposer
+      accept: Accepter
+      refuse: Refuser
+      cancel: Annuler
+      change: Changer
+      cancel_confirmation: Ceci annulera définitivement l'échange. Etes-vous sûr(e) de vouloir continuer ?
+      meeting_review_button: Evaluer l'échange
+      button_follow_up: Relancer %{helpee} !
+      message_follow_up: Bonjour %{helpee}, n'oublie pas de poster ton évaluation afin que je puisse être crédité du temps échangé. Merci !
+  memberships:
+    create:
+      errors: Tous les champs doivent être remplis.
+      answer: Votre demande va être examinée par l'administrateur de la communauté.
+    modale_form:
+      title: Vous êtes sur le point de rejoindre la communauté '%{community}'
+      promo_placeholder: "Ex: %{format}"
+      cancel: Annuler
+      join: Rejoindre
+  messages:
+    chatbox_modale:
+      title: Chat entre %{helper} et %{helpee}
+      send: Envoyer
+      close: Fermer
+      chat_placeholder: Tapez votre message...
+    message_card:
+      meeting_created: Echange créé. Utilisez cette messagerie pour trouver une date et un créneau qui vous conviennent. %{helper} devra ensuite le valider.
+      meeting_accepted: Echange accepté. %{helper} peut toujours changer la date te la durée si besoin.
+      meeting_refused: Echange refusé.
+      meeting_cancelled: Echange annulé.
+      pending_review: L'échange s'est bien passé ? %{helpee} doit l'évaluer pour que le temps soit crédité et débité aux deux participants.
+      meeting_finished: Echange terminé.
+  reviews:
+    create:
+      errors: Tous les champs doivent être remplis.
+      answer: Merci pour votre évaluation ! Le temps a bien été crédité.
+    form_review:
+      title: Comment s'est passé votre échange avec %{helper}?
+      description: Aidez-nous à affiner le niveau de %{helper}. Cela restera anonyme. %{helper} évalue son niveau à %{level} en "%{competency}". En pratique, comment l'avez vous trouvé ?
+      less: Plutôt moins bon
+      conform: Conforme
+      better: Plutôt meilleur
+      review_invitation: "Evaluez maintenant votre échange :"
+      send: Envoyer
+      review_placeholder: Votre commentaire
+  user_competencies:
+    index:
+      filter_title: Filtrer les résultats
+      favorite_label: Favoris
+      all_competencies: Toutes
+      search: Chercher
+    search:
+      no_results: Désolé, nous n'avons trouvé aucun résultats parmis vos communautés. Elargissez vos critères !
+    user_competency_card:
+      add_experience: Ajouter une expérience
+    form_user_competency:
+      level_placeholder: Entre 0 et 100
+      description: Décrivez votre compétence en quelques mots
+      add: Ajouter
+      select_item: Sélectionnez une compétence...
+    edit_form_user_competency:
+      description: Décrivez votre compétence en quelques mots
+      update: Mettre à jour
+      cancel: Annuler
+    user_competency_modale:
+      nb_reviews:
+        zero: Pas d'évaluations
+        one: 1 évaluation
+        other: "%{count} évaluations"
+      nb_hours:
+        zero: Pas de temps donné
+        one: 1h donnée
+        other: "%{count}h données"
+      close: Fermer
+      contact_button: Contacter %{helper} !
+      review_description: "%{helpee} a écrit :"

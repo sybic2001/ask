@@ -90,6 +90,7 @@ en:
       communities: Join communities
       time_credit:
         zero: You have no more time credit
+        one: "Time credit: 1h"
         other: "Time credit: %{count}h"
       new_messages:
         zero: You have no incoming messages
