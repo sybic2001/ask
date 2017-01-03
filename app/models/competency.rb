@@ -10,4 +10,8 @@ class Competency < ActiveRecord::Base
     Competency.all.where(parent_competency_id: nil)
   end
 
+  def i18name
+    I18n.t("competencies.#{self.ref}")
+  end
+
 end

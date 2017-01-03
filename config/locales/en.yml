@@ -20,6 +20,36 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  competencies:
+    "100": Startup culture
+    "101": Pitch
+    "102": Lean Startup
+    "103": Growthacking
+    "104": Fund raising
+    "200": Marketing and sales
+    "201": Market research
+    "202": Building the offer
+    "203": Commercial strategy
+    "300": Finance
+    "301": Accounting
+    "302": Business plan
+    "400": Legal
+    "401": Social - Employment law
+    "402": Intellectual property - Brand - Pattent
+    "403": Legal status - Associates' pact
+    "500": Development and programming
+    "501": Front end
+    "502": Back end
+    "503": Big data
+    "600": IT
+    "601": Network architecture
+    "602": SEO and SEA
+    "700": Communication
+    "701": Communication plan
+    "702": Communication tools
+    "800": HR
+    "801": Recruitment
+    "900": Other
   time:
     formats:
       classic: "%m/%d/%y"
@@ -227,6 +257,35 @@ en:
       promo_label: My batches only
       all_competencies: All
       search: Search
+      "100": Startup culture
+      "101": Pitch
+      "102": Lean Startup
+      "103": Growthacking
+      "104": Fund raising
+      "200": Marketing and sales
+      "201": Market research
+      "202": Building the offer
+      "203": Commercial strategy
+      "300": Finance
+      "301": Accounting
+      "302": Business plan
+      "400": Legal
+      "401": Social - Employment law
+      "402": Intellectual property - Brand - Pattent
+      "403": Legal status - Associates' pact
+      "500": Development and programming
+      "501": Front end
+      "502": Back end
+      "503": Big data
+      "600": IT
+      "601": Network architecture
+      "602": SEO and SEA
+      "700": Communication
+      "701": Communication plan
+      "702": Communication tools
+      "800": HR
+      "801": Recruitment
+      "900": Other
     search:
       no_results: Sorry, no results. Change your search parameters.
     user_competency_card:

@@ -2,7 +2,7 @@
 <%= simple_form_for :filters, { url: search_user_competencies_path, remote: true } do |f| %>
   <%= f.input :favorite, as: :boolean, checked_value: true, unchecked_value: false, label: t('.favorite_label') %>
   <%= f.input :promo, as: :boolean, checked_value: true, unchecked_value: false, label: t('.promo_label') %>
-  <%= f.input :competency_id, collection: Competency.parent_competencies, as: :grouped_select, group_method: :child_competencies, include_blank: t('.all_competencies'), required: false %>
+  <%= f.input :competency_id, collection: Competency.parent_competencies, as: :grouped_select, group_method: :child_competencies, include_blank: t('.all_competencies'), required: false, label_method: :i18name, group_label_method: :i18name %>
   <%= f.input :level, required: false %>
   <%= f.input :communities, as: :check_boxes, collection: current_user.communities, wrapper: :vertical_radio_and_checkboxes, required: false %>
   <%= f.input :cities, as: :check_boxes, collection: current_user.peers_cities, required: false %>
