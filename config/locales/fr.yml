@@ -20,6 +20,36 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 fr:
+  competencies:
+    "100": Culture Startup
+    "101": Art du Pitch
+    "102": Lean Startup
+    "103": Growthacking
+    "104": Levée de fonds
+    "200": Marketing et ventes
+    "201": Etude de marché
+    "202": Construction de l'offre
+    "203": Stratégie commerciale
+    "300": Finance
+    "301": Comptabilité et Gestion
+    "302": Business plan
+    "400": Juridique
+    "401": Social - Droit du travail
+    "402": Propriété intellectuelle - Brevet
+    "403": Forme juridique - Statuts - Pacte
+    "500": Developpement
+    "501": Front end
+    "502": Back end
+    "503": Big data
+    "600": SI
+    "601": Architecture Réseau
+    "602": SEO et SEA
+    "700": Communication
+    "701": Plan de Communication
+    "702": Outils de Communication
+    "800": Ressources Humaines
+    "801": Recrutement
+    "900": Divers
   time:
     formats:
       classic: "%d/%m/%y"
