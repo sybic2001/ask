@@ -53,6 +53,11 @@ class User < ActiveRecord::Base
     self.users.joins(:memberships).where(memberships: {status: "member"}) - [self]
   end
 
+  def promo_peers(community_id)
+    my_promo = self.memberships.where(community_id: community_id).pluck(:promotion)
+    User.joins(:memberships).where(memberships: {community_id: community_id, promotion: my_promo, status: "member"}) - [self]
+  end
+
   def peers_cities
     self.users.joins(:memberships, :profile).where(memberships: {status: "member"}).pluck(:'profiles.city').reject(&:empty?)
   end

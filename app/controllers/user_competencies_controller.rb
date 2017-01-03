@@ -17,6 +17,14 @@ class UserCompetenciesController < ApplicationController
     @levelmin = params[:filters][:level].to_i
     @peer_competencies = current_user.peer_competencies.where.not(user: current_user)
     @peer_competencies = current_user.favorite_user_competencies if params[:filters][:favorite] == "true"
+    if params[:filters][:promo] == "true"
+      @promo_peers = []
+      current_user.memberships.where(status: "member").where.not(promotion: nil).each do |m|
+        @promo_peers << current_user.promo_peers(m.community_id)
+      end
+      p @promo_peers
+      @peer_competencies = @peer_competencies.where(user: @promo_peers)
+    end
     @peer_competencies = @peer_competencies.where(competency_id: @competency_id) unless @competency_id.empty?
     @peer_competencies = @peer_competencies.joins(user: :memberships).where(memberships: { community_id: @communities, status: "member"} ) unless @communities.empty?
     @peer_competencies = @peer_competencies.where('level >= ?', @levelmin) unless @levelmin.nil?

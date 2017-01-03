@@ -224,6 +224,7 @@ fr:
     search_form:
       filter_title: Filtrer les résultats
       favorite_label: Favoris
+      promo_label: Mes promos uniquement
       all_competencies: Toutes
       search: Chercher
     search:

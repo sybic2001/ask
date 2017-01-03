@@ -224,6 +224,7 @@ en:
     search_form:
       filter_title: Filter results
       favorite_label: Show favorites
+      promo_label: My batches only
       all_competencies: All
       search: Search
     search:
