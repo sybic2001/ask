@@ -35,7 +35,7 @@
         var index_community = $(this).attr('id').match(/\d+/)[0];
         $.ajax({
           type: "GET",
-          url: "/communities/" + index_community + "/memberships/new",
+          url: "communities/" + index_community + "/memberships/new",
           success: function(data) {
             $('#myModal').modal('show');
           }

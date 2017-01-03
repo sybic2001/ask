@@ -241,9 +241,9 @@ fr:
       cancel: Annuler
     user_competency_modale:
       nb_reviews:
-        zero: Pas d'évaluations
-        one: 1 évaluation
-        other: "%{count} évaluations"
+        zero: Pas d'avis
+        one: 1 avis
+        other: "%{count} avis"
       nb_hours:
         zero: Pas de temps donné
         one: 1h donnée

@@ -11,7 +11,7 @@ $(document).ready(function(){
     var number = $(this).parent().attr('id').match(/\d+/)[0];
     $.ajax({
       type: "GET",
-      url: "/meetings/" + number + "/messages",
+      url: "meetings/" + number + "/messages",
       success: function(data) {
         $('#myModal').modal('show');
       }
