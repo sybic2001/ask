@@ -44,7 +44,7 @@
               <% end %>
             </li>
             <li>
-              <%= link_to "/users/#{current_user.id}/profile" do %>
+              <%= link_to profile_path(current_user) do %>
                 <i class="fa fa-user"></i> <%= t(".profile", default: "Mon profil") %>
               <% end %>
             </li>
@@ -77,7 +77,7 @@
       <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
       <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
         <% if user_signed_in? %>
-          <li><a href="/users/<%= current_user.id %>/profile"><%= t(".profile", default: "Mon profil") %></a></li>
+          <li><%= link_to profile_path(current_user) do %><%= t(".profile", default: "Mon profil") %><% end %></li>
           <li><a href="/"><%= t(".home", default: "Accueil") %></a></li>
           <li><%= link_to t(".sign_out", default: "Log out"), destroy_user_session_path, method: :delete %>
         <% end %>
