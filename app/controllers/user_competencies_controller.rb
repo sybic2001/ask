@@ -13,12 +13,14 @@ class UserCompetenciesController < ApplicationController
     # @cities = params[:filters][:cities].reject(&:empty?)
     @competency_id = params[:filters][:competency_id]
     @communities = params[:filters][:communities].reject(&:empty?)
+    @cities = params[:filters][:cities].reject(&:empty?)
     @levelmin = params[:filters][:level].to_i
     @peer_competencies = current_user.peer_competencies.where.not(user: current_user)
     @peer_competencies = current_user.favorite_user_competencies if params[:filters][:favorite] == "true"
     @peer_competencies = @peer_competencies.where(competency_id: @competency_id) unless @competency_id.empty?
-    @peer_competencies = @peer_competencies.joins(user: :memberships).where(memberships: { community_id: @communities} ) unless @communities.empty?
+    @peer_competencies = @peer_competencies.joins(user: :memberships).where(memberships: { community_id: @communities, status: "member"} ) unless @communities.empty?
     @peer_competencies = @peer_competencies.where('level >= ?', @levelmin) unless @levelmin.nil?
+    @peer_competencies = @peer_competencies.includes(user: :profile).where(profiles: { city: @cities }) unless @cities.empty?
     @peer_competencies = @peer_competencies.order(:competency_id, level: :desc)
   end
 

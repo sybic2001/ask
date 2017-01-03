@@ -49,6 +49,14 @@ class User < ActiveRecord::Base
     Meeting.where("(helper_id = ? OR helpee_id = ?) AND status = ?", self.id, self.id, "accepted").order(:date).first
   end
 
+  def peers
+    self.users.joins(:memberships).where(memberships: {status: "member"}) - [self]
+  end
+
+  def peers_cities
+    self.users.joins(:memberships, :profile).where(memberships: {status: "member"}).pluck(:'profiles.city').reject(&:empty?)
+  end
+
   private
 
   def build_default_profile

@@ -221,7 +221,7 @@ fr:
       send: Envoyer
       review_placeholder: Votre commentaire
   user_competencies:
-    index:
+    search_form:
       filter_title: Filtrer les résultats
       favorite_label: Favoris
       all_competencies: Toutes

@@ -1,14 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-3">
-      <h4><%= t '.filter_title' %></h4>
-      <%= simple_form_for :filters, { url: search_user_competencies_path, remote: true } do |f| %>
-        <%= f.input :favorite, as: :boolean, checked_value: true, unchecked_value: false, label: t('.favorite_label') %>
-        <%= f.input :competency_id, collection: Competency.parent_competencies, as: :grouped_select, group_method: :child_competencies, include_blank: t('.all_competencies'), required: false %>
-        <%= f.input :level, required: false %>
-        <%= f.input :communities, as: :check_boxes, collection: current_user.communities, wrapper: :vertical_radio_and_checkboxes, required: false %>
-        <%= f.button :submit, t('.search'), class: 'btn btn-primary' %>
-      <% end %>
+      <%= render 'search_form' %>
     </div>
     <div class="col-xs-9" id="list">
       <% @peer_competencies.each do |peer_competency| %>
