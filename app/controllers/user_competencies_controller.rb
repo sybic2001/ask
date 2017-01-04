@@ -40,6 +40,9 @@ class UserCompetenciesController < ApplicationController
     @user_competency = UserCompetency.new(user_competency_params)
     @user_competency.user = current_user
     if @user_competency.save
+      params[:user_competency][:competency_ids].reject{|i| i.nil? || i == ""}.each do |badge_id|
+        Badge.create(user_competency: @user_competency, competency_id: badge_id)
+      end
       respond_to do |format|
         format.html { redirect_to profile_path(@user) }
         format.js  # <-- will render `app/views/reviews/create.js.erb`
@@ -74,6 +77,6 @@ class UserCompetenciesController < ApplicationController
   private
 
   def user_competency_params
-    params.require(:user_competency).permit(:level, :competency_id, :description)
+    params.require(:user_competency).permit(:level, :competency_id, :description, :competency_ids)
   end
 end

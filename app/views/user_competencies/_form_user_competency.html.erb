@@ -14,17 +14,9 @@
     </div>
     <div class="row">
       <div class="col-xs-12">
-      <% Competency.child_competencies.each do |competency| %>
-        <div class="badges-box" id="<%= competency.id %>" style="display: none">
-          <% competency.child_competencies.each do |badge| %>
-            <div class="badges-item"><%= badge.name %></div>
-          <% end %>
+        <div class="badges-box">
         </div>
-      <% end %>
       </div>
-    </div>
-    <div class="row">
-      <%= f.association :competencies, as: :check_boxes, collection: Competency.badge_competencies %>
     </div>
     <div class="row">
       <div class="col-xs-12">

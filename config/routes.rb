@@ -9,7 +9,10 @@ Rails.application.routes.draw do
     get "users/:id/profile/edit", to: "profiles#edit", as: "edit_profile"
     post "user_competencies/search", to: "user_competencies#search", as: "search_user_competencies"
 
-    resources :competencies, only: [:index, :new, :create, :destroy]
+    resources :competencies, only: [:index, :new, :create, :destroy] do
+      resources :badges, only: [:index]
+    end
+
     resources :communities, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
       resources :memberships, only: [:new, :create, :index]
     end

@@ -7,7 +7,7 @@ class UserCompetency < ActiveRecord::Base
   has_many :favorites, dependent: :destroy
   has_many :communities, through: :user
   has_many :badges, dependent: :destroy
-  has_many :competencies, through: :badges
+  has_many :competencies, through: :badges, source: :competency
 
   validates :user, :competency, :level, :description, presence: true
   validates :competency, uniqueness: { scope: :user }

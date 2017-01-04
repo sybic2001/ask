@@ -1,0 +1,10 @@
+<% if competency.child_competencies.any? %>
+<div class="form-group">
+  <input type="hidden" name="user_competency[competency_ids][]">
+  <% competency.child_competencies.each do |badge| %>
+      <label class="label-item">
+      <input class="check_boxes optional" type="checkbox" value="<%= badge.id %>" name="user_competency[competency_ids][]" id="user_competency_competency_ids_<%= badge.id %>">
+      <%= badge.name %></label>
+  <% end %>
+</div>
+<% end %>
