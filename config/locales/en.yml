@@ -20,6 +20,9 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  languages:
+    en: English
+    fr: Français
   competencies:
     "100": Startup culture
     "101": Pitch
@@ -100,6 +103,7 @@ en:
         country: Country
         phone_number: Phone
         description: Biography
+        locale: Preferred language
       review:
         user_rating: Rating
         user_comment: Comment

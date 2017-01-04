@@ -1,8 +1,41 @@
-<div id="error-messages">
+<div class="form-competency">
+  <div id="error-messages">
+  </div>
+  <%= simple_form_for(user_competency, remote: true) do |f| %>
+    <div class="row">
+      <div class="col-xs-12 col-sm-7">
+    <%= f.association :competency, label: t('activerecord.models.competency'), collection: Competency.parent_competencies, as: :grouped_select, group_method: :child_competencies, include_blank: t('.select_item'), required: true, disabled: current_user.competencies.pluck(:id) %>
+      </div>
+      <div class="col-xs-12 col-sm-5">
+      <label for="user_competency_level"><%= t 'activerecord.attributes.user_competency.level' %></label>
+      <input id="ex8" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="5" data-slider-value="50"/>
+      <%= f.hidden_field :level, value: user_competency.level || '50' %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+      <% Competency.child_competencies.each do |competency| %>
+        <div class="badges-box" id="<%= competency.id %>" style="display: none">
+          <% competency.child_competencies.each do |badge| %>
+            <div class="badges-item"><%= badge.name %></div>
+          <% end %>
+        </div>
+      <% end %>
+      </div>
+    </div>
+    <div class="row">
+      <%= f.association :competencies, as: :check_boxes, collection: Competency.badge_competencies %>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+      <%= f.input :description, label: t('.description') %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="button-box">
+      <button type="button" class="btn btn-danger" data-dismiss="modal"><%= t '.close' %></button>
+      <%= f.submit :button, class: "btn btn-primary", value: t('.add') %>
+      </div>
+    </div>
+  <% end %>
 </div>
-<%= simple_form_for(user_competency, remote: true) do |f| %>
-  <%= f.input :competency_id, collection: Competency.parent_competencies, as: :grouped_select, group_method: :child_competencies, include_blank: t('.select_item'), required: true %>
-  <%= f.input :level, placeholder: t('.level_placeholder') %>
-  <%= f.input :description, label: t('.description') %>
-  <%= f.submit :button, class: "btn btn-primary", value: t('.add') %>
-<% end %>

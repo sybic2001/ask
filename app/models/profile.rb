@@ -3,6 +3,7 @@ class Profile < ActiveRecord::Base
   has_attachment :photo
 
   after_save :sync_datas
+  LOCALES = ["en", "fr"]
 
   def sync_datas
     self.user.update_attribute(:first_name, self.first_name) if self.first_name != self.user.first_name

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170103181028) do
+ActiveRecord::Schema.define(version: 20170104113921) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,16 @@ ActiveRecord::Schema.define(version: 20170103181028) do
 
   add_index "attachinary_files", ["attachinariable_type", "attachinariable_id", "scope"], name: "by_scoped_parent", using: :btree
 
+  create_table "badges", force: :cascade do |t|
+    t.integer  "user_competency_id"
+    t.integer  "competency_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "badges", ["competency_id"], name: "index_badges_on_competency_id", using: :btree
+  add_index "badges", ["user_competency_id"], name: "index_badges_on_user_competency_id", using: :btree
+
   create_table "communities", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
@@ -47,7 +57,7 @@ ActiveRecord::Schema.define(version: 20170103181028) do
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
     t.integer  "parent_competency_id"
-    t.integer  "ref"
+    t.string   "ref"
   end
 
   create_table "experiences", force: :cascade do |t|
@@ -118,14 +128,15 @@ ActiveRecord::Schema.define(version: 20170103181028) do
     t.string   "address"
     t.string   "city"
     t.string   "phone_number"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.text     "description"
     t.string   "first_name"
     t.string   "last_name"
     t.string   "country"
     t.string   "state"
     t.string   "zip_code"
+    t.string   "locale",            default: "en"
   end
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
@@ -175,6 +186,8 @@ ActiveRecord::Schema.define(version: 20170103181028) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "badges", "competencies"
+  add_foreign_key "badges", "user_competencies"
   add_foreign_key "experiences", "user_competencies"
   add_foreign_key "favorites", "user_competencies"
   add_foreign_key "favorites", "users"

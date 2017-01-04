@@ -30,6 +30,7 @@
   </div>
 </div>
 
+
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
@@ -41,10 +42,17 @@
 <% content_for :after_js do %>
   <script>
     $(document).ready(function(){
+
       $('.add-competency').on('click', function(e){
         e.preventDefault();
-        $('#circle').toggleClass('fa-plus-circle').toggleClass('fa-minus-circle');
-        $('#form-competency').toggle();
+        $.ajax({
+          type: "GET",
+          url: "<%= new_user_competency_path %>",
+          success: function(data) {
+            $('#myModal').modal('show');
+            var my_slider = $('#ex8').slider();
+          }
+        });
       });
 
       $(document).on('click', '.product-body', function(e){

@@ -20,6 +20,9 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 fr:
+  languages:
+    en: English
+    fr: Français
   competencies:
     "100": Culture Startup
     "101": Art du Pitch

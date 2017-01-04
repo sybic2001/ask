@@ -1,0 +1,20 @@
+// Create a paragraph for the new review. But hide it.
+var new_competency = $("<%= j render 'form_user_competency', user_competency: @user_competency %>");
+// Add it to the DOM, at the end of the existing reviews. It's still hidden.
+$('.modal-content').empty().append(new_competency);
+$('.modal-content #ex8').slider({
+  tooltip: 'always'
+});
+
+$(".modal-content #ex8").on("slide", function(slideEvt) {
+  $(".modal-content #user_competency_level").val(slideEvt.value);
+});
+$('.modal-content select').on('change', function() {
+  $('.badges-box').each(function(){
+    $(this).hide();
+  });
+  $("#" + this.value + ".badges-box").show();
+});
+$('.badges-item').click(function(){
+  $(this).toggleClass('active');
+})

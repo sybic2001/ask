@@ -32,6 +32,10 @@ class UserCompetenciesController < ApplicationController
     @peer_competencies = @peer_competencies.order(:competency_id, level: :desc)
   end
 
+  def new
+    @user_competency = UserCompetency.new()
+  end
+
   def create
     @user_competency = UserCompetency.new(user_competency_params)
     @user_competency.user = current_user
