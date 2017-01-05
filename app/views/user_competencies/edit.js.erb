@@ -1,8 +1,8 @@
-var edit_form = $("<%= j render 'form_user_competency', user_competency: @user_competency %>");
+var edit_form = $("<%= j render 'form_user_competency', user_competency: @user_competency, experience: @experience %>");
 $('.modal-content').empty().append(edit_form);
 <% @user_competency.competencies.each do |badge| %>
-  $("#user_competency_competency_ids_<%= badge.id %>").prop('checked', true);
-  $("#user_competency_competency_ids_<%= badge.id %>").parent().addClass('active');
+  $(".modal-content #user_competency_competency_ids_<%= badge.id %>").prop('checked', true);
+  $(".modal-content #user_competency_competency_ids_<%= badge.id %>").parent().addClass('active');
 <% end %>
 $('#myModal').modal('show');
 $('.modal-content #ex8').slider({

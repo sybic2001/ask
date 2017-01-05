@@ -1,1 +1,1 @@
-$('#experience-card-' + <%= "#{@experience_id}" %>).slideUp("normal", function(){ $(this).remove(); });
+$('.modal-content #<%= @experience_id %>.flex-experience').slideUp("normal", function(){ $(this).remove(); });

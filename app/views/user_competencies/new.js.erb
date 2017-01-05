@@ -1,5 +1,5 @@
 // Create a paragraph for the new review. But hide it.
-var new_competency = $("<%= j render 'form_user_competency', user_competency: @user_competency %>");
+var new_competency = $("<%= j render 'form_user_competency', user_competency: @user_competency, experience: @experience %>");
 // Add it to the DOM, at the end of the existing reviews. It's still hidden.
 $('.modal-content').empty().append(new_competency);
 $('.modal-content #ex8').slider({

@@ -33,3 +33,47 @@
     }
   }
 }
+
+.experiences-box {
+  margin-top: 20px;
+  padding-top: 10px;
+  border-top: 1px solid #ABABAB;
+}
+
+.flex-experience {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 10px 0;
+  input {
+    padding: 6px;
+  }
+  p {
+    margin: 6px;
+  }
+  .experience-year-box {
+    flex: 0 0 auto;
+    width: 80px;
+  }
+  .experience-company-box {
+    flex: 1 1 140px;
+    min-width: 140px;
+  }
+  .experience-description-box {
+    flex: 1 1 auto;
+    min-width: 300px;
+    max-width: 80%;
+  }
+  .experience-action-box {
+    flex: 0;
+    width: 36px;
+    .btn {
+      width: 36px;
+      padding: 6px 10px;
+    }
+  }
+  .form-group {
+    margin: 0;
+  }
+}

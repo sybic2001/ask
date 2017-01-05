@@ -36,4 +36,17 @@
       </div>
     </div>
   <% end %>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="experiences-box">
+          <% if user_competency.id %>
+            <label><%= t 'activerecord.models.experience' %></label>
+            <%= render 'experiences/new_experience_form', experience: experience, user_competency: user_competency %>
+            <% user_competency.experiences.each do |exp| %>
+              <%= render 'experiences/experience_card', experience: exp %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
 </div>

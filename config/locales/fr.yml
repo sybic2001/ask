@@ -53,6 +53,8 @@ fr:
     "800": Ressources Humaines
     "801": Recrutement
     "900": Divers
+  buttons:
+    update: Mettre à jour
   time:
     formats:
       classic: "%d/%m/%y"

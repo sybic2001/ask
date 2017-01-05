@@ -34,15 +34,14 @@ class UserCompetenciesController < ApplicationController
 
   def new
     @user_competency = UserCompetency.new()
+    @experience = Experience.new()
   end
 
   def create
     @user_competency = UserCompetency.new(user_competency_params)
     @user_competency.user = current_user
+    @experience = Experience.new()
     if @user_competency.save
-      params[:user_competency][:competency_ids].reject{|i| i.nil? || i == ""}.each do |badge_id|
-        Badge.create(user_competency: @user_competency, competency_id: badge_id)
-      end
       respond_to do |format|
         format.html { redirect_to profile_path(@user) }
         format.js  # <-- will render `app/views/reviews/create.js.erb`
@@ -62,6 +61,7 @@ class UserCompetenciesController < ApplicationController
 
   def edit
     @user_competency = UserCompetency.find(params[:id])
+    @experience = Experience.new()
   end
 
   def update

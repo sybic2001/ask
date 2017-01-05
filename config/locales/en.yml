@@ -53,6 +53,8 @@ en:
     "800": Human Resources
     "801": Recruitment
     "900": Other
+  buttons:
+    update: Update
   time:
     formats:
       classic: "%m/%d/%y"

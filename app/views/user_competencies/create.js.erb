@@ -5,6 +5,10 @@ $('#experiences').append(new_competency);
 $('#error-messages').empty();
 // Show the new review with an animation!
 new_competency.slideDown();
-setTimeout(function(){
-  $('#myModal').modal('hide');
-}, 200);
+
+var form_experience = $("<%= j render 'experiences/new_experience_form', experience: @experience, user_competency: @user_competency %>").hide();
+$('.modal-content .experiences-box').append("<label><%= t 'activerecord.models.experience' %></label>")
+$('.modal-content .experiences-box').append(form_experience);
+$('.modal-content .button-box input').val("<%= t 'buttons.update' %>");
+form_experience.slideDown();
+

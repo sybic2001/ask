@@ -1,11 +1,22 @@
-<div class="col-xs-12 form-content" id="form-content-<%= user_competency.id%>">
-  <div id="error-messages">
+<%= simple_form_for experience, url: user_competency_experiences_path(user_competency), method: :post, remote: true do |f| %>
+<div class="flex-experience" id="form-experience">
+  <div class="experience-year-box">
+  <%= f.input :year, label: false, placeholder: t('.year_placeholder') %>
   </div>
-  <%= simple_form_for [user_competency, experience], remote: true do |f| %>
-    <%= f.input :year, label: false, placeholder: t('.year_placeholder') %>
-    <%= f.input :company, label: false, placeholder: t('.company_placeholder') %>
-    <%= f.input :description, label: false, placeholder: t('.description_placeholder') %>
-    <%= f.submit :button, class: "btn btn-primary", value: t('.add') %>
-    <input type="button" value=<%= t ('.cancel') %> class="btn btn-danger remove-experience-form">
+  <div class="experience-company-box">
+  <%= f.input :company, label: false, placeholder: t('.company_placeholder') %>
+  </div>
+  <div class="experience-description-box">
+  <%= f.input :description, label: false, placeholder: t('.description_placeholder') %>
+  </div>
+  <div class="experience-action-box">
+  <% if experience.id %>
+    <%= link_to experience_path(experience), class: 'btn btn-danger', method: :delete, remote: true do %>
+      <i class="fa fa-trash-o" aria-hidden="true"></i>
+    <% end %>
+  <% else %>
+    <%= f.submit :button, class: "btn btn-primary", value: '+' %>
   <% end %>
+  </div>
 </div>
+<% end %>

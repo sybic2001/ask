@@ -25,12 +25,6 @@ class ExperiencesController < ApplicationController
     end
   end
 
-  def edit
-  end
-
-  def update
-  end
-
   def destroy
     @experience = Experience.find(params[:id])
     @experience_id = @experience.id
