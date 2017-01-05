@@ -77,6 +77,6 @@ class UserCompetenciesController < ApplicationController
   private
 
   def user_competency_params
-    params.require(:user_competency).permit(:level, :competency_id, :description, :competency_ids)
+    params.require(:user_competency).permit(:level, :competency_id, :description, competency_ids: [])
   end
 end

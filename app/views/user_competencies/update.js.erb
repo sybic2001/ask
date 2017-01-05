@@ -1,13 +1,7 @@
-<% if @user_competency.errors.any? %>
-  // Render new review form with errors
-  $('#error-messages').html("<ul class='list-group'><% @user_competency.errors.full_messages.each do |msg| %><li class='list-group-item list-group-item-danger'><%= msg %></li><% end %></ul>");
-<% else %>
-  // Create a paragraph for the new review. But hide it.
-  var edited_competency = $("<%= j render 'user_competency_card', user_competency: @user_competency, private_profile: true %>");
-  // Add it to the DOM, at the end of the existing reviews. It's still hidden.
-  $('#user-competency-' + <%= @user_competency.id %>).replaceWith(edited_competency);
-  $('#edit-form-competency-' + <%= @user_competency.id %>).remove();
-  $('#error-messages').remove();
-  // Show the new review with an animation!
-  // Remove the text from the content textarea.
-<% end %>
+var edited_competency = $("<%= j render 'user_competency_card', user_competency: @user_competency, private_profile: true %>");
+// Add it to the DOM, at the end of the existing reviews. It's still hidden.
+$('#user-competency-' + <%= @user_competency.id %>).replaceWith(edited_competency);
+setTimeout(function(){
+$('#myModal').modal('hide');
+}, 200);
+

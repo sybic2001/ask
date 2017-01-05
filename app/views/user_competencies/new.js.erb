@@ -10,16 +10,12 @@ $(".modal-content #ex8").on("slide", function(slideEvt) {
   $(".modal-content #user_competency_level").val(slideEvt.value);
 });
 $('.modal-content select').on('change', function() {
-  // $('.badges-box').each(function(){
-  //   $(this).hide();
-  // });
-  // $("#" + this.value + ".badges-box").show();
   $.ajax({
     type: "GET",
     url: "<%= competencies_path %>/" + this.value + "/badges",
     success: function(data) {
-      $('label').click(function(){
-        $(this).toggleClass('active');
+      $('.check_boxes').change(function(){
+        $(this).parent().toggleClass('active');
       });
     }
   });

@@ -103,6 +103,7 @@ fr:
         country: Pays
         phone_number: Téléphone
         description: Biographie
+        locale: Langue préférée
       review:
         user_rating: Note
         user_comment: Commentaire
@@ -268,7 +269,10 @@ fr:
       level_placeholder: Entre 0 et 100
       description: Décrivez votre compétence en quelques mots
       add: Ajouter
+      update: Mettre à jour
+      close: Fermer
       select_item: Sélectionnez une compétence...
+      label_badges: Badges disponibles
     edit_form_user_competency:
       description: Décrivez votre compétence en quelques mots
       update: Mettre à jour
