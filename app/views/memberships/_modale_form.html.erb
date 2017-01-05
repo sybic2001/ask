@@ -4,7 +4,7 @@
 <div class="modal-body">
   <div class="div-errors"></div>
   <%= simple_form_for([community, membership], remote: true) do |f| %>
-    <%= f.input :promotion, placeholder: t('.promo_placeholder', format: community.promo_format) %>
+    <%= f.input :promotion, placeholder: t('.promo_placeholder', promo_format: community.promo_format) %>
     <button type="button" class="btn btn-primary" data-dismiss="modal"><%= t '.cancel' %></button>
     <%= f.submit :button, value: t('.join'), class: "btn btn-success" %>
   <% end %>

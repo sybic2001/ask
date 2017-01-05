@@ -23,6 +23,24 @@
   <script>
     $(document).ready(function(){
 
+      $('#filters_competency_id').on('change', function() {
+        $.ajax({
+          type: "GET",
+          url: "<%= competencies_path %>/" + this.value + "/badges",
+          success: function(data) {
+            $('.badges-filter').empty().append(form_badge);
+          }
+        });
+      });
+
+      $('#ex9').slider({
+        tooltip: 'always'
+      });
+
+      $("#ex9").on("slide", function(slideEvt) {
+        $("#filters_level").val(slideEvt.value);
+      });
+
       $('.product-body, .profile-picture, .profile-score').click(function(e){
         var number = $(this).parent().attr('id').match(/\d+/)[0];
         ajax_call(number);

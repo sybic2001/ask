@@ -3,7 +3,9 @@ var new_experience = $("<%= j render 'experience_card', experience: @experience 
 // Add it to the DOM, at the end of the existing reviews. It's still hidden.
 $('.modal-content .experiences-box').append(new_experience);
 $('.modal-content #form-experience input').each(function(){
-  $(this).val('');
-})
+  if (!$(this).hasClass('btn')){
+    $(this).val('');
+  }
+});
 // Show the new review with an animation!
 new_experience.slideDown();

@@ -42,7 +42,15 @@ en:
     "403": Legal status - Associates' pact
     "500": Development and programming
     "501": Front end
+    "5011": CSS
+    "5012": HTML
+    "5013": UI
+    "5014": UX
     "502": Back end
+    "5021": Ruby
+    "5022": JS
+    "5023": React
+    "5024": C#
     "503": Big data
     "600": IT
     "601": Network architecture

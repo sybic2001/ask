@@ -53,9 +53,9 @@
       });
 
       $(document).on('click', '.product-body', function(e){
-        var number = $(this).parent().parent().attr('id').match(/\d+/)[0];
-        $('#experiences-' + number).slideToggle();
-        $(this).parent().toggleClass('active');
+        // var number = $(this).parent().parent().attr('id').match(/\d+/)[0];
+        // $('#experiences-' + number).slideToggle();
+        // $(this).parent().toggleClass('active');
       });
 
       $('.book-meeting').click(function(e){
@@ -66,7 +66,7 @@
       function ajax_call(competency_id){
         $.ajax({
           type: "GET",
-          url: "user_competencies/" + competency_id,
+          url: "/user_competencies/" + competency_id,
           success: function(data) {
             $('#myModal').modal('show');
           }
@@ -80,7 +80,7 @@
           var index_favorite = $(this).attr('id').match(/(\d+)/gi)[1];
           $.ajax({
             type: "DELETE",
-            url: "user_competencies/" + index_competency + "/favorites/" + index_favorite,
+            url: "/user_competencies/" + index_competency + "/favorites/" + index_favorite,
             success: function(data) {
               $('#user-competency-' + index_competency + ' .fa-heart').removeClass("favorite");
               $('#user-competency-' + index_competency + ' .star').attr("id", "star-competency-" + index_competency);
@@ -89,7 +89,7 @@
         } else {
           $.ajax({
             type: "POST",
-            url: "user_competencies/" + index_competency + "/favorites",
+            url: "/user_competencies/" + index_competency + "/favorites",
             success: function(data) {
               $(this).children().addClass("favorite");
               $('#user-competency-' + index_competency + ' .fa-heart').addClass("favorite");

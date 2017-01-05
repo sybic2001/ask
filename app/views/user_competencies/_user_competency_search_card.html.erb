@@ -19,6 +19,11 @@
   <div class='product-body'>
     <h4><%= user_competency.competency.name %></h4>
     <p><%= user_competency.description %></p>
+    <div class="badges">
+      <% user_competency.competencies.each do |badge| %>
+        <span class="badge-item"><%= t "competencies.#{badge.ref}" %></span>
+      <% end %>
+    </div>
   </div>
     <ul class="list-inline product-controls">
       <li>
