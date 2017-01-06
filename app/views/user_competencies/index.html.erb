@@ -24,13 +24,17 @@
     $(document).ready(function(){
 
       $('#filters_competency_id').on('change', function() {
-        $.ajax({
-          type: "GET",
-          url: "<%= competencies_path %>/" + this.value + "/badges",
-          success: function(data) {
-            $('.badges-filter').empty().append(form_badge);
-          }
-        });
+        if (this.value) {
+          $.ajax({
+            type: "GET",
+            url: "<%= competencies_path %>/" + this.value + "/badges",
+            success: function(data) {
+              $('.badges-filter').empty().append(form_badge);
+            }
+          });
+        } else {
+          $('.badges-filter').empty();
+        }
       });
 
       $('#ex9').slider({
