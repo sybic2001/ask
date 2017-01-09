@@ -67,3 +67,12 @@
     overflow-y: scroll;
   }
 }
+
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  .form-button{
+    flex: 1 1 30%;
+  }
+}
