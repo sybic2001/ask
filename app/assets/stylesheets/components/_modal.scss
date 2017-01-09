@@ -73,6 +73,7 @@
   justify-content: space-between;
   flex-wrap: wrap;
   .form-button{
-    flex: 1 1 30%;
+    flex: 1 1 auto;
+    min-width: 100px;
   }
 }
