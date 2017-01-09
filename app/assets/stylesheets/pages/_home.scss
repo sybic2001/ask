@@ -46,3 +46,11 @@ h1:hover .more {
   margin-bottom: 20px;
   }
 }
+
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  .form-button{
+    flex: 1 1 30%;
+  }
+}
