@@ -235,7 +235,7 @@ en:
       answer: Your request will be soon examinated by the community manager.
     modale_form:
       title: You're about to join the community of %{community}
-      promo_placeholder: "Ex: %{format}"
+      promo_placeholder: "Ex: %{promo_format}"
       cancel: Cancel
       join: Join
   messages:

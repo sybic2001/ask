@@ -14,6 +14,7 @@ class MembershipsController < ApplicationController
     @membership = Membership.new(membership_params)
     @membership.user = current_user
     @membership.community = @community
+    @membership.status = "member" # TODO : enlever - juste pour éviter la procédure de validation en test
     @membership.save
   end
 
