@@ -68,11 +68,13 @@ class UserCompetenciesController < ApplicationController
     end
     if !@competency_id.empty?
       @peer_competencies = @peer_competencies.where(competency_id: @competency_id)
-      sql_seq = []
-      params[:user_competency][:competency_ids].reject(&:empty?).each do |badge_id|
-        sql_seq << "EXISTS (SELECT 1 FROM badges WHERE badges.competency_id = #{badge_id.to_i} AND badges.user_competency_id = user_competencies.id)"
+      if params[:user_competency]
+        sql_seq = []
+        params[:user_competency][:competency_ids].reject(&:empty?).each do |badge_id|
+          sql_seq << "EXISTS (SELECT 1 FROM badges WHERE badges.competency_id = #{badge_id.to_i} AND badges.user_competency_id = user_competencies.id)"
+        end
+        @peer_competencies = @peer_competencies.where(sql_seq.join(" AND ")) unless sql_seq.empty?
       end
-      @peer_competencies = @peer_competencies.where(sql_seq.join(" AND ")) unless sql_seq.empty?
     end
     @peer_competencies = @peer_competencies.joins(user: :memberships).where(memberships: { community_id: @communities} ) unless @communities.empty?
     @peer_competencies = @peer_competencies.where('level >= ?', @levelmin) unless @levelmin.nil?

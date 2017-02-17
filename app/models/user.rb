@@ -59,7 +59,7 @@ class User < ActiveRecord::Base
   end
 
   def peers_cities
-    self.users.joins(:memberships, :profile).where(memberships: {status: "member"}).pluck(:'profiles.city').reject(&:empty?)
+    cities_list = self.users.joins(:memberships, :profile).where(memberships: {status: "member"}).pluck(:'profiles.city').reject! { |item| item.nil? || item == '' }
   end
 
   private
